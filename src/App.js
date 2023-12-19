@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { publicRoutes } from "~/routes";
 
 // layout
-import { MainLayout } from "~/components/layouts";
+import { MainLayout } from "~/layouts";
 
 function App() {
   return (

@@ -1,4 +1,4 @@
-import { Header, Footer, SideBar } from "~/components/layouts/components";
+import { Header, Footer, SideBar } from "~/layouts/components";
 
 function MainLayout({ children }) {
   return (

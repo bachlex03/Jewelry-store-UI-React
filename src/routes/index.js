@@ -1,5 +1,5 @@
 import { Home, Shop, Cart } from "~/pages";
-import { SubLayout } from "~/components/layouts";
+import { SubLayout } from "~/layouts";
 
 export const publicRoutes = [
   {
