@@ -1,0 +1,23 @@
+.parent {
+  padding-bottom: 10px;
+  .icon {
+    font-size: 1.4rem;
+  }
+}
+
+.heading {
+  color: #000;
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+
+.list {
+  padding-top: 10px;
+  padding-left: 15px;
+
+  li {
+    font-size: 1.4rem;
+    padding-bottom: 10px;
+    line-height: 21px;
+  }
+}
