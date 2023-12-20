@@ -1,3 +1,3 @@
-export { default as Header } from "./Header/Header";
-export { default as Footer } from "./Footer/Footer";
-export { default as SideBar } from "./Sidebar/Sidebar";
+export { default as SiteHeader } from "./Header";
+export { default as Footer } from "./Footer";
+export { default as SideBar } from "./Sidebar";

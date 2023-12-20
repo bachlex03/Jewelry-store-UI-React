@@ -1,9 +1,9 @@
-import { Header, Footer, SideBar } from "~/layouts/components";
+import { SiteHeader, Footer, SideBar } from "~/layouts/components";
 
 function MainLayout({ children }) {
   return (
     <>
-      <Header />
+      <SiteHeader />
       <div className="container">
         <SideBar />
 
