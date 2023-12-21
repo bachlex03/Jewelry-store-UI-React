@@ -28,9 +28,6 @@ function Shop() {
               <div className="col l-4">
                 <Product />
               </div>
-              <div className="col l-4">
-                <Product />
-              </div>
             </div>
           </div>
         </div>

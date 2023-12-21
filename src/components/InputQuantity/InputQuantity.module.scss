@@ -1,0 +1,43 @@
+.quantity-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.decrease-btn {
+  display: block;
+  position: absolute;
+  padding: 4px;
+  top: 9px;
+  left: 8px;
+  font-size: 2rem;
+  background-color: transparent;
+  cursor: pointer;
+  user-select: none;
+}
+
+.quantity-input {
+  display: inline-block;
+  width: 90px;
+  padding: 0 26px;
+  line-height: 42px;
+  cursor: pointer;
+  color: #888686;
+  background-color: transparent;
+  border: 1px solid #e1e1e1;
+  border-radius: 2rem;
+  font-size: 1.3rem;
+  display: inline-block;
+  text-align: center;
+}
+
+.increase-btn {
+  display: block;
+  position: absolute;
+  padding: 4px;
+  top: 10.5px;
+  right: 8px;
+  font-size: 1.6rem;
+  background-color: transparent;
+  cursor: pointer;
+  user-select: none;
+}

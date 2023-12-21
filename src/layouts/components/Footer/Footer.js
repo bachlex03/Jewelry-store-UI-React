@@ -30,13 +30,16 @@ function Footer() {
               </div>
               <div className="col l-9">
                 <div className="row">
-                  <div className="col l-4">
+                  <div className="col l-3">
                     <FooterList />
                   </div>
-                  <div className="col l-4">
+                  <div className="col l-3">
                     <FooterList />
                   </div>
-                  <div className="col l-4">
+                  <div className="col l-3">
+                    <FooterList />
+                  </div>
+                  <div className="col l-3">
                     <FooterList />
                   </div>
                 </div>

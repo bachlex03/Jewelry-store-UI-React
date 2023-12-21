@@ -32,11 +32,11 @@
 @font-face {
   font-family: Butler;
   src: url("/assets/vendors/fonts/butler/Butler-UltraLight.woff2");
-  font-weight: 300;
+  font-weight: 100;
 }
 
 @font-face {
   font-family: Butler;
   src: url("/assets/vendors/fonts/butler/Butler.woff2");
-  font-weight: 100;
+  font-weight: 300;
 }

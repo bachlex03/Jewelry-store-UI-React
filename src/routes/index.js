@@ -1,4 +1,4 @@
-import { Home, Shop, Cart } from "~/pages";
+import { Home, Shop, Cart, Details } from "~/pages";
 import { SubLayout } from "~/layouts";
 
 export const publicRoutes = [
@@ -9,6 +9,10 @@ export const publicRoutes = [
   {
     path: "/shop",
     component: Shop,
+  },
+  {
+    path: "/Details",
+    component: Details,
   },
   {
     path: "/cart",
