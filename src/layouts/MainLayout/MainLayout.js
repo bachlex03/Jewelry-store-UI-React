@@ -4,11 +4,8 @@ function MainLayout({ children }) {
   return (
     <>
       <SiteHeader />
-      <main className="container flex">
-        <div className="flex justify-between align-center section-1200">
-          <SideBar />
-          <div className="content">{children}</div>
-        </div>
+      <main className="container">
+        <div className="w-100">{children}</div>
       </main>
       <Footer />
     </>

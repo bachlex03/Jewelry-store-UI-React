@@ -8,7 +8,7 @@ const cx = classNames.bind(style);
 function Sidebar() {
   return (
     <>
-      <aside>
+      <aside className={cx("sidebar")}>
         <h3 className={cx("heading")}>PRODUCT CATEGORIES</h3>
         <Category />
         <Category />
