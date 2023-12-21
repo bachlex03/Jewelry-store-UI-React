@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import images from "~/assets/images";
 
 import Button from "~/components/Button";
+import { Fragment } from "react";
 
 const cx = classNames.bind(style);
 
@@ -26,7 +27,11 @@ function Product({ sale, children }) {
     <>
       <div className={cx("product-item")}>
         <div className={cx("product-wrapper")}>
-          {/* sale */}
+          {isSale ? (
+            <img src={images.sale} className={cx("sale-tag")} />
+          ) : (
+            Fragment
+          )}
           <Link>
             <img src={images.product} alt="product" className={cx("img")} />
           </Link>

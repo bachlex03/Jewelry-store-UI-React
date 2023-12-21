@@ -7,7 +7,9 @@ function MainLayout({ children }) {
       <main className="container">
         <div className="w-100">{children}</div>
       </main>
-      <Footer />
+      <footer>
+        <Footer />
+      </footer>
     </>
   );
 }

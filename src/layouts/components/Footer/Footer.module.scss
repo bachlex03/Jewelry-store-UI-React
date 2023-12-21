@@ -1,0 +1,61 @@
+.wrapper {
+  margin-top: 40px;
+}
+
+.branch-heading {
+  font-size: 3rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+  font-family: var(--ff-butler);
+  text-transform: uppercase;
+  -webkit-font-smoothing: auto;
+}
+
+.sub-heading {
+  font-size: 1.3rem;
+  text-transform: uppercase;
+}
+
+// Sub footer
+.sub-footer {
+  border-top: 1px solid #ccc;
+  padding: 10px 0;
+  margin-top: 40px;
+}
+
+.payment-list {
+  display: flex;
+
+  li {
+    margin: 15px;
+  }
+
+  .icon {
+    font-size: 30px;
+    opacity: 0.7;
+    cursor: pointer;
+  }
+}
+
+.footer-pages {
+  display: flex;
+
+  li a {
+    font-size: 1.4rem;
+    opacity: 0.6;
+  }
+
+  li {
+    &::after {
+      content: "|";
+      margin: 0 10px;
+      opacity: 0.6;
+    }
+
+    &:last-child {
+      &::after {
+        display: none;
+      }
+    }
+  }
+}
