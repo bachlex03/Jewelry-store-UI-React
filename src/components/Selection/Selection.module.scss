@@ -45,6 +45,8 @@
   width: 220px;
   margin-top: 10px;
   background-color: #fff;
+  opacity: 1;
+  visibility: visible;
 
   li {
     background-color: #fafafa;
@@ -52,6 +54,7 @@
     margin-bottom: 2px;
     font-size: 1.5rem;
     cursor: pointer;
+    transition: 0.1s;
 
     &:hover {
       background-color: #e4e0e0;

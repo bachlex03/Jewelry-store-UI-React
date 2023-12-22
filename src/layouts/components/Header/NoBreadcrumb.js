@@ -11,7 +11,7 @@ import SiteBreadcrumb from "./components/SiteBreadcrumb";
 
 const cx = classNames.bind(style);
 
-function SiteHeader() {
+function NoBreadcrumb() {
   return (
     <>
       <header>
@@ -52,13 +52,12 @@ function SiteHeader() {
 
         <SiteSubHeader />
         <SiteCatalog />
-        <SiteBreadcrumb />
       </header>
     </>
   );
 }
 
-export default SiteHeader;
+export default NoBreadcrumb;
 
 // eslint-disable-next-line
 {

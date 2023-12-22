@@ -1,4 +1,4 @@
-import style from "./SiteHeader.module.scss";
+import style from "../SiteHeader.module.scss";
 import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";

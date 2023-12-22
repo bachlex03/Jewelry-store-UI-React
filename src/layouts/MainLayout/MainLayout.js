@@ -4,9 +4,7 @@ function MainLayout({ children }) {
   return (
     <>
       <SiteHeader />
-      <main className="container">
-        <div className="w-100">{children}</div>
-      </main>
+      <main className="container">{children}</main>
       <footer>
         <Footer />
       </footer>

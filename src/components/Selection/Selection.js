@@ -18,7 +18,7 @@ function Selection({ name, values }) {
 
     valuesList.forEach((element, index) => {
       element.addEventListener("click", function (e) {
-        listRef.current.classList.toggle("hidden");
+        listRef.current.classList.add("hidden");
 
         setValue(e.target.innerText);
       });
@@ -30,11 +30,7 @@ function Selection({ name, values }) {
   };
 
   const handleMouseLeave = (e) => {
-    let isHidden = listRef.current.classList.contains("hidden");
-
-    if (!isHidden) {
-      listRef.current.classList.remove("hidden");
-    }
+    listRef.current.classList.add("hidden");
   };
 
   return (

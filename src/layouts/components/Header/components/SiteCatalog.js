@@ -1,4 +1,4 @@
-import style from "./SiteHeader.module.scss";
+import style from "../SiteHeader.module.scss";
 import classNames from "classnames/bind";
 import { Link } from "react-router-dom";
 
@@ -14,7 +14,7 @@ function SiteCatalog() {
         <div className="flex justify-between align-center section-1100">
           <ul className={cx("catalog__list")}>
             <li>
-              <Link to={""} className={cx("item")}>
+              <Link to="/home" className={cx("item")}>
                 Home
               </Link>
             </li>

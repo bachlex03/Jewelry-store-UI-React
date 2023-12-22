@@ -1,4 +1,4 @@
-import style from "./SiteHeader.module.scss";
+import style from "../SiteHeader.module.scss";
 import classNames from "classnames/bind";
 
 import { Link } from "react-router-dom";

@@ -1,0 +1,103 @@
+@import url("https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&display=swap");
+
+.slider {
+  position: relative;
+  background: url("https://mldrbgfat3wx.i.optimole.com/SQPHnU0-BKtY39N4/w:1024/h:444/q:auto/https://dici.themes.zone/main/wp-content/uploads/sites/8/revslider/main/dici_banner_1_opt.jpg")
+    center / cover no-repeat;
+  padding-top: 45%;
+}
+
+.body {
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  text-align: center;
+}
+
+.introducing {
+  font-size: 7rem;
+  font-family: "Mrs Saint Delafield", cursive;
+  margin-bottom: 20px;
+  color: rgb(190, 86, 86);
+  font-weight: 400;
+}
+
+.heading {
+  font-size: 5rem;
+  -webkit-font-smoothing: auto;
+  font-family: var(--ff-butler);
+  font-weight: 300;
+}
+
+.sub-heading {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  font-size: 1.3rem;
+  margin-top: 15px;
+}
+
+.ring-img {
+  height: 115px;
+  margin: 30px 0;
+}
+
+// services
+.service-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+// banner
+
+.banner-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.banner-item {
+  width: 100%;
+  position: relative;
+}
+
+.banner-img {
+  width: 100%;
+}
+
+.banner-body {
+  position: absolute;
+  text-align: center;
+}
+
+.text {
+  text-align: left;
+  font-weight: 300;
+  -webkit-font-smoothing: auto;
+  line-height: 1.4;
+  font-size: 3.6rem;
+  color: #363636;
+  font-family: var(--ff-butler);
+}
+
+.banner-body.pos-left {
+  top: 20%;
+  left: 10%;
+}
+
+.banner-body.pos-center {
+  top: 20%;
+  left: 30%;
+}
+
+.link {
+  font-size: 1.4rem;
+  text-decoration: underline;
+  font-weight: 600;
+  margin-top: 40px;
+}
+
+// collection
+.collection-wrapper {
+  text-align: center;
+}

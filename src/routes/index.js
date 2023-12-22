@@ -1,10 +1,11 @@
 import { Home, Shop, Cart, Details } from "~/pages";
-import { SubLayout } from "~/layouts";
+import { HomeLayout } from "~/layouts";
 
 export const publicRoutes = [
   {
     path: "/home",
     component: Home,
+    layout: HomeLayout,
   },
   {
     path: "/shop",
@@ -17,7 +18,6 @@ export const publicRoutes = [
   {
     path: "/cart",
     component: Cart,
-    layout: SubLayout,
   },
 ];
 
