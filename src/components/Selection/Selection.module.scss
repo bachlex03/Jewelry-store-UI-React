@@ -1,0 +1,60 @@
+// selection
+
+.variation-wrapper {
+}
+
+.variation-name {
+  width: 15%;
+  display: inline-block;
+  font-size: 1.4rem;
+  font-weight: 500;
+  padding-left: 10px;
+}
+
+.selection {
+  display: inline-block;
+  width: 79%;
+  padding: 10px;
+}
+
+.selection-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 50%;
+  padding: 0 15px;
+  color: #888686;
+  line-height: 42px;
+  font-size: 1.4rem;
+  border: 1px solid #ccc;
+  border-radius: 999px;
+
+  .icon {
+    position: absolute;
+    right: 10px;
+    top: 0;
+    font-size: 1.6rem;
+    color: #000;
+    cursor: pointer;
+    font-size: 1.4rem;
+  }
+}
+
+.variation-list {
+  position: absolute;
+  z-index: 10;
+  width: 220px;
+  margin-top: 10px;
+  background-color: #fff;
+
+  li {
+    background-color: #fafafa;
+    padding: 13px 20px;
+    margin-bottom: 2px;
+    font-size: 1.5rem;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #e4e0e0;
+    }
+  }
+}

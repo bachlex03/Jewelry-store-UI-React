@@ -19,7 +19,7 @@ function SiteCatalog() {
               </Link>
             </li>
             <li>
-              <Link to={""} className={cx("item")}>
+              <Link to="/shop" className={cx("item")}>
                 Shop
                 <FontAwesomeIcon icon={faChevronDown} className={cx("icon")} />
               </Link>

@@ -12,7 +12,7 @@ import { Fragment } from "react";
 
 const cx = classNames.bind(style);
 
-function Product({ sale, children }) {
+function Product({ sale }) {
   return (
     <>
       <div className={cx("product-item")}>
@@ -22,7 +22,7 @@ function Product({ sale, children }) {
           ) : (
             Fragment
           )}
-          <Link>
+          <Link to="/details">
             <img src={images.product} alt="product" className={cx("img")} />
           </Link>
           <span className={cx("label")}>Bands</span>
@@ -30,7 +30,7 @@ function Product({ sale, children }) {
 
           <Price sale={sale} pos_shop />
           <div className={cx("buy-btn-wrapper")}>
-            <Button to={"/product/details"} hover>
+            <Button to={"/details"} hover>
               Select options
             </Button>
           </div>
