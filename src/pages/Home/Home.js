@@ -3,10 +3,14 @@ import classNames from "classnames/bind";
 
 import images from "~/assets/images";
 
-import Button from "~/components/Button";
-import ServiceItem from "~/components/ServiceItem";
-import Collection from "~/components/Collection";
-import Product from "~/components/Product";
+import {
+  Button,
+  ServiceItem,
+  Collection,
+  Product,
+  Carousel,
+  CarouselItem,
+} from "~/components";
 
 const cx = classNames.bind(styles);
 
@@ -117,13 +121,44 @@ function Home() {
       {/* COLLECTION */}
 
       <div className={cx("collection-wrapper", "section-1200", "mt-60")}>
-        <Collection heading="OUR LATEST COLLECTION">
+        <Collection heading="OUR BESTSELLING ITEMS">
           <Product />
           <Product />
           <Product />
           <Product />
         </Collection>
       </div>
+
+      {/* carousel */}
+
+      <Carousel heading="OUR JOURNAL">
+        <CarouselItem
+          author="Marry Lou"
+          date="August 15, 2018"
+          link="Buying"
+          img={images.owl1}
+          heading="Choosing Sterling Silver as a Wedding Gift"
+          desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras pharetra, mi id rhoncus ultricies."
+        />
+
+        <CarouselItem
+          author="Marry Lou"
+          date="August 15, 2018"
+          link="Buying"
+          img={images.owl2}
+          heading="Choosing Sterling Silver as a Wedding Gift"
+          desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras pharetra, mi id rhoncus ultricies."
+        />
+
+        <CarouselItem
+          author="Marry Lou"
+          date="August 15, 2018"
+          link="Buying"
+          img={images.owl3}
+          heading="Choosing Sterling Silver as a Wedding Gift"
+          desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras pharetra, mi id rhoncus ultricies."
+        />
+      </Carousel>
     </>
   );
 }

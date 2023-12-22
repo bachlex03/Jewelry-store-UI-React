@@ -16,6 +16,9 @@ const images = {
   banner3: require("./banner3.png"),
   banner4: require("./banner4.png"),
   imgCollection: require("./img-collection.png"),
+  owl1: require("./owl1.png"),
+  owl2: require("./owl2.png"),
+  owl3: require("./owl3.png"),
 };
 
 export default images;

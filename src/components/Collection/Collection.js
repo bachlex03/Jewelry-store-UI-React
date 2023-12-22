@@ -6,8 +6,6 @@ import images from "~/assets/images";
 const cx = classNames.bind(style);
 
 function Collection({ heading = "Default heading", children }) {
-  console.log(children);
-
   return (
     <>
       <h2 className={cx("heading")}>{heading}</h2>
