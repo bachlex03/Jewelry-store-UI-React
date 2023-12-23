@@ -28,7 +28,9 @@ function Product({ sale }) {
           <span className={cx("label")}>Bands</span>
           <h3 className={cx("heading")}>Veronece 18K Clad 10 Diamond Cut</h3>
 
-          <Price sale={sale} pos_shop />
+          <div className={cx("price-wrapper")}>
+            <Price sale={sale} pos_shop />
+          </div>
           <div className={cx("buy-btn-wrapper")}>
             <Button to={"/details"} hover>
               Select options
