@@ -15,6 +15,7 @@ function Button({
   primary,
   bold,
   styleLink,
+  inherit,
   hover,
   ...passProps
 }) {
@@ -39,6 +40,7 @@ function Button({
     primary,
     bold,
     styleLink,
+    inherit,
     hover,
   });
 
