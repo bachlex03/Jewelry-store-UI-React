@@ -1,0 +1,148 @@
+.checkout-wrapper {
+  display: grid;
+  column-gap: 30px;
+  grid-template-columns: 685px 487px;
+}
+
+.heading {
+  font-size: 2.2rem;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+.invoice-body {
+  padding: 15px;
+  border: 1px solid #ccc;
+}
+
+.table {
+  border-collapse: collapse;
+}
+
+.thead {
+  background-color: #f8f9fa;
+  color: #939393;
+  height: 44px;
+
+  th {
+    text-transform: uppercase;
+    font-size: 1.4rem;
+  }
+
+  th[class*="product"] {
+    width: 60%;
+    text-align: left;
+    font-weight: 500;
+    padding: 10px 15px;
+  }
+
+  th[class*="subtotal"] {
+    text-align: right;
+    font-weight: 500;
+    padding: 10px 15px;
+  }
+}
+
+td[class*="product"] {
+  font-size: 1.3rem;
+  font-weight: 500;
+  line-height: 26px;
+}
+
+.product-heading {
+  font-size: 1.5rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 300px;
+}
+
+.product-subtotal {
+  font-size: 1.4rem;
+  text-align: right;
+}
+
+.variation-value {
+  color: #888686;
+  font-weight: 400;
+  margin-right: 40px;
+  text-align: right;
+  font-style: italic;
+}
+
+.total-field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 15px;
+
+  p {
+    line-height: 28px;
+  }
+
+  a {
+    font-size: 1.4rem;
+  }
+
+  strong {
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: var(--green);
+  }
+
+  &:last-child {
+    border: none;
+  }
+}
+
+.total-title {
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+// Payment type
+
+.payment-list {
+  li {
+    margin: 10px 0;
+
+    img {
+      vertical-align: middle;
+      margin-left: 10px;
+    }
+
+    label {
+      font-size: 1.5rem;
+      line-height: 1.4;
+    }
+  }
+}
+
+input[name*="payment-radio"] {
+  margin-right: 10px;
+}
+
+.policy {
+  text-align: center;
+  line-height: 1.4;
+}
+
+.term {
+  width: max-content;
+  margin: 0 auto;
+  margin-bottom: 15px;
+
+  p {
+    display: inline-block;
+    width: max-content;
+    margin-left: 4px;
+  }
+}
+
+.term-inner {
+  display: inline-block;
+  width: max-content;
+  margin: 0 auto;
+}

@@ -83,11 +83,11 @@ function Cart() {
 
       <div className={cx("total-wrapper")}>
         <h3 className={cx("total-heading")}>CART TOTALS</h3>
-        <div className={cx("total-item")}>
+        <div className={cx("total-field")}>
           <p className={cx("total-title")}>Subtotal</p>
           <strong>$ 1034.00</strong>
         </div>
-        <div className={cx("total-item")}>
+        <div className={cx("total-field")}>
           <p className={cx("total-title")}>SHIPPING</p>
           <div className="text-right">
             <p>
@@ -101,12 +101,12 @@ function Cart() {
             </Button>
           </div>
         </div>
-        <div className={cx("total-item")}>
+        <div className={cx("total-field")}>
           <p className={cx("total-title")}>TOTAL</p>
           <strong className={cx("total-price")}>$ 0.00</strong>
         </div>
         <p className="fs-12 mt-20 text-right">
-          <Button bold inherit small hover>
+          <Button to="/checkout" bold inherit small hover>
             PROCESS TO CHECKOUT
           </Button>
         </p>
