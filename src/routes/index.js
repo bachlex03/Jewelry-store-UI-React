@@ -1,4 +1,4 @@
-import { Home, Shop, Cart, Details } from "~/pages";
+import { Home, Shop, Cart, Details, Login, Register, Otp } from "~/pages";
 import { HomeLayout } from "~/layouts";
 
 export const publicRoutes = [
@@ -18,6 +18,18 @@ export const publicRoutes = [
   {
     path: "/cart",
     component: Cart,
+  },
+  {
+    path: "/login",
+    component: Login,
+  },
+  {
+    path: "/register",
+    component: Register,
+  },
+  {
+    path: "/otp",
+    component: Otp,
   },
 ];
 

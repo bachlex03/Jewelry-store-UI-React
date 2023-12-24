@@ -9,6 +9,8 @@ import SiteSubHeader from "./components/SiteSubHeader";
 import SiteCatalog from "./components/SiteCatalog";
 import SiteBreadcrumb from "./components/SiteBreadcrumb";
 
+import { Button } from "~/components";
+
 const cx = classNames.bind(style);
 
 function SiteHeader() {
@@ -33,19 +35,19 @@ function SiteHeader() {
             </ul>
 
             <div className={cx("action")}>
-              <a href="/user/login">
+              <Button to="/login" header primary>
                 <i className={cx("icon")}>
                   <FontAwesomeIcon icon={faRightToBracket} />
                 </i>
-                Sign in
-              </a>
+                Login
+              </Button>
 
-              <a href="/customers/dashboard">
+              <Button to="/my-account" header primary>
                 <i className={cx("icon")}>
                   <FontAwesomeIcon icon={faUser} />
                 </i>
                 My account
-              </a>
+              </Button>
             </div>
           </div>
         </nav>

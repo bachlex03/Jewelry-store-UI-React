@@ -11,6 +11,10 @@ function Button({
   small,
   medium,
   large,
+  header,
+  primary,
+  bold,
+  styleLink,
   hover,
   ...passProps
 }) {
@@ -31,6 +35,10 @@ function Button({
     small,
     medium,
     large,
+    header,
+    primary,
+    bold,
+    styleLink,
     hover,
   });
 
