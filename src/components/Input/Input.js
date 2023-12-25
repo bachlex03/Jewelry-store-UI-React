@@ -1,8 +1,9 @@
 import styles from "./Input.module.scss";
 import classNames from "classnames/bind";
+import { Fragment } from "react";
 
 const cx = classNames.bind(styles);
-function Input({ label, isRequired, selection, textarea, ...passProps }) {
+function Input({ label, isRequired, selection, textarea, note, ...passProps }) {
   let inputType;
 
   const props = {
@@ -36,6 +37,7 @@ function Input({ label, isRequired, selection, textarea, ...passProps }) {
       ) : (
         <input id={label} className={cx("input")} {...props} />
       )}
+      {note ? <p className={cx("note")}>{note}</p> : Fragment}
     </>
   );
 }
