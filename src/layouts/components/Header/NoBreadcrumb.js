@@ -41,7 +41,7 @@ function NoBreadcrumb() {
                 Login
               </Button>
 
-              <Button to="/my-account" header primary>
+              <Button to="/customer/dashboard" header primary>
                 <i className={cx("icon")}>
                   <FontAwesomeIcon icon={faUser} />
                 </i>
