@@ -8,7 +8,9 @@ import {
   Register,
   Otp,
 } from "~/pages";
-import { HomeLayout } from "~/layouts";
+import { HomeLayout, CustomerLayout } from "~/layouts";
+
+import { Address, Order, Detail, Wishlist, Dashboard } from "~/pages/Customer";
 
 export const publicRoutes = [
   {
@@ -43,6 +45,31 @@ export const publicRoutes = [
   {
     path: "/otp",
     component: Otp,
+  },
+  {
+    path: "/customer/dashboard",
+    component: Dashboard,
+    layout: CustomerLayout,
+  },
+  {
+    path: "/customer/orders",
+    component: Order,
+    layout: CustomerLayout,
+  },
+  {
+    path: "/customer/addresses",
+    component: Address,
+    layout: CustomerLayout,
+  },
+  {
+    path: "/customer/details",
+    component: Detail,
+    layout: CustomerLayout,
+  },
+  {
+    path: "/customer/wishlist",
+    component: Wishlist,
+    layout: CustomerLayout,
   },
 ];
 
