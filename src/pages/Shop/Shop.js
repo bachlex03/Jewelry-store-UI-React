@@ -3,7 +3,7 @@ import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAnglesRight } from "@fortawesome/free-solid-svg-icons";
 
-import { useState } from "react";
+import React, { useState, useRef, useEffect, useMemo } from "react";
 
 import Sidebar from "~/layouts/components/Sidebar";
 import Product from "~/components/Product";
@@ -12,23 +12,33 @@ const cx = classNames.bind(styles);
 
 const arr = [
   0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
-  22, 23, 24, 25,
 ];
 
-const numberOfProduct = 9;
-const pageQuantity = Math.floor(arr.length / numberOfProduct);
-const renderPages = [];
-
-for (let i = 0; i < pageQuantity; i++) {
-  renderPages.push(i);
-}
-
 function Shop() {
-  const [showProducts, setShowProducts] = useState({ start: 0, end: 8 });
+  const numberOfProduct = useRef(9);
+  const renderPages = useRef([]);
 
-  const handlePaging = (start, end) => {
+  const [showProducts, setShowProducts] = useState({ start: 0, end: 8 });
+  const pageRefs = useRef([]);
+
+  useMemo(() => {
+    const pageQuantity = Math.ceil(arr.length / numberOfProduct.current);
+
+    for (let i = 0; i < pageQuantity; i++) {
+      renderPages.current.push(i);
+    }
+  }, []);
+
+  const handlePaging = (start, end, pos) => {
     setShowProducts({ start, end });
+
+    pageRefs.current.forEach((page) => {
+      page.current.className = cx({ active: false });
+    });
+
+    pageRefs.current[pos].current.className = cx({ active: true });
   };
+
   return (
     <div className="grid wide">
       <div className="row">
@@ -41,19 +51,26 @@ function Shop() {
               if (index >= showProducts.start && index <= showProducts.end)
                 return (
                   <div key={index} className="col l-4">
-                    <Product />
+                    <Product heading={index} />
                   </div>
                 );
             })}
           </div>
           <div className={cx("paging-wrapper")}>
             <ul className={cx("pages")}>
-              {renderPages.map((item, index) => {
-                const start = index * numberOfProduct;
-                const end = start + numberOfProduct - 1;
+              {renderPages.current.map((item, index) => {
+                const start = index * numberOfProduct.current;
+                const end = start + numberOfProduct.current - 1;
+
+                pageRefs.current[index] = React.createRef();
 
                 return (
-                  <li key={index} onClick={() => handlePaging(start, end)}>
+                  <li
+                    // className={cx("active")}
+                    ref={pageRefs.current[index]}
+                    key={index}
+                    onClick={() => handlePaging(start, end, index)}
+                  >
                     {index + 1}
                   </li>
                 );
