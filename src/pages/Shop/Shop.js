@@ -3,10 +3,10 @@ import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAnglesRight } from "@fortawesome/free-solid-svg-icons";
 
-import React, { useState, useRef, useEffect, useMemo } from "react";
+import React, { useState, useRef, useMemo } from "react";
 
 import Sidebar from "~/layouts/components/Sidebar";
-import Product from "~/components/Product";
+import { Product, ScrollToTop } from "~/components";
 
 const cx = classNames.bind(styles);
 
@@ -40,49 +40,52 @@ function Shop() {
   };
 
   return (
-    <div className="grid wide">
-      <div className="row">
-        <div className="col l-3">
-          <Sidebar />
-        </div>
-        <div className="col l-9">
-          <div className="row">
-            {arr.map((item, index) => {
-              if (index >= showProducts.start && index <= showProducts.end)
-                return (
-                  <div key={index} className="col l-4">
-                    <Product heading={index} />
-                  </div>
-                );
-            })}
+    <>
+      <ScrollToTop />
+      <div className="grid wide">
+        <div className="row">
+          <div className="col l-3">
+            <Sidebar />
           </div>
-          <div className={cx("paging-wrapper")}>
-            <ul className={cx("pages")}>
-              {renderPages.current.map((item, index) => {
-                const start = index * numberOfProduct.current;
-                const end = start + numberOfProduct.current - 1;
-
-                pageRefs.current[index] = React.createRef();
-
-                return (
-                  <li
-                    // className={cx("active")}
-                    ref={pageRefs.current[index]}
-                    key={index}
-                    onClick={() => handlePaging(start, end, index)}
-                  >
-                    {index + 1}
-                  </li>
-                );
+          <div className="col l-9">
+            <div className="row">
+              {arr.map((item, index) => {
+                if (index >= showProducts.start && index <= showProducts.end)
+                  return (
+                    <div key={index} className="col l-4">
+                      <Product heading={index} />
+                    </div>
+                  );
               })}
-              <li>
-                <FontAwesomeIcon icon={faAnglesRight} />
-              </li>
-            </ul>
+            </div>
+            <div className={cx("paging-wrapper")}>
+              <ul className={cx("pages")}>
+                {renderPages.current.map((item, index) => {
+                  const start = index * numberOfProduct.current;
+                  const end = start + numberOfProduct.current - 1;
+
+                  pageRefs.current[index] = React.createRef();
+
+                  return (
+                    <li
+                      // className={cx("active")}
+                      ref={pageRefs.current[index]}
+                      key={index}
+                      onClick={() => handlePaging(start, end, index)}
+                    >
+                      {index + 1}
+                    </li>
+                  );
+                })}
+                <li>
+                  <FontAwesomeIcon icon={faAnglesRight} />
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

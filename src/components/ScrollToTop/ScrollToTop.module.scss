@@ -1,0 +1,25 @@
+.wrapper {
+  position: fixed;
+  right: 30px;
+  bottom: 50px;
+  display: block;
+  background-color: rgba(69, 207, 190, 0.5);
+  color: #fff;
+  padding: 15px;
+  border-radius: var(--rounded-full);
+  cursor: pointer;
+  z-index: 100;
+  box-shadow: rgba(69, 207, 190, 0.4) 0px 5px, rgba(69, 207, 190, 0.3) 0px 10px,
+    rgba(69, 207, 190, 0.2) 0px 15px, rgba(69, 207, 190, 0.1) 0px 20px,
+    rgba(69, 207, 190, 0.5) 0px 1px 2px 0px;
+  transition: all 0.2s linear;
+  &:hover {
+    background-color: rgba(69, 207, 190, 1);
+
+    color: #fff;
+  }
+
+  &:active {
+    background-color: rgba(69, 207, 190, 0.7);
+  }
+}
