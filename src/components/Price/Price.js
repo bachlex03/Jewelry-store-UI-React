@@ -9,8 +9,6 @@ function Price({ sale, pos_shop, old_new_price, fs_15 }) {
     fs_15,
   };
 
-  console.log(classes);
-
   const renderPrice = {
     current: <span className={cx("price", { ...classes })}>$ 500.00</span>,
     sale: (
