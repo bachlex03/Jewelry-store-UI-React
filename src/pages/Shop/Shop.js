@@ -68,7 +68,6 @@ function Shop() {
 
                   return (
                     <li
-                      // className={cx("active")}
                       ref={pageRefs.current[index]}
                       key={index}
                       onClick={() => handlePaging(start, end, index)}
