@@ -3,10 +3,12 @@ import classNames from "classnames/bind";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark, faSpinner } from "@fortawesome/free-solid-svg-icons";
-import images from "~/assets/images";
 import { Fragment, useState, useRef, useEffect } from "react";
 
+import images from "~/assets/images";
+import { useDebounce } from "~/hooks";
 import { Price } from "~/components";
+import * as searchService from "~/apiServices/searchService";
 
 const cx = classNames.bind(style);
 
@@ -21,11 +23,46 @@ function Search() {
   const clearRef = useRef();
   const spinnerRef = useRef();
 
+  const debounced = useDebounce(inputValue, 500);
+
   const handleClear = (e) => {
     setInputValue("");
     setProducts([]);
     inputRef.current.focus();
   };
+
+  const handleInput = (e) => {
+    setInputValue(e.target.value);
+    setClearIcon(false);
+    setSpinner(false);
+  };
+
+  useEffect(() => {
+    if (inputValue.trim() === "") {
+      setClearIcon(false);
+    } else {
+      setClearIcon(true);
+    }
+  });
+
+  useEffect(() => {
+    if (!inputValue) {
+      setProducts([]);
+      return;
+    }
+
+    const fetchApi = async () => {
+      try {
+        const result = await searchService.search(debounced);
+
+        setProducts(result);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    fetchApi();
+  }, [debounced]);
 
   const icons = {
     xmark: (
@@ -39,36 +76,6 @@ function Search() {
       </i>
     ),
   };
-
-  const handleInput = (e) => {
-    setInputValue(e.target.value);
-    setClearIcon(false);
-    setSpinner(false);
-  };
-
-  useEffect(() => {
-    // if (inputValue.trim() === "") {
-    //   setClearIcon(false);
-    // } else {
-    //   setClearIcon(true);
-    // }
-  });
-
-  useEffect(() => {
-    if (!inputValue) {
-      setProducts([]);
-      return;
-    }
-
-    fetch(
-      `https://tiktok.fullstack.edu.vn/api/users/search?q=${inputValue}&type=less`
-    )
-      .then((res) => res.json())
-      .then((res) => {
-        console.log(res.data);
-        setProducts(res.data);
-      });
-  }, [inputValue]);
 
   return (
     <div className={cx("wrapper")}>
@@ -87,8 +94,6 @@ function Search() {
         {clearIcon ? icons.xmark : Fragment}
         {spinner ? icons.spinner : Fragment}
       </div>
-      {console.log(products.length)}
-
       <ul
         className={cx("list")}
         style={{
