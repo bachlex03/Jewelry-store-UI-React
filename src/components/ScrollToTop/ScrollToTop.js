@@ -9,7 +9,7 @@ import { faAnglesUp } from "@fortawesome/free-solid-svg-icons";
 const cx = classNames.bind(style);
 
 function ScrollToTop({ axes_y = 700 }) {
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
 
   window.addEventListener("scroll", (e) => {
     console.log();

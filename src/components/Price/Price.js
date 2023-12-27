@@ -2,15 +2,27 @@ import style from "./Price.module.scss";
 import classNames from "classnames/bind";
 const cx = classNames.bind(style);
 
-function Price({ sale, pos_shop }) {
+function Price({ sale, pos_shop, old_new_price, fs_15 }) {
+  const classes = {
+    pos_shop,
+    old_new_price,
+    fs_15,
+  };
+
+  console.log(classes);
+
   const renderPrice = {
-    current: <span className={cx("price")}>$ 500.00</span>,
+    current: <span className={cx("price", { ...classes })}>$ 500.00</span>,
     sale: (
       <>
-        <span className={cx("new-price")}>$ 424.00</span>
-        <span className={cx("old-price", pos_shop ? "pos-shop" : "")}>
-          $ 500.00
-        </span>
+        <span className={cx("new-price", { ...classes })}>$ 424.00</span>
+        <span className={cx("old-price", { ...classes })}>$ 500.00</span>
+      </>
+    ),
+    old_new_price: (
+      <>
+        <span className={cx("old-price", { ...classes })}>$ 500.00</span>
+        <span className={cx("new-price", { ...classes })}>$ 424.00</span>
       </>
     ),
   };
@@ -18,7 +30,11 @@ function Price({ sale, pos_shop }) {
   return (
     <>
       <div className={cx("price-wrapper")}>
-        {sale ? renderPrice.sale : renderPrice.current}
+        {sale
+          ? old_new_price
+            ? renderPrice.old_new_price
+            : renderPrice.sale
+          : renderPrice.current}
       </div>
     </>
   );

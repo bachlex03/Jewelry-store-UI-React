@@ -5,7 +5,7 @@ import { faHeart } from "@fortawesome/free-regular-svg-icons";
 
 import images from "~/assets/images";
 
-import { Button, Price } from "~/components";
+import { Button, Price, Search } from "~/components";
 const cx = classNames.bind(style);
 
 function SiteSubHeader() {
@@ -27,12 +27,8 @@ function SiteSubHeader() {
             <img src={images.logo} alt="logo" className={cx("logo")} />
           </div>
           <div className={cx("right-block")}>
-            <div>
-              <input
-                type="text"
-                placeholder="Search products..."
-                className={cx("search")}
-              />
+            <div className={cx("search-component")}>
+              <Search />
             </div>
             <div className={cx("icon-wrapper")}>
               <i className={cx("icon", "ti-search")}></i>
