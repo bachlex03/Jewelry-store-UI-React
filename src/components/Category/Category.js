@@ -15,8 +15,6 @@ function Category({ category }) {
   const [open, setOpen] = useState(true);
 
   const handleOpen = () => {
-    console.log(open);
-
     if (open) {
       classes = { closed: true };
       setOpen(false);
@@ -25,8 +23,6 @@ function Category({ category }) {
       setOpen(true);
     }
   };
-
-  console.log(classes);
 
   return (
     <div className={cx("parent")}>

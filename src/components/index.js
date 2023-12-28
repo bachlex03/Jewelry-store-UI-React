@@ -12,3 +12,4 @@ export { default as ServiceItem } from "./ServiceItem";
 export { default as Input } from "./Input";
 export { default as ScrollToTop } from "./ScrollToTop";
 export { default as Search } from "./Search";
+export { default as VariationItem } from "./VariationItem";
