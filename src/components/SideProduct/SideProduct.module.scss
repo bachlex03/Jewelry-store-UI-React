@@ -1,0 +1,17 @@
+.img {
+  width: 70px;
+  height: 70px;
+  border: 1px solid var(--gray);
+  margin-right: 15px;
+  transition: all 0.3s;
+
+  &:hover {
+    border-color: var(--primary);
+  }
+}
+
+.name {
+  font-size: 1.4rem;
+  line-height: 1.4;
+  font-weight: 500;
+}

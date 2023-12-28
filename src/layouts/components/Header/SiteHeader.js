@@ -1,17 +1,14 @@
-import style from "./SiteHeader.module.scss";
-
+import styles from "./SiteHeader.module.scss";
 import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightToBracket } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
+import { Link } from "react-router-dom";
 
-import SiteSubHeader from "./components/SiteSubHeader";
-import SiteCatalog from "./components/SiteCatalog";
-import SiteBreadcrumb from "./components/SiteBreadcrumb";
-
+import { SiteSubHeader, SiteCatalog, SiteBreadcrumb } from "./components";
 import { Button } from "~/components";
 
-const cx = classNames.bind(style);
+const cx = classNames.bind(styles);
 
 function SiteHeader() {
   return (
@@ -21,16 +18,16 @@ function SiteHeader() {
           <div className="flex justify-between align-center section-1200">
             <ul className={cx("list")}>
               <li>
-                <a href="!#">Home</a>
+                <Link to="/home">Home</Link>
               </li>
               <li>
-                <a href="!#">About us</a>
+                <Link to="/home">About us</Link>
               </li>
               <li>
-                <a href="!#">Gallery</a>
+                <Link to="/home">Gallery</Link>
               </li>
               <li>
-                <a href="!#">Contact us</a>
+                <Link to="/home">Contact us</Link>
               </li>
             </ul>
 

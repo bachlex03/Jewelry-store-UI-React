@@ -1,18 +1,23 @@
 import style from "./Product.module.scss";
 import classNames from "classnames/bind";
-
 import { Link } from "react-router-dom";
+import { Fragment, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import images from "~/assets/images";
-
-import Button from "~/components/Button";
-import Price from "~/components/Price";
-
-import { Fragment } from "react";
+import { Button, Price } from "~/components";
+import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
+import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
 
 const cx = classNames.bind(style);
 
 function Product({ heading, sale }) {
+  const [wishlist, setWishlist] = useState(false);
+
+  const handleWishlist = () => {
+    setWishlist(wishlist ? false : true);
+  };
+
   return (
     <>
       <div className={cx("product-item")}>
@@ -22,6 +27,14 @@ function Product({ heading, sale }) {
           ) : (
             Fragment
           )}
+          <i className={cx("icon")} onClick={handleWishlist}>
+            {wishlist ? (
+              <FontAwesomeIcon icon={faHeartSolid} />
+            ) : (
+              <FontAwesomeIcon icon={faHeartRegular} />
+            )}
+          </i>
+
           <Link to="/details">
             <img src={images.product} alt="product" className={cx("img")} />
           </Link>

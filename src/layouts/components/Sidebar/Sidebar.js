@@ -1,11 +1,10 @@
 import style from "./Sidebar.module.scss";
 import classNames from "classnames/bind";
-import { useState, useRef, createContext } from "react";
+import { useState } from "react";
 
-import { Category, VariationItem } from "~/components";
+import { Category, VariationItem, SideProduct } from "~/components";
 
 const cx = classNames.bind(style);
-export const ColorContext = createContext();
 
 const categories = [
   {
@@ -46,42 +45,68 @@ const sizes = ["16", "17", "18", "19"];
 let i = 0;
 
 function Sidebar() {
-  const variationRefs = useRef([]);
   const [colorFilter, setColorFilter] = useState([false, false, false]);
 
-  console.log("re-render");
-  console.log(colorFilter);
+  // console.log("re-render");
+  // console.log(colorFilter);
 
   return (
-    <ColorContext.Provider value={i}>
-      <aside className={cx("sidebar")}>
-        <div>
-          <h3 className={cx("heading")}>Product categories</h3>
-          {categories.map((category, index) => {
-            return <Category category={category} key={index} />;
-          })}
+    <aside className={cx("sidebar")}>
+      <div>
+        <h3 className={cx("heading")}>Product categories</h3>
+        {categories.map((category, index) => {
+          return <Category category={category} key={index} />;
+        })}
 
-          <span className={cx("separate")}></span>
-        </div>
+        <span className={cx("separate")}></span>
+      </div>
 
-        <div>
-          <h3 className={cx("heading")}>Filter by color</h3>
-          {colors.map((color, index) => {
-            return (
-              <VariationItem
-                setColorFilter={setColorFilter}
-                name={color}
-                key={index}
-                index={index}
-                initCheck={colorFilter[index]}
-              />
-            );
-          })}
+      <div>
+        <h3 className={cx("heading")}>Filter by color</h3>
+        {colors.map((color, index) => {
+          return (
+            <VariationItem
+              setColorFilter={setColorFilter}
+              name={color}
+              key={index}
+              index={index}
+              initCheck={colorFilter[index]}
+            />
+          );
+        })}
 
-          <span className={cx("separate")}></span>
-        </div>
-      </aside>
-    </ColorContext.Provider>
+        <span className={cx("separate")}></span>
+      </div>
+
+      <div>
+        <h3 className={cx("heading")}>Filter by color</h3>
+        {colors.map((color, index) => {
+          return (
+            <VariationItem
+              setColorFilter={setColorFilter}
+              name={color}
+              key={index}
+              index={index}
+              initCheck={colorFilter[index]}
+            />
+          );
+        })}
+
+        <span className={cx("separate")}></span>
+      </div>
+
+      <div>
+        <h3 className={cx("heading")}>Best selling products</h3>
+        <SideProduct name="Product" price sale />
+        <SideProduct name="Product" price />
+        <SideProduct name="Product" price />
+        <SideProduct name="Product" price sale />
+        <SideProduct name="Product" price />
+        <SideProduct name="Product" price />
+
+        <span className={cx("separate")}></span>
+      </div>
+    </aside>
   );
 }
 

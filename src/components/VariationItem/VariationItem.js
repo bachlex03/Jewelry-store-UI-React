@@ -16,8 +16,8 @@ function VariationItem({
   let [checked, setChecked] = useState(initCheck);
   checked = initCheck;
 
-  console.log("render variation");
-  console.log(checked);
+  // console.log("render variation");
+  // console.log(checked);
 
   const handleCheck = () => {
     setChecked(checked ? false : true);
@@ -25,9 +25,9 @@ function VariationItem({
     const arr = new Array(false, false, false);
     arr[index] = !checked;
 
-    console.log(index);
+    // console.log(index);
 
-    console.log("arr", arr);
+    // console.log("arr", arr);
 
     setColorFilter(arr);
   };
