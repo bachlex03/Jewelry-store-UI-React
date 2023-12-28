@@ -42,7 +42,7 @@ function Product({ heading, sale }) {
           <h3 className={cx("heading")}>{heading}</h3>
 
           <div className={cx("price-wrapper")}>
-            <Price sale={sale} pos_shop />
+            <Price sale={sale} pos__shop />
           </div>
           <div className={cx("buy-btn-wrapper")}>
             <Button to={"/details"} hover>

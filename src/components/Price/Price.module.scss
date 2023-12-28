@@ -21,6 +21,15 @@
 }
 
 // pos__shop
+.wrapper.pos__shop {
+  position: relative;
+}
+
+.old-price.pos__shop {
+  position: absolute;
+  left: 180px;
+  top: 2px;
+}
 
 // old_new_price
 .new-price.old_new_price {

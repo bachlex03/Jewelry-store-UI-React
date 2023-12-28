@@ -49,8 +49,12 @@ function Shop() {
           </div>
           <div className="col l-9">
             <div className="row">
+              <div className="col l-4">
+                <Product heading="14K Gold 9″ Diamond Ankle Bracelet" sale />
+              </div>
+
               {arr.map((item, index) => {
-                if (index >= showProducts.start && index <= showProducts.end)
+                if (index >= showProducts.start && index < showProducts.end)
                   return (
                     <div key={index} className="col l-4">
                       <Product heading={index} />
