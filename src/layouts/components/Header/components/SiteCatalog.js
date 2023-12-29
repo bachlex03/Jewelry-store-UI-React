@@ -36,7 +36,7 @@ function SiteCatalog() {
             </li>
             <li>
               <Link to={""} className={cx("item")}>
-                Shop
+                Woman
               </Link>
             </li>
             <li>
@@ -60,7 +60,7 @@ function SiteCatalog() {
               </Link>
             </li>
             <li>
-              <Link to={""} className={cx("item")}>
+              <Link to="/gallery" className={cx("item")}>
                 Gallery
               </Link>
             </li>

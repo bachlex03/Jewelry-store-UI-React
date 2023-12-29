@@ -1,4 +1,4 @@
-import style from "./Details.module.scss";
+import styles from "./Details.module.scss";
 import classNames from "classnames/bind";
 
 import images from "~/assets/images";
@@ -10,7 +10,7 @@ import Selection from "~/components/Selection";
 
 import { Fragment } from "react";
 
-const cx = classNames.bind(style);
+const cx = classNames.bind(styles);
 
 function Details() {
   let isSale = true;

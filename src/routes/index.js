@@ -7,6 +7,7 @@ import {
   Login,
   Register,
   Otp,
+  Gallery,
 } from "~/pages";
 import { HomeLayout, CustomerLayout } from "~/layouts";
 
@@ -70,6 +71,10 @@ export const publicRoutes = [
     path: "/customer/wishlist",
     component: Wishlist,
     layout: CustomerLayout,
+  },
+  {
+    path: "/gallery",
+    component: Gallery,
   },
 ];
 

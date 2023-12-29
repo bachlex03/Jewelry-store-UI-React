@@ -19,6 +19,15 @@ const images = {
   owl1: require("./owl1.png"),
   owl2: require("./owl2.png"),
   owl3: require("./owl3.png"),
+  gallery1: require("./gallery1.png"),
+  gallery2: require("./gallery2.png"),
+  gallery3: require("./gallery3.png"),
+  gallery4: require("./gallery4.png"),
+  gallery5: require("./gallery5.png"),
+  gallery6: require("./gallery6.png"),
+  gallery7: require("./gallery7.png"),
+  gallery8: require("./gallery8.png"),
+  gallery9: require("./gallery9.png"),
 };
 
 export default images;
