@@ -14,3 +14,4 @@ export { default as ScrollToTop } from "./ScrollToTop";
 export { default as Search } from "./Search";
 export { default as VariationItem } from "./VariationItem";
 export { default as SideProduct } from "./SideProduct";
+export { default as PriceFilter } from "./PriceFilter";

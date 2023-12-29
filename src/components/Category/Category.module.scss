@@ -12,7 +12,7 @@
   padding-top: 10px;
   padding-left: 15px;
   overflow: hidden;
-  max-height: 500px;
+  max-height: 0;
   transition: max-height 0.3s ease; /* Transition only max-height for smooth animation */
 
   &.opened {

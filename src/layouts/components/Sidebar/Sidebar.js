@@ -2,7 +2,12 @@ import style from "./Sidebar.module.scss";
 import classNames from "classnames/bind";
 import { useState } from "react";
 
-import { Category, VariationItem, SideProduct } from "~/components";
+import {
+  Category,
+  VariationItem,
+  SideProduct,
+  PriceFilter,
+} from "~/components";
 
 const cx = classNames.bind(style);
 
@@ -62,6 +67,14 @@ function Sidebar() {
       </div>
 
       <div>
+        <h3 className={cx("heading")}>Filter by price</h3>
+
+        <PriceFilter />
+
+        <span className={cx("separate")}></span>
+      </div>
+
+      <div>
         <h3 className={cx("heading")}>Filter by color</h3>
         {colors.map((color, index) => {
           return (
@@ -99,9 +112,7 @@ function Sidebar() {
         <h3 className={cx("heading")}>Best selling products</h3>
         <SideProduct name="Product" price sale />
         <SideProduct name="Product" price />
-        <SideProduct name="Product" price />
         <SideProduct name="Product" price sale />
-        <SideProduct name="Product" price />
         <SideProduct name="Product" price />
 
         <span className={cx("separate")}></span>

@@ -12,7 +12,7 @@ function Category({ category }) {
   const children = category.children;
 
   const iconRefs = useRef();
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
     if (open) {
