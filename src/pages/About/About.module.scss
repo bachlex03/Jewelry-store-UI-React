@@ -1,0 +1,37 @@
+.wrapper {
+  columns: 3;
+  column-gap: 12px;
+}
+
+.box {
+  position: relative;
+  break-inside: avoid;
+  margin-bottom: 12px;
+  cursor: pointer;
+
+  &:hover .gallery-img {
+    filter: grayscale(0);
+  }
+
+  &:hover .name {
+    bottom: 0;
+    opacity: 1;
+  }
+}
+
+.gallery-img {
+  width: 100%;
+  display: block;
+  filter: grayscale(1);
+  transition: all 0.5s ease-in;
+}
+
+.name {
+  position: absolute;
+  font-size: 2rem;
+  color: #fff;
+  bottom: 40px;
+  padding: 21px 25px;
+  opacity: 0;
+  transition: all 0.5s ease-in;
+}

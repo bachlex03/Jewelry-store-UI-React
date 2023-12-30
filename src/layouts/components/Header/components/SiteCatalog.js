@@ -65,12 +65,12 @@ function SiteCatalog() {
               </Link>
             </li>
             <li>
-              <Link to={""} className={cx("item")}>
+              <Link to="/about" className={cx("item")}>
                 About
               </Link>
             </li>
             <li>
-              <Link to={""} className={cx("item")}>
+              <Link to="/contact" className={cx("item")}>
                 Contact us
               </Link>
             </li>

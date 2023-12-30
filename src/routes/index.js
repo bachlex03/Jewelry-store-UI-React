@@ -8,6 +8,8 @@ import {
   Register,
   Otp,
   Gallery,
+  About,
+  Contact,
 } from "~/pages";
 import { HomeLayout, CustomerLayout } from "~/layouts";
 
@@ -75,6 +77,14 @@ export const publicRoutes = [
   {
     path: "/gallery",
     component: Gallery,
+  },
+  {
+    path: "/about",
+    component: About,
+  },
+  {
+    path: "/contact",
+    component: Contact,
   },
 ];
 
