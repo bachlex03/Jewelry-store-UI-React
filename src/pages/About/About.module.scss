@@ -1,37 +1,111 @@
-.wrapper {
-  columns: 3;
-  column-gap: 12px;
+.about-section {
+  margin-top: 55px;
 }
 
-.box {
+.heading-section {
   position: relative;
-  break-inside: avoid;
-  margin-bottom: 12px;
-  cursor: pointer;
-
-  &:hover .gallery-img {
-    filter: grayscale(0);
-  }
-
-  &:hover .name {
+  text-align: center;
+  &::after {
+    position: absolute;
+    content: "";
+    display: block;
+    width: 60px;
+    height: 1px;
+    background-color: #00d1b7;
     bottom: 0;
-    opacity: 1;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
 
-.gallery-img {
-  width: 100%;
-  display: block;
-  filter: grayscale(1);
-  transition: all 0.5s ease-in;
+.title {
+  font-size: 3.2rem;
+  font-family: var(--ff-butler);
+  font-weight: 300;
+  -webkit-font-smoothing: auto;
+  letter-spacing: 1px;
+  position: relative;
+  padding-bottom: 20px;
 }
 
-.name {
-  position: absolute;
-  font-size: 2rem;
-  color: #fff;
-  bottom: 40px;
-  padding: 21px 25px;
-  opacity: 0;
-  transition: all 0.5s ease-in;
+.sub-title {
+  padding-bottom: 35px;
+  font-size: 1.3rem;
+  color: #696969;
+}
+
+.story {
+  width: 850px;
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  color: #696969;
+  line-height: 1.7;
+  font-size: 1.5rem;
+  padding-bottom: 40px;
+}
+
+.attachment {
+  background: url("../../assets/images/about-img.png") center / cover no-repeat;
+  min-height: 500px;
+  // max-width: 1140px;
+  background-attachment: fixed;
+}
+
+.duty-item {
+  text-align: center;
+  width: 400px;
+  padding: 0 30px;
+}
+
+.duty-img {
+}
+
+.duty-body {
+}
+.duty-heading {
+  font-size: 2.4rem;
+  font-family: var(--ff-butler);
+  font-weight: 300;
+  margin-top: 24px;
+}
+.duty-desc {
+  margin-top: 21px;
+  color: #696969;
+  font-size: 1.5rem;
+  line-height: 1.7;
+}
+
+.team-section {
+  width: 800px;
+  margin: 0 auto;
+  margin-top: 60px;
+}
+
+.testimonial-section {
+  height: max-content;
+  background-color: #f6f6f6;
+  padding: 70px 0;
+}
+
+.review-item {
+  text-align: center;
+}
+
+.review-text {
+  width: 690px;
+  margin: 45px auto;
+  text-align: center;
+  color: #626262;
+  font-size: 1.8rem;
+  line-height: 32px;
+}
+
+.review-img {
+  border-radius: 50%;
+}
+
+.user-name {
+  margin-top: 20px;
+  font-size: 1.5rem;
 }

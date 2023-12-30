@@ -28,6 +28,12 @@ const images = {
   gallery7: require("./gallery7.png"),
   gallery8: require("./gallery8.png"),
   gallery9: require("./gallery9.png"),
+  aboutImg: require("./about-img.png"),
+  aboutImg1: require("./about-img1.png"),
+  aboutImg2: require("./about-img2.png"),
+  aboutImg3: require("./about-img3.png"),
+  aboutTeam: require("./about-team.png"),
+  reviewUser: require("./review-img.png"),
 };
 
 export default images;
