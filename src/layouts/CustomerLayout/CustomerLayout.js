@@ -1,14 +1,14 @@
 import style from "./CustomerLayout.module.scss";
 import classNames from "classnames/bind";
 
-import { CustomerSidebar, SiteHeader, Footer } from "~/layouts/components";
+import { CustomerSidebar, ShopHeader, Footer } from "~/layouts/components";
 
 const cx = classNames.bind(style);
 
 function CustomerLayout({ children }) {
   return (
     <>
-      <SiteHeader />
+      <ShopHeader />
       <main className="container">
         <div className="flex section-1200">
           <CustomerSidebar />

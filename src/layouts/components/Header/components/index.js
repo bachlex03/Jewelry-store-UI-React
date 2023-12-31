@@ -1,3 +1,4 @@
-export { default as SiteBreadcrumb } from "./SiteBreadcrumb";
-export { default as SiteCatalog } from "./SiteCatalog";
-export { default as SiteSubHeader } from "./SiteSubHeader";
+export { default as Breadcrumb } from "./Breadcrumb";
+export { default as Catalog } from "./Catalog";
+export { default as SubHeader } from "./SubHeader";
+export { default as Action } from "./Action";

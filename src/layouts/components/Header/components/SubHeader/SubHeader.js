@@ -1,14 +1,14 @@
-import style from "../SiteHeader.module.scss";
+import styles from "./SubHeader.module.scss";
 import classNames from "classnames/bind";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
-
 import images from "~/assets/images";
-
 import { Button, Price, Search } from "~/components";
-const cx = classNames.bind(style);
 
-function SiteSubHeader() {
+const cx = classNames.bind(styles);
+
+function SubHeader() {
   return (
     <section className={cx("sub-header")}>
       <div className="flex justify-between align-center section-1100">
@@ -93,4 +93,4 @@ function SiteSubHeader() {
   );
 }
 
-export default SiteSubHeader;
+export default SubHeader;

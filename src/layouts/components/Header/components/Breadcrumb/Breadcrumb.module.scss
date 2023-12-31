@@ -1,0 +1,28 @@
+// Breadcrumb
+.breadcrumb {
+  background-image: url("../../../../../assets/images/breadcrumb.png");
+  height: 172px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 45px;
+
+  .current {
+    font-size: 4rem;
+    font-family: var(--ff-butler);
+    letter-spacing: 0.5px;
+    font-weight: 400;
+    -webkit-font-smoothing: auto;
+    text-align: center;
+    margin-top: 16px;
+  }
+
+  .active {
+    color: var(--primary);
+  }
+}
+
+.breadcrumb__list {
+  display: flex;
+}

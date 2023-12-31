@@ -1,10 +1,9 @@
-import style from "../SiteHeader.module.scss";
+import styles from "./Breadcrumb.module.scss";
 import classNames from "classnames/bind";
-import { Link } from "react-router-dom";
 
-const cx = classNames.bind(style);
+const cx = classNames.bind(styles);
 
-function SiteBreadcrumb() {
+function Breadcrumb() {
   return (
     <section className={cx("breadcrumb")}>
       <div>
@@ -19,4 +18,4 @@ function SiteBreadcrumb() {
   );
 }
 
-export default SiteBreadcrumb;
+export default Breadcrumb;

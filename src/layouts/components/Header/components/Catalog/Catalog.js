@@ -1,13 +1,13 @@
-import style from "../SiteHeader.module.scss";
+import styles from "./Catalog.module.scss";
 import classNames from "classnames/bind";
-import { Link } from "react-router-dom";
 
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
-const cx = classNames.bind(style);
+const cx = classNames.bind(styles);
 
-function SiteCatalog() {
+function Catalog() {
   return (
     <section className={cx("catalog", "flex")}>
       <div className="flex justify-between align-center section-1100">
@@ -79,4 +79,4 @@ function SiteCatalog() {
   );
 }
 
-export default SiteCatalog;
+export default Catalog;

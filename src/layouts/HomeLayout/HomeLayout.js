@@ -1,9 +1,9 @@
-import { SiteNoBreadcrumb, Footer } from "~/layouts/components";
+import { HomeHeader, Footer } from "~/layouts/components";
 
 function MainLayout({ children }) {
   return (
     <>
-      <SiteNoBreadcrumb />
+      <HomeHeader />
       <div className="container">{children}</div>
       <Footer />
     </>

@@ -1,2 +1,2 @@
-export { default as SiteHeader } from "./SiteHeader";
-export { default as SiteNoBreadcrumb } from "./NoBreadcrumb";
+export { default as ShopHeader } from "./ShopHeader";
+export { default as HomeHeader } from "./HomeHeader";

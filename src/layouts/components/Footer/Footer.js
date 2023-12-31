@@ -1,7 +1,7 @@
 import style from "./Footer.module.scss";
 import classNames from "classnames/bind";
 
-import FooterList from "~/components/FooterList";
+import { FooterList, Button, Input } from "~/components";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -16,6 +16,29 @@ const cx = classNames.bind(style);
 function Footer() {
   return (
     <>
+      <div className={cx("join-discount")}>
+        <div className="section-1200">
+          <div className="flex justify-around align-center">
+            <div>
+              <p className={cx("new-letter")}>JOIN OUR NEWSLETTER</p>
+              <span className={cx("discount")}>
+                Get 5% off discount every purchase!
+              </span>
+            </div>
+            <div className="flex align-center">
+              <div className={cx("input-wrapper")}>
+                <Input placeholder="Your name..." />
+              </div>
+              <div className={cx("input-wrapper")}>
+                <Input placeholder="Your email address..." />
+              </div>
+              <Button small bold>
+                SIGN UP
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
       <div className={cx("wrapper", "flex")}>
         <div className="flex justify-between align-center section-1200">
           <div className="grid wide">
