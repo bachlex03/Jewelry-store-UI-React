@@ -34,6 +34,7 @@ const images = {
   aboutImg3: require("./about-img3.png"),
   aboutTeam: require("./about-team.png"),
   reviewUser: require("./review-img.png"),
+  subCategories: require("./sub-categories.png"),
 };
 
 export default images;

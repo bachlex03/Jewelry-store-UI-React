@@ -1,10 +1,10 @@
-import style from "./VariationItem.module.scss";
+import styles from "./VariationItem.module.scss";
 import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSquare, faSquareCheck } from "@fortawesome/free-regular-svg-icons";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-const cx = classNames.bind(style);
+const cx = classNames.bind(styles);
 
 function VariationItem({
   name,

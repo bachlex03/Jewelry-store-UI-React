@@ -18,8 +18,6 @@ function PriceFilter() {
   let isDraggingLeft = false;
   let isDraggingRight = false;
 
-  console.log("1", leftPrice);
-
   const handleMouseMove = (e) => {
     let wrapperWidth = wrapperRef.current.getBoundingClientRect().width;
 

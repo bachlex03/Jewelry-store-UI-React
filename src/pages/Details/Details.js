@@ -71,7 +71,9 @@ function Details() {
               <InputQuantity />
             </div>
             <div>
-              <Button hover>ADD TO CART</Button>
+              <Button hover bold>
+                ADD TO CART
+              </Button>
             </div>
           </div>
         </div>

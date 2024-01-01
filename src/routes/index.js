@@ -17,6 +17,11 @@ import { Address, Order, Detail, Wishlist, Dashboard } from "~/pages/Customer";
 
 export const publicRoutes = [
   {
+    path: "/",
+    component: Home,
+    layout: HomeLayout,
+  },
+  {
     path: "/home",
     component: Home,
     layout: HomeLayout,
