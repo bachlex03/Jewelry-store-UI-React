@@ -158,6 +158,33 @@ function Home() {
           heading="Choosing Sterling Silver as a Wedding Gift"
           desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras pharetra, mi id rhoncus ultricies."
         />
+
+        <CarouselItem
+          author="Marry Lou"
+          date="August 15, 2018"
+          link="Buying"
+          img={images.owl2}
+          heading="Choosing Sterling Silver as a Wedding Gift"
+          desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras pharetra, mi id rhoncus ultricies."
+        />
+
+        <CarouselItem
+          author="Marry Lou"
+          date="August 15, 2018"
+          link="Buying"
+          img={images.owl1}
+          heading="Choosing Sterling Silver as a Wedding Gift"
+          desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras pharetra, mi id rhoncus ultricies."
+        />
+
+        <CarouselItem
+          author="Marry Lou"
+          date="August 15, 2018"
+          link="Buying"
+          img={images.owl1}
+          heading="Choosing Sterling Silver as a Wedding Gift"
+          desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras pharetra, mi id rhoncus ultricies."
+        />
       </Carousel>
     </>
   );

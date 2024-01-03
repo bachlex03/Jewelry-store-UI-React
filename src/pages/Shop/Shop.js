@@ -2,7 +2,6 @@ import styles from "./Shop.module.scss";
 import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAnglesRight } from "@fortawesome/free-solid-svg-icons";
-
 import React, { useState, useRef, useMemo } from "react";
 
 import Sidebar from "~/layouts/components/Sidebar";
@@ -53,14 +52,17 @@ function Shop() {
                 <Product heading="14K Gold 9″ Diamond Ankle Bracelet" sale />
               </div>
 
-              {arr.map((item, index) => {
-                if (index >= showProducts.start && index < showProducts.end)
-                  return (
-                    <div key={index} className="col l-4">
-                      <Product heading={index} />
-                    </div>
-                  );
-              })}
+              {
+                // eslint-disable-next-line
+                arr.map((item, index) => {
+                  if (index >= showProducts.start && index < showProducts.end)
+                    return (
+                      <div key={index} className="col l-4">
+                        <Product heading={index} />
+                      </div>
+                    );
+                })
+              }
             </div>
             <div className={cx("paging-wrapper")}>
               <ul className={cx("pages")}>

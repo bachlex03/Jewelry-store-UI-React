@@ -7,7 +7,7 @@ const cx = classNames.bind(style);
 function CarouselItem({ img, link, heading, desc, author, date }) {
   return (
     <div className={cx("wrapper")}>
-      <img src={img} alt="owl" className={cx("img")} />
+      <img src={img} alt="owl" className={cx("img")} draggable="false" />
       <div className={cx("body")}>
         <Button href="#" className={cx("link")}>
           {link}

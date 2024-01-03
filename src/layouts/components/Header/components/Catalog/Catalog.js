@@ -14,18 +14,30 @@ function Catalog() {
   const shopRef = useRef();
   const subCategories = useRef();
 
-  useEffect(() => {
-    shopRef.current.addEventListener("mouseover", (e) => {
-      subCategories.current.setAttribute("open", "");
-      subCategories.current.removeAttribute("closing");
-    });
+  // const handleClosing = (e) => {
+  //   subCategories.current.removeAttribute("open");
+  //   subCategories.current.setAttribute("closing", "");
+  // };
 
-    subCategories.current.addEventListener("mouseleave", () => {
-      console.log("out");
-      subCategories.current.removeAttribute("open");
-      subCategories.current.setAttribute("closing", "");
-    });
-  }, []);
+  // useEffect(() => {
+  //   shopRef.current.addEventListener("mouseover", (e) => {
+  //     subCategories.current.removeAttribute("closing");
+  //     subCategories.current.setAttribute("open", "");
+
+  //     const timerId = setTimeout(() => {
+  //       shopRef.current.addEventListener("mouseleave", handleClosing);
+  //     }, 500);
+
+  //     subCategories.current.addEventListener("mouseover", () => {
+  //       clearTimeout(timerId);
+  //       shopRef.current.removeEventListener("mouseleave", handleClosing);
+  //     });
+  //   });
+
+  //   subCategories.current.addEventListener("mouseleave", () => {
+  //     subCategories.current.setAttribute("closing", "");
+  //   });
+  // }, []);
 
   return (
     <section className={cx("catalog", "flex")}>

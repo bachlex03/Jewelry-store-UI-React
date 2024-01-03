@@ -9,7 +9,9 @@ const cx = classNames.bind(style);
 let classes = {};
 
 function Category({ category }) {
-  const children = category.children;
+  console.log(category);
+
+  const children = category.children || [];
 
   const iconRefs = useRef();
   const [open, setOpen] = useState(false);
@@ -27,7 +29,7 @@ function Category({ category }) {
   return (
     <div className={cx("parent")}>
       <div className="flex justify-between">
-        <h4 className={cx("heading")}>{category.parentName}</h4>
+        <h4 className={cx("heading")}>{category.name}</h4>
         <i className={cx("icon", classes)} ref={iconRefs} onClick={handleOpen}>
           <FontAwesomeIcon icon={faPlus} />
         </i>

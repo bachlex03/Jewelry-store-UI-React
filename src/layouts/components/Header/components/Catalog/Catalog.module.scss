@@ -25,11 +25,15 @@
 // sub categories
 .shop-catalog {
   position: relative;
+
+  &:hover .sub-categories {
+    display: flex;
+  }
 }
 
 .sub-categories {
   position: absolute;
-  display: flex;
+  display: none;
   left: -112px;
   top: 60px;
   justify-content: space-between;
@@ -59,7 +63,7 @@
 
   100% {
     opacity: 1;
-    top: 50px;
+    top: 45px;
   }
 }
 
