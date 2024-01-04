@@ -35,6 +35,7 @@
   cursor: pointer;
   transform: rotate(0);
   transition: transform 0.3s ease;
+  user-select: none;
 }
 
 .icon.opened {

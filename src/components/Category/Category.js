@@ -9,12 +9,10 @@ const cx = classNames.bind(style);
 let classes = {};
 
 function Category({ category }) {
-  console.log(category);
-
-  const children = category.children || [];
-
   const iconRefs = useRef();
   const [open, setOpen] = useState(false);
+
+  const children = category.children || [];
 
   const handleOpen = () => {
     if (open) {
@@ -29,7 +27,9 @@ function Category({ category }) {
   return (
     <div className={cx("parent")}>
       <div className="flex justify-between">
-        <h4 className={cx("heading")}>{category.name}</h4>
+        <Link to={`/categories/${category.slug}`}>
+          <h4 className={cx("heading")}>{category.name}</h4>
+        </Link>
         <i className={cx("icon", classes)} ref={iconRefs} onClick={handleOpen}>
           <FontAwesomeIcon icon={faPlus} />
         </i>
@@ -38,7 +38,9 @@ function Category({ category }) {
         {children.map((child, index) => {
           return (
             <li key={index}>
-              <Link className={cx("item")}>{child.name}</Link>
+              <Link to={`/categories/${child.slug}`} className={cx("item")}>
+                {child.name}
+              </Link>
             </li>
           );
         })}

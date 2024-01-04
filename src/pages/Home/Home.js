@@ -1,8 +1,8 @@
 import styles from "./Home.module.scss";
 import classNames from "classnames/bind";
 
+import * as productServices from "~/apiServices/productsService";
 import images from "~/assets/images";
-
 import {
   Button,
   ServiceItem,
@@ -15,8 +15,28 @@ import {
 const cx = classNames.bind(styles);
 
 function Home() {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    let data = {
+      _id: 2,
+      name: "14K Gold 9″ Diamond Ankle Bracelet",
+      price: 15.0,
+      desc: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
+      size: 1,
+      color: 3,
+    };
+
+    let status = await productServices.store(data);
+
+    console.log("status:", status);
+  };
+
   return (
     <>
+      <form onSubmit={handleSubmit}>
+        <button type="submit">Submit</button>
+      </form>
       {/* Slider */}
       <section className={cx("slider")}>
         <div className={cx("body")}>

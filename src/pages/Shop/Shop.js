@@ -2,10 +2,12 @@ import styles from "./Shop.module.scss";
 import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAnglesRight } from "@fortawesome/free-solid-svg-icons";
-import React, { useState, useRef, useMemo } from "react";
+import React, { useState, useRef, useMemo, useEffect } from "react";
 
+import * as productServices from "~/apiServices/productsService";
 import Sidebar from "~/layouts/components/Sidebar";
 import { Product, ScrollToTop } from "~/components";
+import { wait } from "@testing-library/user-event/dist/utils";
 
 const cx = classNames.bind(styles);
 
@@ -16,9 +18,19 @@ const arr = [
 function Shop() {
   const numberOfProduct = useRef(9);
   const renderPages = useRef([]);
-
   const [showProducts, setShowProducts] = useState({ start: 0, end: 8 });
   const pageRefs = useRef([]);
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchApi = async () => {
+      const result = await productServices.products();
+
+      setProducts(result);
+    };
+
+    fetchApi();
+  }, []);
 
   useMemo(() => {
     const pageQuantity = Math.ceil(arr.length / numberOfProduct.current);
@@ -49,16 +61,20 @@ function Shop() {
           <div className="col l-9">
             <div className="row">
               <div className="col l-4">
-                <Product heading="14K Gold 9″ Diamond Ankle Bracelet" sale />
+                <Product
+                  product={products[0]}
+                  heading="14K Gold 9″ Diamond Ankle Bracelet"
+                  sale
+                />
               </div>
 
               {
                 // eslint-disable-next-line
-                arr.map((item, index) => {
+                products.map((product, index) => {
                   if (index >= showProducts.start && index < showProducts.end)
                     return (
                       <div key={index} className="col l-4">
-                        <Product heading={index} />
+                        <Product product={product} />
                       </div>
                     );
                 })

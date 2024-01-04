@@ -1,19 +1,33 @@
 import styles from "./Details.module.scss";
 import classNames from "classnames/bind";
+import { Fragment, useEffect, useState } from "react";
+import { useParams, useLocation } from "react-router-dom";
 
 import images from "~/assets/images";
-
-import Price from "~/components/Price";
-import Button from "~/components/Button";
-import InputQuantity from "~/components/InputQuantity";
-import Selection from "~/components/Selection";
-
-import { Fragment } from "react";
+import { Price, Button, InputQuantity, Selection } from "~/components";
+import * as productServices from "~/apiServices/productsService";
 
 const cx = classNames.bind(styles);
 
 function Details() {
+  const [product, setProduct] = useState({});
+  const { param } = useParams();
   let isSale = true;
+
+  // const val = useLocation();
+
+  // console.log(val);
+  // console.log(new URLSearchParams(val.search).get("sale"));
+
+  useEffect(() => {
+    const fetchApi = async () => {
+      const result = await productServices.details(param);
+
+      setProduct(result);
+    };
+
+    fetchApi();
+  }, []);
 
   return (
     <div className="section-1200">
@@ -53,14 +67,9 @@ function Details() {
         </div>
 
         <div className={cx("body")}>
-          <h3 className={cx("heading")}>Veronece 18K Clad 10 Diamond Cut</h3>
+          <h3 className={cx("heading")}>{product.name}</h3>
           <Price sale />
-          <p className={cx("desc")}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde aut
-            porro, a iure itaque iusto repudiandae laborum veritatis. Voluptas
-            beatae ipsum ratione! Veritatis repudiandae minima vero magnam alias
-            omnis sit?
-          </p>
+          <p className={cx("desc")}>{product.desc}</p>
 
           <Selection name="Color" />
 

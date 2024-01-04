@@ -31,7 +31,7 @@ export const publicRoutes = [
     component: Shop,
   },
   {
-    path: "/Details",
+    path: "/products/:param",
     component: Details,
   },
   {
