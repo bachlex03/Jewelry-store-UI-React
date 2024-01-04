@@ -1,8 +1,6 @@
 import style from "./Sidebar.module.scss";
 import classNames from "classnames/bind";
-import { useState, useEffect } from "react";
-
-import * as categoriesService from "~/apiServices/categoriesService";
+import { useState, useEffect, useContext } from "react";
 
 import {
   Category,
@@ -10,6 +8,7 @@ import {
   SideProduct,
   PriceFilter,
 } from "~/components";
+import * as categoriesService from "~/apiServices/categoriesService";
 
 const cx = classNames.bind(style);
 

@@ -2,18 +2,21 @@ import styles from "./Shop.module.scss";
 import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAnglesRight } from "@fortawesome/free-solid-svg-icons";
-import React, { useState, useRef, useMemo, useEffect } from "react";
+import React, {
+  useState,
+  useRef,
+  useMemo,
+  useEffect,
+  createContext,
+} from "react";
 
 import * as productServices from "~/apiServices/productsService";
 import Sidebar from "~/layouts/components/Sidebar";
 import { Product, ScrollToTop } from "~/components";
-import { wait } from "@testing-library/user-event/dist/utils";
 
 const cx = classNames.bind(styles);
 
-const arr = [
-  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
-];
+export const productsContext = createContext();
 
 function Shop() {
   const numberOfProduct = useRef(9);
@@ -33,7 +36,7 @@ function Shop() {
   }, []);
 
   useMemo(() => {
-    const pageQuantity = Math.ceil(arr.length / numberOfProduct.current);
+    const pageQuantity = Math.ceil(products.length / numberOfProduct.current);
 
     for (let i = 0; i < pageQuantity; i++) {
       renderPages.current.push(i);
@@ -56,7 +59,9 @@ function Shop() {
       <div className="grid wide">
         <div className="row">
           <div className="col l-3">
-            <Sidebar />
+            <productsContext.Provider value={setProducts}>
+              <Sidebar />
+            </productsContext.Provider>
           </div>
           <div className="col l-9">
             <div className="row">

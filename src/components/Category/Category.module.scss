@@ -30,6 +30,15 @@
   }
 }
 
+.item {
+  display: block;
+  transition: all 0.3s;
+
+  &:hover {
+    color: var(--green);
+  }
+}
+
 .icon {
   font-size: 1.4rem;
   cursor: pointer;
