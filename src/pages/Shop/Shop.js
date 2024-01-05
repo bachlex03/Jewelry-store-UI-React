@@ -11,64 +11,63 @@ import React, {
   createContext,
 } from "react";
 
-import * as productServices from "~/apiServices/productsService";
 import Sidebar from "~/layouts/components/Sidebar";
-import { Product, ScrollToTop } from "~/components";
+import { Product, ScrollToTop, Paging } from "~/components";
+import * as productServices from "~/apiServices/productsService";
 
 const cx = classNames.bind(styles);
 
 export const productsContext = createContext();
 
+let productsLength = 0;
+const productsShow = 9;
+
 function Shop() {
-  const numberOfProduct = useRef(9);
-  const renderPages = useRef([]);
-  const [showProducts, setShowProducts] = useState({ start: 0, end: 8 });
-  const pageRefs = useRef([]);
+  console.log("shop mounted");
+
   const [products, setProducts] = useState([]);
+
+  const pageRef = useRef({ start: 0, end: 8 });
+
   const location = useLocation();
   const { categorySlug } = useParams();
 
-  const fetchProductApi = async () => {
-    const result = await productServices.products();
-
-    setProducts(result);
-  };
-
-  useEffect(() => {
-    fetchProductApi();
-  }, []);
-
   useEffect(() => {
     const fetchApi = async () => {
-      const result = await productServices.productsByCategory(categorySlug);
+      const result = await productServices.products();
+
       setProducts(result);
+
+      productsLength = result.length;
     };
 
-    if (location.pathname.startsWith("/categories")) {
-      fetchApi();
-      return;
-    }
-
-    fetchProductApi();
-  }, [categorySlug]);
-
-  useMemo(() => {
-    const pageQuantity = Math.ceil(products.length / numberOfProduct.current);
-
-    for (let i = 0; i < pageQuantity; i++) {
-      renderPages.current.push(i);
-    }
+    fetchApi();
   }, []);
 
-  const handlePaging = (start, end, pos) => {
-    setShowProducts({ start, end });
+  // useEffect(() => {
+  //   const fetchApi = async () => {
+  //     const result = await productServices.productsByCategory(categorySlug);
 
-    pageRefs.current.forEach((page) => {
-      page.current.className = cx({ active: false });
-    });
+  //     setProducts(result);
+  //   };
 
-    pageRefs.current[pos].current.className = cx({ active: true });
-  };
+  //   if (location.pathname.startsWith("/categories")) {
+  //     fetchApi();
+  //     return;
+  //   }
+
+  //   fetchProductsApi();
+  // }, [categorySlug]);
+
+  // const handlePaging = (start, end, pos) => {
+  //   // setShowProducts({ start, end });
+
+  //   pageRefs.current.forEach((page) => {
+  //     page.current.className = cx({ active: false });
+  //   });
+
+  //   pageRefs.current[pos].current.className = cx({ active: true });
+  // };
 
   return (
     <>
@@ -93,7 +92,10 @@ function Shop() {
               {
                 // eslint-disable-next-line
                 products.map((product, index) => {
-                  if (index >= showProducts.start && index < showProducts.end)
+                  if (
+                    index >= pageRef.current.start &&
+                    index < pageRef.current.end
+                  )
                     return (
                       <div key={index} className="col l-4">
                         <Product product={product} />
@@ -102,28 +104,9 @@ function Shop() {
                 })
               }
             </div>
+
             <div className={cx("paging-wrapper")}>
-              <ul className={cx("pages")}>
-                {renderPages.current.map((item, index) => {
-                  const start = index * numberOfProduct.current;
-                  const end = start + numberOfProduct.current - 1;
-
-                  pageRefs.current[index] = React.createRef();
-
-                  return (
-                    <li
-                      ref={pageRefs.current[index]}
-                      key={index}
-                      onClick={() => handlePaging(start, end, index)}
-                    >
-                      {index + 1}
-                    </li>
-                  );
-                })}
-                <li>
-                  <FontAwesomeIcon icon={faAnglesRight} />
-                </li>
-              </ul>
+              <Paging length={productsLength} productsShow={productsShow} />
             </div>
           </div>
         </div>

@@ -6,31 +6,12 @@ import { useState } from "react";
 
 const cx = classNames.bind(styles);
 
-function VariationItem({
-  name,
-  quantity = 0,
-  setColorFilter,
-  initCheck,
-  index,
-}) {
-  let [checked, setChecked] = useState(initCheck);
-  checked = initCheck;
+let checked = true;
 
-  // console.log("render variation");
-  // console.log(checked);
+function VariationItem({ variation }) {
+  const handleCheck = () => {};
 
-  const handleCheck = () => {
-    setChecked(checked ? false : true);
-
-    const arr = new Array(false, false, false);
-    arr[index] = !checked;
-
-    // console.log(index);
-
-    // console.log("arr", arr);
-
-    setColorFilter(arr);
-  };
+  console.log(variation);
 
   return (
     <div
@@ -47,9 +28,9 @@ function VariationItem({
             <FontAwesomeIcon icon={faSquare} />
           )}
         </i>
-        <p className={cx("name")}>{name}</p>
+        <p className={cx("name")}>0</p>
       </div>
-      <span className={cx("quantity")}>({quantity})</span>
+      <span className={cx("quantity")}>(0)</span>
     </div>
   );
 }

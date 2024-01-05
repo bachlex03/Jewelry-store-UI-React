@@ -81,37 +81,37 @@ function Catalog() {
             </div>
           </li>
           <li>
-            <Link to={""} className={cx("item")}>
+            <Link to="/home" className={cx("item")}>
               New Collection
             </Link>
           </li>
           <li>
-            <Link to={""} className={cx("item")}>
+            <Link to="/home" className={cx("item")}>
               Sale
             </Link>
           </li>
           <li>
-            <Link to={""} className={cx("item")}>
+            <Link to="/home" className={cx("item")}>
               Woman
             </Link>
           </li>
           <li>
-            <Link to={""} className={cx("item")}>
+            <Link to="/home" className={cx("item")}>
               Men
             </Link>
           </li>
           <li>
-            <Link to={""} className={cx("item")}>
+            <Link to="/home" className={cx("item")}>
               Watches
             </Link>
           </li>
           <li>
-            <Link to={""} className={cx("item")}>
+            <Link to="/home" className={cx("item")}>
               Pages
             </Link>
           </li>
           <li>
-            <Link to={""} className={cx("item")}>
+            <Link to="/home" className={cx("item")}>
               Blog
             </Link>
           </li>

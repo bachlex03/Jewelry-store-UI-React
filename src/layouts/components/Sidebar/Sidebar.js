@@ -1,6 +1,6 @@
 import style from "./Sidebar.module.scss";
 import classNames from "classnames/bind";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, memo } from "react";
 
 import {
   Category,
@@ -9,6 +9,7 @@ import {
   PriceFilter,
 } from "~/components";
 import * as categoriesService from "~/apiServices/categoriesService";
+import * as siteServices from "~/apiServices/sitesService";
 
 const cx = classNames.bind(style);
 
@@ -16,26 +17,36 @@ const colors = ["Gold", "Silver", "Bronze"];
 // const sizes = ["16", "17", "18", "19"];
 
 function Sidebar() {
-  const [colorFilter, setColorFilter] = useState([false, false, false]);
-  const [categoriesApi, setCategoriesApi] = useState([]);
+  console.log("Sidebar mounted");
 
-  useEffect(() => {
-    const fetchApi = async () => {
-      const result = await categoriesService.categories();
+  // const [colorFilter, setColorFilter] = useState([false, false, false]);
+  // const [sizesFilter, setSizesFilter] = useState([]);
+  // const [categoriesApi, setCategoriesApi] = useState([]);
 
-      setCategoriesApi(result);
-    };
+  // useEffect(() => {
+  //   const fetchCategoriesApi = async () => {
+  //     const result = await categoriesService.categories();
 
-    fetchApi();
-  }, []);
+  //     // setCategoriesApi(result);
+  //   };
+
+  //   const fetchSitesApi = async () => {
+  //     const sizes = await siteServices.getSizes();
+
+  //     // setSizesFilter(sizes);
+  //   };
+
+  //   fetchSitesApi();
+  //   fetchCategoriesApi();
+  // }, []);
 
   return (
     <aside className={cx("sidebar")}>
       <div>
         <h3 className={cx("heading")}>Product categories</h3>
-        {categoriesApi.map((category, index) => {
+        {/* {categoriesApi.map((category, index) => {
           return <Category category={category} key={index} />;
-        })}
+        })} */}
 
         <span className={cx("separate")}></span>
       </div>
@@ -50,7 +61,7 @@ function Sidebar() {
 
       <div>
         <h3 className={cx("heading")}>Filter by color</h3>
-        {colors.map((color, index) => {
+        {/* {colors.map((color, index) => {
           return (
             <VariationItem
               setColorFilter={setColorFilter}
@@ -60,24 +71,16 @@ function Sidebar() {
               initCheck={colorFilter[index]}
             />
           );
-        })}
+        })} */}
 
         <span className={cx("separate")}></span>
       </div>
 
       <div>
         <h3 className={cx("heading")}>Filter by color</h3>
-        {colors.map((color, index) => {
-          return (
-            <VariationItem
-              setColorFilter={setColorFilter}
-              name={color}
-              key={index}
-              index={index}
-              initCheck={colorFilter[index]}
-            />
-          );
-        })}
+        {/* {sizesFilter.map((size, index) => {
+          return <VariationItem variation={size} />;
+        })} */}
 
         <span className={cx("separate")}></span>
       </div>
@@ -95,4 +98,4 @@ function Sidebar() {
   );
 }
 
-export default Sidebar;
+export default memo(Sidebar);
