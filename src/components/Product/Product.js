@@ -32,14 +32,18 @@ function Product({ heading = "", sale, product }) {
 
         <Link
           to={{
-            pathname: `/products/${product && product.slug}`,
+            pathname: `/products/${product ? product.slug : "demo-slug"}`,
             // search: "sale=13",
           }}
         >
           <img src={images.product} alt="product" className={cx("img")} />
         </Link>
-        <span className={cx("label")}>{product && product.category}</span>
-        <h3 className={cx("heading")}>{product && product.name}</h3>
+        <span className={cx("label")}>
+          {product ? product.label : "demo-label"}
+        </span>
+        <h3 className={cx("heading")}>
+          {product ? product.name : "demo-heading"}
+        </h3>
 
         <div className={cx("price-wrapper")}>
           <Price sale={sale} pos__shop />

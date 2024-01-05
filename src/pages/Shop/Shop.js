@@ -26,8 +26,7 @@ function Shop() {
   console.log("shop mounted");
 
   const [products, setProducts] = useState([]);
-
-  const pageRef = useRef({ start: 0, end: 8 });
+  const [show, setShow] = useState({ start: 0, end: 8 });
 
   const location = useLocation();
   const { categorySlug } = useParams();
@@ -37,6 +36,10 @@ function Shop() {
       const result = await productServices.products();
 
       setProducts(result);
+      // setProducts([
+      //   0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+      //   20,
+      // ]);
 
       productsLength = result.length;
     };
@@ -92,10 +95,7 @@ function Shop() {
               {
                 // eslint-disable-next-line
                 products.map((product, index) => {
-                  if (
-                    index >= pageRef.current.start &&
-                    index < pageRef.current.end
-                  )
+                  if (index >= show.start && index <= show.end)
                     return (
                       <div key={index} className="col l-4">
                         <Product product={product} />
@@ -105,8 +105,12 @@ function Shop() {
               }
             </div>
 
-            <div className={cx("paging-wrapper")}>
-              <Paging length={productsLength} productsShow={productsShow} />
+            <div className={cx("paging-wrapper", "mt-20")}>
+              <Paging
+                setShow={setShow}
+                length={productsLength}
+                productsShow={productsShow}
+              />
             </div>
           </div>
         </div>

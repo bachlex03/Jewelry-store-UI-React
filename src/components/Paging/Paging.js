@@ -4,20 +4,13 @@ import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAnglesRight } from "@fortawesome/free-solid-svg-icons";
 
-import React, {
-  useMemo,
-  memo,
-  forwardRef,
-  useState,
-  useRef,
-  useEffect,
-} from "react";
+import React, { useMemo, memo, useState, useRef, Fragment } from "react";
 
 const cx = classNames.bind(style);
 
-let pagesRender = [0];
+let pagesRender = [];
 
-function Paging({ length, productsShow }) {
+function Paging({ length, productsShow, setShow }) {
   console.log("Paging mounted");
 
   const [isActive, setActive] = useState(0);
@@ -26,21 +19,24 @@ function Paging({ length, productsShow }) {
   useMemo(() => {
     const pageQuantity = Math.ceil(length / productsShow);
 
+    pagesRender = [];
     for (let i = 0; i < pageQuantity; i++) {
       pagesRender.push(i);
     }
   }, [length]);
 
   const handlePaging = (index) => {
+    const start = index * productsShow;
+    const end = start + productsShow - 1;
+
     isActive === index || setActive(index);
+
+    setShow({ start, end });
   };
 
   return (
     <ul className={cx("pages")}>
       {pagesRender.map((item, index) => {
-        // const start = index * numberOfProduct.current;
-        // const end = start + numberOfProduct.current - 1;
-
         pageRefs.current[index] = React.createRef();
 
         let active = isActive === index ? true : false;
@@ -60,13 +56,16 @@ function Paging({ length, productsShow }) {
       {pagesRender.length > 0 ? (
         <li
           onClick={() => {
-            isActive === pagesRender.length - 1 || setActive(isActive + 1);
+            if (isActive !== pagesRender.length - 1) {
+              setActive(isActive + 1);
+              handlePaging(isActive + 1);
+            }
           }}
         >
           <FontAwesomeIcon icon={faAnglesRight} />
         </li>
       ) : (
-        "123"
+        <Fragment />
       )}
     </ul>
   );
