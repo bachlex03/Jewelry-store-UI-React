@@ -31,7 +31,7 @@ export const publicRoutes = [
     component: Shop,
   },
   {
-    path: "/categories/:slug",
+    path: "/categories/:categorySlug",
     component: Shop,
   },
   {

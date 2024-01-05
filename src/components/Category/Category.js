@@ -32,15 +32,7 @@ function Category({ category }) {
 
   const handleParentCategory = () => {};
 
-  const handleChildCategory = () => {
-    const fetchApi = async () => {
-      const result = await productServices.productsByCategory(slug);
-
-      setProducts(result);
-    };
-
-    fetchApi();
-  };
+  const handleChildCategory = () => {};
 
   return (
     <div className={cx("parent")}>

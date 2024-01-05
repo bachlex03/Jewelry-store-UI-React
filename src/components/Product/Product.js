@@ -38,7 +38,7 @@ function Product({ heading = "", sale, product }) {
         >
           <img src={images.product} alt="product" className={cx("img")} />
         </Link>
-        <span className={cx("label")}>Bands</span>
+        <span className={cx("label")}>{product && product.category}</span>
         <h3 className={cx("heading")}>{product && product.name}</h3>
 
         <div className={cx("price-wrapper")}>

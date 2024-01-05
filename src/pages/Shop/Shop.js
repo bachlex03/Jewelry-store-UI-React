@@ -2,6 +2,7 @@ import styles from "./Shop.module.scss";
 import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAnglesRight } from "@fortawesome/free-solid-svg-icons";
+import { useLocation, useParams } from "react-router-dom";
 import React, {
   useState,
   useRef,
@@ -24,16 +25,32 @@ function Shop() {
   const [showProducts, setShowProducts] = useState({ start: 0, end: 8 });
   const pageRefs = useRef([]);
   const [products, setProducts] = useState([]);
+  const location = useLocation();
+  const { categorySlug } = useParams();
+
+  const fetchProductApi = async () => {
+    const result = await productServices.products();
+
+    setProducts(result);
+  };
+
+  useEffect(() => {
+    fetchProductApi();
+  }, []);
 
   useEffect(() => {
     const fetchApi = async () => {
-      const result = await productServices.products();
-
+      const result = await productServices.productsByCategory(categorySlug);
       setProducts(result);
     };
 
-    fetchApi();
-  }, []);
+    if (location.pathname.startsWith("/categories")) {
+      fetchApi();
+      return;
+    }
+
+    fetchProductApi();
+  }, [categorySlug]);
 
   useMemo(() => {
     const pageQuantity = Math.ceil(products.length / numberOfProduct.current);
@@ -65,13 +82,13 @@ function Shop() {
           </div>
           <div className="col l-9">
             <div className="row">
-              <div className="col l-4">
+              {/* <div className="col l-4">
                 <Product
                   product={products[0]}
                   heading="14K Gold 9″ Diamond Ankle Bracelet"
                   sale
                 />
-              </div>
+              </div> */}
 
               {
                 // eslint-disable-next-line
