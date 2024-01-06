@@ -1,19 +1,12 @@
 import styles from "./Shop.module.scss";
 import classNames from "classnames/bind";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAnglesRight } from "@fortawesome/free-solid-svg-icons";
 import { useLocation, useParams } from "react-router-dom";
-import React, {
-  useState,
-  useRef,
-  useMemo,
-  useEffect,
-  createContext,
-} from "react";
+import React, { useState, useEffect, createContext, useRef } from "react";
 
-import Sidebar from "~/layouts/components/Sidebar";
+import { Sidebar } from "~/layouts/components";
 import { Product, ScrollToTop, Paging } from "~/components";
-import * as productServices from "~/apiServices/productsService";
+
+import * as productServices from "~/apiServices/productServices";
 
 const cx = classNames.bind(styles);
 
@@ -28,49 +21,34 @@ function Shop() {
   const [products, setProducts] = useState([]);
   const [show, setShow] = useState({ start: 0, end: 8 });
 
+  const productsRef = useRef([]);
+
   const location = useLocation();
-  const { categorySlug } = useParams();
+  const { categoryParam } = useParams();
 
   useEffect(() => {
     const fetchApi = async () => {
       const result = await productServices.products();
 
       setProducts(result);
-      // setProducts([
-      //   0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
-      //   20,
-      // ]);
+
+      productsRef.current = result;
 
       productsLength = result.length;
     };
 
+    if (location.pathname.startsWith("/categories")) {
+      const products_category = productsRef.current.filter(
+        (product) => product.category === categoryParam
+      );
+
+      setProducts(products_category);
+
+      return;
+    }
+
     fetchApi();
-  }, []);
-
-  // useEffect(() => {
-  //   const fetchApi = async () => {
-  //     const result = await productServices.productsByCategory(categorySlug);
-
-  //     setProducts(result);
-  //   };
-
-  //   if (location.pathname.startsWith("/categories")) {
-  //     fetchApi();
-  //     return;
-  //   }
-
-  //   fetchProductsApi();
-  // }, [categorySlug]);
-
-  // const handlePaging = (start, end, pos) => {
-  //   // setShowProducts({ start, end });
-
-  //   pageRefs.current.forEach((page) => {
-  //     page.current.className = cx({ active: false });
-  //   });
-
-  //   pageRefs.current[pos].current.className = cx({ active: true });
-  // };
+  }, [categoryParam]);
 
   return (
     <>
@@ -78,7 +56,7 @@ function Shop() {
       <div className="grid wide">
         <div className="row">
           <div className="col l-3">
-            <productsContext.Provider value={setProducts}>
+            <productsContext.Provider value={{ products, setProducts }}>
               <Sidebar />
             </productsContext.Provider>
           </div>

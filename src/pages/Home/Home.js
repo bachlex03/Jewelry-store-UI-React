@@ -1,8 +1,8 @@
 import styles from "./Home.module.scss";
 import classNames from "classnames/bind";
 
-import * as productServices from "~/apiServices/productsService";
-import * as siteServices from "~/apiServices/sitesService";
+import * as productServices from "~/apiServices/productServices";
+import * as siteServices from "~/apiServices/siteServices";
 import images from "~/assets/images";
 import {
   Button,

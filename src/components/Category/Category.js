@@ -7,16 +7,19 @@ import { useState, useRef, useContext } from "react";
 
 import { productsContext } from "~/pages/Shop/Shop";
 
-import * as productServices from "~/apiServices/productsService";
+import * as productServices from "~/apiServices/productServices";
 
 const cx = classNames.bind(style);
 let classes = {};
 
 function Category({ category }) {
   const iconRefs = useRef();
+
   const [open, setOpen] = useState(false);
-  const setProducts = useContext(productsContext);
-  const { slug } = useParams();
+
+  const { products, setProducts } = useContext(productsContext);
+
+  const { categoryParam } = useParams();
 
   const children = category.children || [];
 
@@ -32,7 +35,12 @@ function Category({ category }) {
 
   const handleParentCategory = () => {};
 
-  const handleChildCategory = () => {};
+  const handleChildCategory = () => {
+    // const renderProducts = products.filter((product) => {
+    //   return product.category === categoryParam;
+    // });
+    // setProducts(renderProducts);
+  };
 
   return (
     <div className={cx("parent")}>

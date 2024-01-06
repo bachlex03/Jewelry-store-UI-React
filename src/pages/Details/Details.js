@@ -5,7 +5,7 @@ import { useParams, useLocation } from "react-router-dom";
 
 import images from "~/assets/images";
 import { Price, Button, InputQuantity, Selection } from "~/components";
-import * as productServices from "~/apiServices/productsService";
+import * as productServices from "~/apiServices/productServices";
 
 const cx = classNames.bind(styles);
 

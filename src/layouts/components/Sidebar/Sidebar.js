@@ -1,6 +1,6 @@
 import style from "./Sidebar.module.scss";
 import classNames from "classnames/bind";
-import { useState, useEffect, useContext, memo } from "react";
+import { useState, useEffect, memo, forwardRef } from "react";
 
 import {
   Category,
@@ -8,20 +8,29 @@ import {
   SideProduct,
   PriceFilter,
 } from "~/components";
-import * as categoriesService from "~/apiServices/categoriesService";
-import * as siteServices from "~/apiServices/sitesService";
+
+import * as categoriesService from "~/apiServices/categoryServices";
+// import * as siteServices from "~/apiServices/sitesService";
 
 const cx = classNames.bind(style);
-
-const colors = ["Gold", "Silver", "Bronze"];
-// const sizes = ["16", "17", "18", "19"];
 
 function Sidebar() {
   console.log("Sidebar mounted");
 
   // const [colorFilter, setColorFilter] = useState([false, false, false]);
   // const [sizesFilter, setSizesFilter] = useState([]);
-  // const [categoriesApi, setCategoriesApi] = useState([]);
+  const [categoriesApi, setCategoriesApi] = useState([]);
+
+  // fetch categories
+  useEffect(() => {
+    const fetchApi = async () => {
+      const result = await categoriesService.categories();
+
+      setCategoriesApi(result);
+    };
+
+    fetchApi();
+  }, []);
 
   // useEffect(() => {
   //   const fetchCategoriesApi = async () => {
@@ -44,9 +53,9 @@ function Sidebar() {
     <aside className={cx("sidebar")}>
       <div>
         <h3 className={cx("heading")}>Product categories</h3>
-        {/* {categoriesApi.map((category, index) => {
+        {categoriesApi.map((category, index) => {
           return <Category category={category} key={index} />;
-        })} */}
+        })}
 
         <span className={cx("separate")}></span>
       </div>
