@@ -1,16 +1,23 @@
 import styles from "./Shop.module.scss";
 import classNames from "classnames/bind";
 import { useLocation, useParams } from "react-router-dom";
-import React, { useState, useEffect, createContext, useRef } from "react";
+import React, {
+  useState,
+  useEffect,
+  createContext,
+  useRef,
+  useLayoutEffect,
+} from "react";
 
 import { Sidebar } from "~/layouts/components";
 import { Product, ScrollToTop, Paging } from "~/components";
 
 import * as productServices from "~/apiServices/productServices";
+import * as categoryServices from "~/apiServices/categoryServices";
 
 const cx = classNames.bind(styles);
 
-export const productsContext = createContext();
+export const categoriesContext = createContext();
 
 let productsLength = 0;
 const productsShow = 9;
@@ -19,13 +26,15 @@ function Shop() {
   console.log("shop mounted");
 
   const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
+
   const [show, setShow] = useState({ start: 0, end: 8 });
 
   const productsRef = useRef([]);
 
-  const location = useLocation();
   const { categoryParam } = useParams();
 
+  // fetch products
   useEffect(() => {
     const fetchApi = async () => {
       const result = await productServices.products();
@@ -33,42 +42,80 @@ function Shop() {
       setProducts(result);
 
       productsRef.current = result;
-
       productsLength = result.length;
     };
 
-    if (location.pathname.startsWith("/categories")) {
-      const products_category = productsRef.current.filter(
-        (product) => product.category === categoryParam
-      );
+    fetchApi();
+  }, []);
 
-      setProducts(products_category);
+  // fetch categories
+  useEffect(() => {
+    const fetchApi = async () => {
+      const result = await categoryServices.categories();
 
-      return;
-    }
+      setCategories(result);
+    };
 
     fetchApi();
-  }, [categoryParam]);
+  }, []);
+
+  // handle products by category
+  useEffect(() => {
+    const handleProductsByCategory = (categoryParams = []) => {
+      let products_category = [];
+
+      categoryParams.forEach((pram) => {
+        let products = productsRef.current.filter(
+          (product) => product.category === pram
+        );
+
+        products_category = [...products_category, ...products];
+      });
+
+      return products_category;
+    };
+
+    if (categories.length === 0) return;
+    if (categoryParam === undefined) return;
+
+    let params = [];
+    let categoryFilter = {};
+
+    categories.forEach((category) => {
+      if (category.slug === categoryParam) {
+        categoryFilter = { ...category };
+      }
+    });
+
+    if (Object.getOwnPropertyNames(categoryFilter).length === 0) {
+      params = [categoryParam];
+    } else {
+      params = categoryFilter.children.map((child) => child.slug);
+    }
+
+    const products_category = handleProductsByCategory(params);
+
+    setProducts(products_category);
+  }, [categoryParam, categories]);
 
   return (
     <>
+      {console.error("render DOM")}
       <ScrollToTop />
       <div className="grid wide">
         <div className="row">
           <div className="col l-3">
-            <productsContext.Provider value={{ products, setProducts }}>
-              <Sidebar />
-            </productsContext.Provider>
+            <Sidebar categories={categories} />
           </div>
           <div className="col l-9">
             <div className="row">
-              {/* <div className="col l-4">
+              <div className="col l-4">
                 <Product
-                  product={products[0]}
+                  product={null}
                   heading="14K Gold 9″ Diamond Ankle Bracelet"
                   sale
                 />
-              </div> */}
+              </div>
 
               {
                 // eslint-disable-next-line

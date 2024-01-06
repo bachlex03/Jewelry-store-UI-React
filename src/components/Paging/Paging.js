@@ -11,7 +11,7 @@ const cx = classNames.bind(style);
 let pagesRender = [];
 
 function Paging({ length, productsShow, setShow }) {
-  console.log("Paging mounted");
+  // console.log("Paging mounted");
 
   const [isActive, setActive] = useState(0);
   const pageRefs = useRef([]);

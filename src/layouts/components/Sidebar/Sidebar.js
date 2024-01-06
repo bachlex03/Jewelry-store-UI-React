@@ -1,6 +1,6 @@
 import style from "./Sidebar.module.scss";
 import classNames from "classnames/bind";
-import { useState, useEffect, memo, forwardRef } from "react";
+import { useState, useEffect, memo, useContext } from "react";
 
 import {
   Category,
@@ -9,28 +9,13 @@ import {
   PriceFilter,
 } from "~/components";
 
-import * as categoriesService from "~/apiServices/categoryServices";
-// import * as siteServices from "~/apiServices/sitesService";
-
 const cx = classNames.bind(style);
 
-function Sidebar() {
-  console.log("Sidebar mounted");
+function Sidebar({ categories }) {
+  // console.log("Sidebar mounted");
 
   // const [colorFilter, setColorFilter] = useState([false, false, false]);
   // const [sizesFilter, setSizesFilter] = useState([]);
-  const [categoriesApi, setCategoriesApi] = useState([]);
-
-  // fetch categories
-  useEffect(() => {
-    const fetchApi = async () => {
-      const result = await categoriesService.categories();
-
-      setCategoriesApi(result);
-    };
-
-    fetchApi();
-  }, []);
 
   // useEffect(() => {
   //   const fetchCategoriesApi = async () => {
@@ -53,7 +38,7 @@ function Sidebar() {
     <aside className={cx("sidebar")}>
       <div>
         <h3 className={cx("heading")}>Product categories</h3>
-        {categoriesApi.map((category, index) => {
+        {categories.map((category, index) => {
           return <Category category={category} key={index} />;
         })}
 

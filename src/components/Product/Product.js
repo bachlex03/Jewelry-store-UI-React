@@ -3,11 +3,11 @@ import classNames from "classnames/bind";
 import { Link } from "react-router-dom";
 import { Fragment, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
+import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
 
 import images from "~/assets/images";
 import { Button, Price } from "~/components";
-import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
-import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
 
 const cx = classNames.bind(style);
 
@@ -42,7 +42,7 @@ function Product({ heading = "", sale, product }) {
           {product ? product.category : "demo-label"}
         </span>
         <h3 className={cx("heading")}>
-          {product ? product.name : "demo-heading"}
+          {product ? product.name : "demo product"}
         </h3>
 
         <div className={cx("price-wrapper")}>
