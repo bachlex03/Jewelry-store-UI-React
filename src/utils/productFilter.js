@@ -23,7 +23,7 @@ export function filterByVariation(products, filters = {}) {
     });
   });
 
-  return filteredProducts;
+  return filteredProducts.length > 0 ? filteredProducts : products;
 }
 
 export function distinctBy(products, key) {

@@ -84,6 +84,7 @@ function Shop() {
       productsDistinctRef.current,
       params
     );
+
     setProducts(products_category);
   }, [categoryParam, categories]);
 
@@ -93,7 +94,9 @@ function Shop() {
       <div className="grid wide">
         <div className="row">
           <div className="col l-3">
-            <FiltersContext.Provider value={{ filters, handleFilterObj }}>
+            <FiltersContext.Provider
+              value={{ filters, handleFilterObj, setProducts }}
+            >
               <Sidebar categories={categories} />
             </FiltersContext.Provider>
           </div>
