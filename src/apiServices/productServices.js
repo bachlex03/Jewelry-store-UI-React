@@ -6,6 +6,12 @@ export const products = async () => {
   return result.data;
 };
 
+export const distinctProducts = async () => {
+  const result = await request.get("products/distinctProducts");
+
+  return result.data;
+};
+
 // product details
 export const details = async (param) => {
   const result = await request.get(`products/${param}`);

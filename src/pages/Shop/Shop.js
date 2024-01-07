@@ -1,23 +1,18 @@
 import styles from "./Shop.module.scss";
 import classNames from "classnames/bind";
-import { useLocation, useParams } from "react-router-dom";
-import React, {
-  useState,
-  useEffect,
-  createContext,
-  useRef,
-  useLayoutEffect,
-} from "react";
+import { useParams } from "react-router-dom";
+import React, { useState, useEffect, createContext, useRef } from "react";
 
 import { Sidebar } from "~/layouts/components";
 import { Product, ScrollToTop, Paging } from "~/components";
 
 import * as productServices from "~/apiServices/productServices";
 import * as categoryServices from "~/apiServices/categoryServices";
+import * as productFilter from "~/utils/productFilter";
 
 const cx = classNames.bind(styles);
 
-export const categoriesContext = createContext();
+export const FiltersContext = createContext();
 
 let productsLength = 0;
 const productsShow = 9;
@@ -27,22 +22,36 @@ function Shop() {
 
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [filters, setFilters] = useState({ color: [], size: [] });
 
   const [show, setShow] = useState({ start: 0, end: 8 });
 
-  const productsRef = useRef([]);
+  const productsDistinctRef = useRef([]);
+  const allProductsRef = useRef([]);
 
   const { categoryParam } = useParams();
+
+  const handleFilterObj = {
+    setFilters,
+    allProductsRef,
+  };
 
   // fetch products
   useEffect(() => {
     const fetchApi = async () => {
-      const result = await productServices.products();
+      const allProducts = await productServices.products();
 
-      setProducts(result);
+      const distinctProducts = productFilter.distinctBy(
+        allProducts,
+        "category"
+      );
 
-      productsRef.current = result;
-      productsLength = result.length;
+      setProducts(distinctProducts);
+
+      allProductsRef.current = allProducts;
+
+      productsDistinctRef.current = distinctProducts;
+      productsLength = distinctProducts.length;
     };
 
     fetchApi();
@@ -61,51 +70,32 @@ function Shop() {
 
   // handle products by category
   useEffect(() => {
-    const handleProductsByCategory = (categoryParams = []) => {
-      let products_category = [];
-
-      categoryParams.forEach((pram) => {
-        let products = productsRef.current.filter(
-          (product) => product.category === pram
-        );
-
-        products_category = [...products_category, ...products];
-      });
-
-      return products_category;
-    };
-
     if (categories.length === 0) return;
-    if (categoryParam === undefined) return;
 
-    let params = [];
-    let categoryFilter = {};
+    let params = [categoryParam];
 
     categories.forEach((category) => {
-      if (category.slug === categoryParam) {
-        categoryFilter = { ...category };
+      if (category["slug"] === categoryParam) {
+        params = [...category.children];
       }
     });
 
-    if (Object.getOwnPropertyNames(categoryFilter).length === 0) {
-      params = [categoryParam];
-    } else {
-      params = categoryFilter.children.map((child) => child.slug);
-    }
-
-    const products_category = handleProductsByCategory(params);
-
+    const products_category = productFilter.filterByCategory(
+      productsDistinctRef.current,
+      params
+    );
     setProducts(products_category);
   }, [categoryParam, categories]);
 
   return (
     <>
-      {console.error("render DOM")}
       <ScrollToTop />
       <div className="grid wide">
         <div className="row">
           <div className="col l-3">
-            <Sidebar categories={categories} />
+            <FiltersContext.Provider value={{ filters, handleFilterObj }}>
+              <Sidebar categories={categories} />
+            </FiltersContext.Provider>
           </div>
           <div className="col l-9">
             <div className="row">
@@ -117,17 +107,14 @@ function Shop() {
                 />
               </div>
 
-              {
-                // eslint-disable-next-line
-                products.map((product, index) => {
-                  if (index >= show.start && index <= show.end)
-                    return (
-                      <div key={index} className="col l-4">
-                        <Product product={product} />
-                      </div>
-                    );
-                })
-              }
+              {products.map((product, index) => {
+                if (index >= show.start && index <= show.end)
+                  return (
+                    <div key={index} className="col l-4">
+                      <Product product={product} />
+                    </div>
+                  );
+              })}
             </div>
 
             <div className={cx("paging-wrapper", "mt-20")}>

@@ -1,6 +1,7 @@
 import style from "./Sidebar.module.scss";
 import classNames from "classnames/bind";
-import { useState, useEffect, memo, useContext } from "react";
+import { useState, useEffect, memo } from "react";
+import { useParams } from "react-router-dom";
 
 import {
   Category,
@@ -9,30 +10,30 @@ import {
   PriceFilter,
 } from "~/components";
 
+import * as siteServices from "~/apiServices/siteServices";
+
 const cx = classNames.bind(style);
 
 function Sidebar({ categories }) {
-  // console.log("Sidebar mounted");
+  console.log("Sidebar mounted");
 
-  // const [colorFilter, setColorFilter] = useState([false, false, false]);
-  // const [sizesFilter, setSizesFilter] = useState([]);
+  const [colorsFilter, setColorsFilter] = useState([]);
+  const [sizesFilter, setSizesFilter] = useState([]);
 
-  // useEffect(() => {
-  //   const fetchCategoriesApi = async () => {
-  //     const result = await categoriesService.categories();
+  const { categoryParam } = useParams();
 
-  //     // setCategoriesApi(result);
-  //   };
+  // fetching colors, sizes
+  useEffect(() => {
+    const fetchApi = async () => {
+      const colors = await siteServices.getColors();
+      const sizes = await siteServices.getSizes();
 
-  //   const fetchSitesApi = async () => {
-  //     const sizes = await siteServices.getSizes();
+      setColorsFilter(colors);
+      setSizesFilter(sizes);
+    };
 
-  //     // setSizesFilter(sizes);
-  //   };
-
-  //   fetchSitesApi();
-  //   fetchCategoriesApi();
-  // }, []);
+    fetchApi();
+  }, []);
 
   return (
     <aside className={cx("sidebar")}>
@@ -55,17 +56,9 @@ function Sidebar({ categories }) {
 
       <div>
         <h3 className={cx("heading")}>Filter by color</h3>
-        {/* {colors.map((color, index) => {
-          return (
-            <VariationItem
-              setColorFilter={setColorFilter}
-              name={color}
-              key={index}
-              index={index}
-              initCheck={colorFilter[index]}
-            />
-          );
-        })} */}
+        {colorsFilter.map((color, index) => {
+          return <VariationItem name="color" key={index} colorObj={color} />;
+        })}
 
         <span className={cx("separate")}></span>
       </div>
