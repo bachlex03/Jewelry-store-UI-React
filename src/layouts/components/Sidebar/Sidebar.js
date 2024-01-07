@@ -20,8 +20,6 @@ function Sidebar({ categories }) {
   const [colorsFilter, setColorsFilter] = useState([]);
   const [sizesFilter, setSizesFilter] = useState([]);
 
-  const { categoryParam } = useParams();
-
   // fetching colors, sizes
   useEffect(() => {
     const fetchApi = async () => {

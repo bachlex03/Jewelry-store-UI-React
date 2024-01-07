@@ -26,20 +26,15 @@ function Shop() {
 
   const [show, setShow] = useState({ start: 0, end: 8 });
 
-  const productsDistinctRef = useRef([]);
   const allProductsRef = useRef([]);
 
   const { categoryParam } = useParams();
-
-  const handleFilterObj = {
-    setFilters,
-    allProductsRef,
-  };
 
   // fetch products
   useEffect(() => {
     const fetchApi = async () => {
       const allProducts = await productServices.products();
+      allProductsRef.current = allProducts;
 
       const distinctProducts = productFilter.distinctBy(
         allProducts,
@@ -48,9 +43,6 @@ function Shop() {
 
       setProducts(distinctProducts);
 
-      allProductsRef.current = allProducts;
-
-      productsDistinctRef.current = distinctProducts;
       productsLength = distinctProducts.length;
     };
 
@@ -72,20 +64,14 @@ function Shop() {
   useEffect(() => {
     if (categories.length === 0) return;
 
-    let params = [categoryParam];
-
-    categories.forEach((category) => {
-      if (category["slug"] === categoryParam) {
-        params = [...category.children];
-      }
-    });
-
-    const products_category = productFilter.filterByCategory(
-      productsDistinctRef.current,
-      params
+    const filteredProducts = productFilter.filterByCategory_Variation(
+      allProductsRef.current,
+      categories,
+      categoryParam,
+      filters
     );
 
-    setProducts(products_category);
+    setProducts(filteredProducts);
   }, [categoryParam, categories]);
 
   return (
@@ -95,7 +81,13 @@ function Shop() {
         <div className="row">
           <div className="col l-3">
             <FiltersContext.Provider
-              value={{ filters, handleFilterObj, setProducts }}
+              value={{
+                filters,
+                setFilters,
+                allProductsRef,
+                setProducts,
+                categories,
+              }}
             >
               <Sidebar categories={categories} />
             </FiltersContext.Provider>

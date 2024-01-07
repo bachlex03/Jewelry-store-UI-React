@@ -15,15 +15,19 @@ export function filterByCategory(products, categoryParams = []) {
 export function filterByVariation(products, filters = {}) {
   let filteredProducts = [];
 
+  let temp = products;
+
   Object.keys(filters).forEach((key) => {
     filters[key].forEach((value) => {
       let variation_products = products.filter((p) => p[key] === value);
+
+      if (variation_products.length === 0) temp = [];
 
       filteredProducts = [...filteredProducts, ...variation_products];
     });
   });
 
-  return filteredProducts.length > 0 ? filteredProducts : products;
+  return filteredProducts.length > 0 ? filteredProducts : temp;
 }
 
 export function distinctBy(products, key) {
@@ -33,4 +37,25 @@ export function distinctBy(products, key) {
   );
 
   return distinctProducts;
+}
+
+export function filterByCategory_Variation(
+  products,
+  categories,
+  defaultCategory,
+  filters = {}
+) {
+  let params = [defaultCategory];
+
+  categories.forEach((category) => {
+    if (category["slug"] === defaultCategory) {
+      params = [...category.children];
+    }
+  });
+
+  let productsByCategory = filterByCategory(products, params);
+  let productsByFilters = filterByVariation(productsByCategory, filters);
+  products = distinctBy(productsByFilters, "category");
+
+  return products;
 }

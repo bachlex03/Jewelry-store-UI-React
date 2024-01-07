@@ -14,7 +14,8 @@ const cx = classNames.bind(styles);
 function VariationItem({ name, colorObj }) {
   const [checked, setChecked] = useState(false);
 
-  const { filters, handleFilterObj, setProducts } = useContext(FiltersContext);
+  const { filters, setFilters, allProductsRef, setProducts, categories } =
+    useContext(FiltersContext);
 
   const location = useLocation();
   const { categoryParam } = useParams();
@@ -33,17 +34,17 @@ function VariationItem({ name, colorObj }) {
         return item !== colorObj._id;
       });
     } else {
-      filters[name].push(colorObj._id);
+      newFilters[name].push(colorObj._id);
     }
 
-    let filteredProducts = productFilter.filterByVariation(
-      handleFilterObj.allProductsRef.current,
+    setFilters(newFilters);
+
+    const filteredProducts = productFilter.filterByCategory_Variation(
+      allProductsRef.current,
+      categories,
+      categoryParam,
       filters
     );
-
-    console.log(filteredProducts);
-
-    filteredProducts = productFilter.distinctBy(filteredProducts, "category");
 
     setProducts(filteredProducts);
   };
