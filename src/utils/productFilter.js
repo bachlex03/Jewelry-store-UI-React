@@ -18,13 +18,26 @@ export function filterByVariation(products, filters = {}) {
   let temp = products;
 
   Object.keys(filters).forEach((key) => {
-    filters[key].forEach((value) => {
-      let variation_products = products.filter((p) => p[key] === value);
+    let count = 0;
+    if (filters[key].length > 0) {
+      count++;
 
-      if (variation_products.length === 0) temp = [];
+      let groupedProducts = products.reduce((acc, product) => {
+        acc[product.slug] = acc[product.slug] || [];
+        acc[product.slug].push(product);
+        return acc;
+      }, {});
 
-      filteredProducts = [...filteredProducts, ...variation_products];
-    });
+      filteredProducts = Object.values(groupedProducts)
+        .filter((group) =>
+          filters[key].every((value) =>
+            group.some((product) => product[key] === value)
+          )
+        )
+        .flat();
+
+      if (filteredProducts.length === 0 && count === 1) temp = [];
+    }
   });
 
   return filteredProducts.length > 0 ? filteredProducts : temp;

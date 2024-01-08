@@ -95,11 +95,14 @@ function Shop() {
           <div className="col l-9">
             <div className="row">
               <div className="col l-4">
-                <Product
-                  product={null}
-                  heading="14K Gold 9″ Diamond Ankle Bracelet"
-                  sale
-                />
+                <Product product={null} />
+              </div>
+              <div className="col l-4">
+                <Product product={products[0]} soldOut />
+              </div>
+
+              <div className="col l-4">
+                <Product product={products[0]} sale />
               </div>
 
               {products.map((product, index) => {

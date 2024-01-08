@@ -49,9 +49,9 @@ function Selection({ name, values }) {
           ref={listRef}
         >
           <li>16.0</li>
-          <li>16.5</li>
           <li>17.0</li>
-          <li>17.5</li>
+          <li>18.0</li>
+          <li>19.0</li>
         </ul>
       </div>
     </div>
