@@ -1,29 +1,42 @@
 import styles from "./Details.module.scss";
 import classNames from "classnames/bind";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useState, useRef } from "react";
 import { useParams, useLocation } from "react-router-dom";
 
 import images from "~/assets/images";
 import { Price, Button, InputQuantity, Selection } from "~/components";
 import * as productServices from "~/apiServices/productServices";
+import * as productFilters from "~/utils/productFilter";
 
 const cx = classNames.bind(styles);
 
 function Details() {
   const [product, setProduct] = useState({});
+  const [availableColors, setAvailableColors] = useState([]);
+  const [availableSizes, setAvailableSizes] = useState([]);
+
+  const allVariantsRef = useRef([]);
+
   const { param } = useParams();
+
   let isSale = true;
 
-  // const val = useLocation();
+  const val = useLocation();
 
   // console.log(val);
+
   // console.log(new URLSearchParams(val.search).get("sale"));
 
   useEffect(() => {
     const fetchApi = async () => {
       const result = await productServices.details(param);
 
-      setProduct(result);
+      allVariantsRef.current = result;
+
+      setProduct(result[0]);
+
+      setAvailableColors(productFilters.filterVariants(result, "color"));
+      setAvailableSizes(productFilters.filterVariants(result, "size"));
     };
 
     fetchApi();
@@ -71,9 +84,17 @@ function Details() {
           <Price sale />
           <p className={cx("desc")}>{product.desc}</p>
 
-          <Selection name="Color" />
+          <Selection
+            name="Color"
+            availableVariants={availableColors}
+            defaultArr={["Gold", "Silver", "Bronze"]}
+          />
 
-          <Selection name="Size" />
+          <Selection
+            name="Size"
+            availableVariants={availableSizes}
+            defaultArr={["16.0", "17.0", "18.0", "19.0"]}
+          />
 
           <div className={cx("add-to-cart")}>
             <div className="mr-20">

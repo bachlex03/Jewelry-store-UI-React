@@ -31,7 +31,7 @@ function Product({ sale, product, soldOut }) {
   };
 
   useEffect(() => {
-    const links = productRef.current.querySelectorAll("a[invalid]");
+    const links = productRef.current.querySelectorAll("a[invalid='true']");
 
     const arrLinks = Array.from(links);
 
@@ -55,7 +55,7 @@ function Product({ sale, product, soldOut }) {
         <Link
           to={{
             pathname: `/products/${product ? product.slug : "demo-slug"}`,
-            // search: "sale=13",
+            search: `sale=true`,
           }}
           invalid={invalid ? "true" : "false"}
         >

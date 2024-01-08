@@ -72,3 +72,8 @@ export function filterByCategory_Variation(
 
   return products;
 }
+
+// filter variants
+export const filterVariants = (products, variation) => {
+  return products.map((product) => product[variation]);
+};
