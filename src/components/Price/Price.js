@@ -2,25 +2,35 @@ import style from "./Price.module.scss";
 import classNames from "classnames/bind";
 const cx = classNames.bind(style);
 
-function Price({ sale, pos__shop, old_new_price, fs_15 }) {
+function Price({ value, promotion = 0, pos__shop, old_new_price, fs_15 }) {
   const classes = {
     pos__shop,
     old_new_price,
     fs_15,
   };
 
+  let formatPrice = value ? value.toFixed(2) : "NaN";
+  let priceOnPromotion = value ? value - value * (promotion / 100) : 0;
+  let formatSalePrice = value ? priceOnPromotion.toFixed(2) : "NaN";
+
   const renderPrice = {
-    current: <span className={cx("price", { ...classes })}>$ 500.00</span>,
+    current: (
+      <span className={cx("price", { ...classes })}>$ {formatPrice}</span>
+    ),
     sale: (
       <>
-        <span className={cx("new-price", { ...classes })}>$ 424.00</span>
-        <span className={cx("old-price", { ...classes })}>$ 500.00</span>
+        <span className={cx("new-price", { ...classes })}>$ {formatPrice}</span>
+        <span className={cx("old-price", { ...classes })}>
+          $ {formatSalePrice}
+        </span>
       </>
     ),
     old_new_price: (
       <>
-        <span className={cx("old-price", { ...classes })}>$ 500.00</span>
-        <span className={cx("new-price", { ...classes })}>$ 424.00</span>
+        <span className={cx("old-price", { ...classes })}>$ {formatPrice}</span>
+        <span className={cx("new-price", { ...classes })}>
+          $ {formatSalePrice}
+        </span>
       </>
     ),
   };
@@ -32,7 +42,7 @@ function Price({ sale, pos__shop, old_new_price, fs_15 }) {
           pos__shop,
         })}
       >
-        {sale
+        {promotion
           ? old_new_price
             ? renderPrice.old_new_price
             : renderPrice.sale

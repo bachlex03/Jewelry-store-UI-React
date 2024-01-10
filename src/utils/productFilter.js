@@ -68,6 +68,7 @@ export function filterByCategory_Variation(
 
   let productsByCategory = filterByCategory(products, params);
   let productsByFilters = filterByVariation(productsByCategory, filters);
+
   products = distinctBy(productsByFilters, "category");
 
   return products;
@@ -76,4 +77,12 @@ export function filterByCategory_Variation(
 // filter variants
 export const filterVariants = (products, variation) => {
   return products.map((product) => product[variation]);
+};
+
+export const filterVariantsBy = (name, variantId, products) => {
+  // console.log(products);
+
+  return products.filter(
+    (product) => product[name] == variantId && product.quantity > 0
+  );
 };

@@ -4,15 +4,51 @@ import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
-import { useRef, useEffect, useState, useMemo } from "react";
+import {
+  useRef,
+  useEffect,
+  useState,
+  useImperativeHandle,
+  forwardRef,
+} from "react";
+
+import * as productFilter from "~/utils/productFilter";
 
 const cx = classNames.bind(style);
 
-function Selection({ name, availableVariants, defaultArr }) {
+function Selection(props, ref) {
+  console.log("Selection mounted");
+
+  let {
+    name,
+    othersVariation,
+    products,
+    availableVariants,
+    defaultArr,
+    setAvailableVariants,
+  } = props;
+
   let [value, setValue] = useState("Choose your option");
   let [liDOM, setLiDOM] = useState([]);
 
   let listRef = useRef();
+
+  useImperativeHandle(ref, () => ({ selectValue: value, setValue }));
+
+  const handleVariation = (e) => {
+    if (e.target.getAttribute("available") === "false") return;
+    const variantId = e.target.getAttribute("data");
+
+    let productsByVariantId = productFilter.filterVariantsBy(
+      name,
+      variantId,
+      products
+    );
+
+    setAvailableVariants(
+      productFilter.filterVariants(productsByVariantId, othersVariation)
+    );
+  };
 
   useEffect(() => {
     let valuesList = listRef.current.children;
@@ -30,8 +66,7 @@ function Selection({ name, availableVariants, defaultArr }) {
   }, [liDOM]);
 
   useEffect(() => {
-    console.log(defaultArr);
-    let liDOM = defaultArr;
+    let liDOM = [...defaultArr];
 
     const validLi = liDOM.map((item, index) => {
       let available = false;
@@ -46,6 +81,7 @@ function Selection({ name, availableVariants, defaultArr }) {
           available={available ? "true" : "false"}
           data={index + 1}
           className={classes}
+          onClick={handleVariation}
         >
           {item}
         </li>
@@ -89,4 +125,4 @@ function Selection({ name, availableVariants, defaultArr }) {
   );
 }
 
-export default Selection;
+export default forwardRef(Selection);

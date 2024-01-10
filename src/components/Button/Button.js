@@ -8,6 +8,7 @@ function Button({
   to,
   href,
   children,
+  mini,
   small,
   medium,
   large,
@@ -33,6 +34,7 @@ function Button({
   }
 
   const classes = cx("wrapper", {
+    mini,
     small,
     medium,
     large,

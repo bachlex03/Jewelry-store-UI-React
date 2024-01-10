@@ -1,12 +1,16 @@
 import style from "./InputQuantity.module.scss";
 import classNames from "classnames/bind";
 
-import { useState, useRef } from "react";
+import { useState, forwardRef, useImperativeHandle } from "react";
 
 const cx = classNames.bind(style);
 
-function InputQuantity() {
+function InputQuantity(props, ref) {
   let [inputValue, setInputValue] = useState(1);
+
+  useImperativeHandle(ref, () => ({
+    inputQuantity: inputValue,
+  }));
 
   const handleIncrease = () => {
     setInputValue(inputValue + 1);
@@ -35,4 +39,4 @@ function InputQuantity() {
   );
 }
 
-export default InputQuantity;
+export default forwardRef(InputQuantity);

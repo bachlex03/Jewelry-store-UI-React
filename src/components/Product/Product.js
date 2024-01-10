@@ -11,7 +11,7 @@ import { Button, Price } from "~/components";
 
 const cx = classNames.bind(styles);
 
-function Product({ sale, product, soldOut }) {
+function Product({ product, soldOut }) {
   const [wishlist, setWishlist] = useState(false);
   const productRef = useRef();
 
@@ -43,7 +43,11 @@ function Product({ sale, product, soldOut }) {
   return (
     <div className={cx("product-item")} ref={productRef}>
       <div className={cx("product-wrapper")}>
-        {sale ? <img src={images.sale} className={cx("sale-tag")} /> : Fragment}
+        {product.promotion !== 0 ? (
+          <img src={images.sale} className={cx("sale-tag")} />
+        ) : (
+          Fragment
+        )}
         <i className={cx("icon")} onClick={handleWishlist}>
           {wishlist ? (
             <FontAwesomeIcon icon={faHeartSolid} />
@@ -55,7 +59,6 @@ function Product({ sale, product, soldOut }) {
         <Link
           to={{
             pathname: `/products/${product ? product.slug : "demo-slug"}`,
-            search: `sale=true`,
           }}
           invalid={invalid ? "true" : "false"}
         >
@@ -79,7 +82,11 @@ function Product({ sale, product, soldOut }) {
           </Link>
 
           <div className={cx("price-wrapper")}>
-            <Price sale={sale} pos__shop />
+            <Price
+              promotion={product.promotion}
+              pos__shop
+              value={product.price}
+            />
           </div>
           <div className={cx("buy-btn-wrapper")}>
             {!invalid ? (

@@ -12,10 +12,23 @@
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.35);
   letter-spacing: 1px;
   transition: all 0.3s;
+  cursor: pointer;
+
+  &:active {
+    background-color: var(--green) !important;
+  }
 }
 
 .hover.wrapper:hover {
   background-color: var(--primary);
+}
+
+.mini {
+  font-size: 1rem;
+  text-transform: uppercase;
+  padding: 5px 20px;
+  line-height: normal;
+  background-color: var(--black-363636);
 }
 
 .small {
