@@ -3,14 +3,30 @@ import { createSlice } from "@reduxjs/toolkit";
 export const cartSlice = createSlice({
   name: "cart",
   initialState: {
-    value: [],
+    values: [],
+    count: 0,
   },
   reducers: {
     add: (state, action) => {
-      console.log(state.value.push(action.payload));
+      state.values.push(action.payload);
+
+      state.count = state.values.reduce((acc, product) => {
+        product = JSON.parse(JSON.stringify(product));
+
+        return acc + product.quantity;
+      }, 0);
     },
+
     remove: (state, action) => {
-      state.value -= 1;
+      state.values = action.payload
+        ? state.values.splice(action.payload, 1)
+        : [...state.values.splice(1)];
+
+      state.count = state.values.reduce((acc, product) => {
+        product = JSON.parse(JSON.stringify(product));
+
+        return acc + product.quantity;
+      }, 0);
     },
   },
 });

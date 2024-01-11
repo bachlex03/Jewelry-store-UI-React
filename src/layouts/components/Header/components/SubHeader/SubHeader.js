@@ -1,14 +1,17 @@
 import styles from "./SubHeader.module.scss";
 import classNames from "classnames/bind";
-
+import { useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
+
 import images from "~/assets/images";
-import { Button, Price, Search } from "~/components";
+import { Search, Cart } from "~/components";
 
 const cx = classNames.bind(styles);
 
 function SubHeader() {
+  const cartQuantity = useSelector((state) => state.cart.count);
+
   return (
     <section className={cx("sub-header")}>
       <div className="flex justify-between align-center section-1100">
@@ -37,54 +40,13 @@ function SubHeader() {
               <FontAwesomeIcon icon={faHeart} />
             </i>
           </div>
+          {/* Cart */}
           <div className={cx("cart-wrapper", "icon-wrapper")}>
             <i className={cx("icon", "cart-icon", "ti-shopping-cart")}></i>
-            <span className={cx("quantity")}>0</span>
+            <span className={cx("quantity")}>{cartQuantity}</span>
 
-            {/* Cart */}
-            <div className={cx("cart")}>
-              <h3 className={cx("cart-heading")}>Cart</h3>
-              <div>
-                <div className={cx("cart-item")}>
-                  <div className={cx("item-info")}>
-                    <img
-                      src={images.product}
-                      alt=""
-                      className={cx("item-img")}
-                    />
-                    <div>
-                      <h4 className={cx("item-heading")}>
-                        14K Gold 9" Diamond Ankle Bracelet
-                      </h4>
-                      <div className={cx("variation-wrapper")}>
-                        <div>Color: Gold</div>
-                        <div>Size: 16.0</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className={cx("item-price")}>
-                    <div className={cx("quantity-price")}>
-                      <span className={cx("item-quantity")}>1 ×</span>
-                      <Price sale />
-                    </div>
-                    <span className={cx("sub-total")}>$ 424.00</span>
-                  </div>
-                </div>
-              </div>
-              <div className="flex justify-between mt-20">
-                <span>Total: </span>
-                <span className={cx("total-price")}>$ 1224.00</span>
-              </div>
-              <div className="mt-20 text-center">
-                <Button to="/cart" large hover>
-                  VIEW CART
-                </Button>
-              </div>
-              <div className="mt-10 text-center">
-                <Button to="/checkout" large hover>
-                  CHECKOUT
-                </Button>
-              </div>
+            <div className={cx("cart-component")}>
+              <Cart />
             </div>
           </div>
         </div>

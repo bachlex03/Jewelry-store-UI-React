@@ -68,10 +68,19 @@ function Selection(props, ref) {
   useEffect(() => {
     let liDOM = [...defaultArr];
 
+    availableVariants = [...new Set(availableVariants)].sort((a, b) => a - b);
+
+    console.log(availableVariants);
+
+    let i = 0;
+
     const validLi = liDOM.map((item, index) => {
       let available = false;
 
-      if (availableVariants[index] === index + 1) available = true;
+      if (availableVariants[i] === index + 1) {
+        i++;
+        available = true;
+      }
 
       let classes = cx("", { noAvailable: !available });
 

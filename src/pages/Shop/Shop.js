@@ -94,14 +94,14 @@ function Shop() {
           </div>
           <div className="col l-9">
             <div className="row">
-              {/* <div className="col l-4">
+              <div className="col l-4">
                 <Product product={null} />
-              </div> */}
-              {/* <div className="col l-4">
+              </div>
+              <div className="col l-4">
                 <Product product={products[0]} soldOut />
               </div>
 
-              <div className="col l-4">
+              {/* <div className="col l-4">
                 <Product product={products[0]} />
               </div> */}
 

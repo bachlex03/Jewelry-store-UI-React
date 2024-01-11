@@ -43,7 +43,7 @@ function Product({ product, soldOut }) {
   return (
     <div className={cx("product-item")} ref={productRef}>
       <div className={cx("product-wrapper")}>
-        {product.promotion !== 0 ? (
+        {product && product.promotion !== 0 ? (
           <img src={images.sale} className={cx("sale-tag")} />
         ) : (
           Fragment
@@ -83,9 +83,9 @@ function Product({ product, soldOut }) {
 
           <div className={cx("price-wrapper")}>
             <Price
-              promotion={product.promotion}
+              promotion={product ? product.promotion : 0}
               pos__shop
-              value={product.price}
+              value={product ? product.price : 100}
             />
           </div>
           <div className={cx("buy-btn-wrapper")}>

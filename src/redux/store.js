@@ -15,6 +15,7 @@ const persistConfigInit = {
 const persistConfigCart = {
   key: "cart",
   storage,
+  whitelist: ["values", "count"],
 };
 
 const rootReducer = combineReducers({

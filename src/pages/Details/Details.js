@@ -3,7 +3,7 @@ import classNames from "classnames/bind";
 import React, { Fragment, useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { add } from "~/redux/features/cart/cartSlice";
 
 import images from "~/assets/images";
@@ -15,6 +15,7 @@ const cx = classNames.bind(styles);
 
 function Details() {
   console.log("Details mounted");
+
   const [product, setProduct] = useState({});
   const [availableColors, setAvailableColors] = useState([]);
   const [availableSizes, setAvailableSizes] = useState([]);
@@ -25,7 +26,6 @@ function Details() {
 
   const { param } = useParams();
 
-  // const count = useSelector((state) => state.cart.value);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -72,11 +72,10 @@ function Details() {
         size: availableSizes[0],
         slug: product.slug,
         quantity: inputQuantity.current.inputQuantity,
+        promotion: product.promotion,
       };
 
-      console.log(data);
-
-      dispatch(add(1));
+      dispatch(add(data));
     }
   };
 

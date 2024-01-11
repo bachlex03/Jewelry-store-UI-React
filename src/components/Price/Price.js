@@ -19,10 +19,10 @@ function Price({ value, promotion = 0, pos__shop, old_new_price, fs_15 }) {
     ),
     sale: (
       <>
-        <span className={cx("new-price", { ...classes })}>$ {formatPrice}</span>
-        <span className={cx("old-price", { ...classes })}>
+        <span className={cx("new-price", { ...classes })}>
           $ {formatSalePrice}
         </span>
+        <span className={cx("old-price", { ...classes })}>$ {formatPrice}</span>
       </>
     ),
     old_new_price: (
