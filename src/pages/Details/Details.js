@@ -3,8 +3,8 @@ import classNames from "classnames/bind";
 import React, { Fragment, useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 
-import { useDispatch } from "react-redux";
-import { add } from "~/redux/features/cart/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { add, update } from "~/redux/features/cart/cartSlice";
 
 import images from "~/assets/images";
 import { Price, Button, InputQuantity, Selection } from "~/components";
@@ -27,6 +27,7 @@ function Details() {
   const { param } = useParams();
 
   const dispatch = useDispatch();
+  const cartItems = useSelector((state) => state.cart.values);
 
   useEffect(() => {
     const fetchApi = async () => {
@@ -68,12 +69,41 @@ function Details() {
       const data = {
         name: product.name,
         price: product.price,
-        color: availableColors[0],
-        size: availableSizes[0],
+        color: variationValueRefs.current[0].current.chosenId,
+        size: variationValueRefs.current[1].current.chosenId,
         slug: product.slug,
         quantity: inputQuantity.current.inputQuantity,
         promotion: product.promotion,
       };
+
+      let existIndex = cartItems.findIndex((item) => {
+        return (
+          item.slug === data.slug &&
+          item.color === data.color &&
+          item.size === data.size
+        );
+      });
+
+      if (existIndex !== -1) {
+        let existItem = cartItems.find((item) => {
+          return (
+            item.slug === data.slug &&
+            item.color === data.color &&
+            item.size === data.size
+          );
+        });
+
+        const newQuantity =
+          existItem.quantity + inputQuantity.current.inputQuantity;
+
+        const newData = {
+          index: existIndex,
+          item: { ...data, quantity: newQuantity },
+        };
+
+        dispatch(update(newData));
+        return;
+      }
 
       dispatch(add(data));
     }

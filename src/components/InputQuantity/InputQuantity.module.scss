@@ -1,6 +1,7 @@
 .quantity-wrapper {
   position: relative;
   display: inline-block;
+  user-select: none;
 }
 
 .decrease-btn {
@@ -28,6 +29,7 @@
   font-size: 1.3rem;
   display: inline-block;
   text-align: center;
+  user-select: none;
 }
 
 .increase-btn {

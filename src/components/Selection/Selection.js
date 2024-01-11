@@ -19,6 +19,8 @@ const cx = classNames.bind(style);
 function Selection(props, ref) {
   console.log("Selection mounted");
 
+  const variantIdRef = useRef(0);
+
   let {
     name,
     othersVariation,
@@ -33,11 +35,19 @@ function Selection(props, ref) {
 
   let listRef = useRef();
 
-  useImperativeHandle(ref, () => ({ selectValue: value, setValue }));
+  useImperativeHandle(ref, () => {
+    return {
+      selectValue: value,
+      chosenId: variantIdRef.current,
+      setValue,
+    };
+  });
 
   const handleVariation = (e) => {
     if (e.target.getAttribute("available") === "false") return;
-    const variantId = e.target.getAttribute("data");
+    let variantId = e.target.getAttribute("data");
+
+    variantIdRef.current = Number.parseInt(variantId);
 
     let productsByVariantId = productFilter.filterVariantsBy(
       name,
@@ -69,8 +79,6 @@ function Selection(props, ref) {
     let liDOM = [...defaultArr];
 
     availableVariants = [...new Set(availableVariants)].sort((a, b) => a - b);
-
-    console.log(availableVariants);
 
     let i = 0;
 

@@ -18,9 +18,27 @@ export const cartSlice = createSlice({
     },
 
     remove: (state, action) => {
-      state.values = action.payload
-        ? state.values.splice(action.payload, 1)
-        : [...state.values.splice(1)];
+      switch (action.payload) {
+        case 0:
+          state.values = [...state.values.splice(1)];
+          break;
+        case state.values.length - 1:
+          state.values.pop();
+          state.values = [...state.values];
+          break;
+        default:
+          state.values = state.values.splice(action.payload, 1);
+      }
+
+      state.count = state.values.reduce((acc, product) => {
+        product = JSON.parse(JSON.stringify(product));
+
+        return acc + product.quantity;
+      }, 0);
+    },
+
+    update: (state, action) => {
+      state.values[action.payload.index] = action.payload.item;
 
       state.count = state.values.reduce((acc, product) => {
         product = JSON.parse(JSON.stringify(product));
@@ -32,6 +50,6 @@ export const cartSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { add, remove } = cartSlice.actions;
+export const { add, remove, update } = cartSlice.actions;
 
 export default cartSlice.reducer;

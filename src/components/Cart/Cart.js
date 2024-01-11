@@ -1,6 +1,7 @@
 import style from "./Cart.module.scss";
 import classNames from "classnames/bind";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
 import images from "~/assets/images";
 import { Price, Button } from "~/components";
@@ -47,9 +48,13 @@ function Cart() {
                 </svg>
               </i>
               <div className={cx("item-info")}>
-                <img src={images.product} alt="" className={cx("item-img")} />
+                <Link to={`/products/${item.slug}`}>
+                  <img src={images.product} alt="" className={cx("item-img")} />
+                </Link>
                 <div>
-                  <h4 className={cx("item-heading")}>{item.name}</h4>
+                  <Link to={`/products/${item.slug}`}>
+                    <h4 className={cx("item-heading")}>{item.name}</h4>
+                  </Link>
                   <div className={cx("variation-wrapper")}>
                     <div>Color: {colors[item.color - 1]}</div>
                     <div className="mt-5">Size: {sizes[item.size - 1]}</div>
