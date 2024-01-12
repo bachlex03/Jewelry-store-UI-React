@@ -1,10 +1,24 @@
 import style from "./Checkout.module.scss";
 import classNames from "classnames/bind";
+import { useSelector } from "react-redux";
 
 import { Input, Button } from "~/components";
 const cx = classNames.bind(style);
 
 function Checkout() {
+  const cartItems = useSelector((state) => state.cart.values);
+  const cartCount = useSelector((state) => state.cart.count);
+
+  const classes = {
+    hover: cartCount,
+    disable: !cartCount,
+  };
+
+  const colors = ["Gold", "Silver", "Bronze"];
+  const sizes = ["16.0", "17.0", "18.0", "19.0"];
+
+  let total = 0;
+
   return (
     <div className="section-1200">
       <div className={cx("checkout-wrapper")}>
@@ -63,7 +77,7 @@ function Checkout() {
             <Input label="Note" placeholder="note..." textarea />
           </div>
           <div className="mt-20 text-right">
-            <Button bold hover>
+            <Button bold hover active>
               UPDATE INFORMATION
             </Button>
           </div>
@@ -73,30 +87,50 @@ function Checkout() {
           <div className={cx("invoice-body")}>
             <table className={cx("table")}>
               <thead className={cx("thead")}>
-                <th className={cx("product")}>Product</th>
-                <th className={cx("subtotal")}>Subtotal</th>
+                <tr>
+                  <th className={cx("product")}>Product</th>
+                  <th className={cx("subtotal")}>Subtotal</th>
+                </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td className={cx("product")}>
-                    <p className={cx("product-heading")}>
-                      14K Gold 9" Diamond Ankle Bracelet
-                    </p>
-                    <div className="flex justify-between align-center">
-                      <span>1 × $ 424.00</span>
-                      <div>
-                        <p className={cx("variation-value")}>Color: Gold</p>
-                        <p className={cx("variation-value")}>Size: 16.0</p>
-                      </div>
-                    </div>
-                  </td>
-                  <td className={cx("product-subtotal")}>$ 424.00</td>
-                </tr>
+                {cartItems.map((item, index) => {
+                  const subtotal =
+                    item.quantity *
+                    (item.price * ((100 - item.promotion) / 100));
+
+                  total += subtotal;
+
+                  const salePrice = item.price * ((100 - item.promotion) / 100);
+
+                  return (
+                    <tr key={index}>
+                      <td className={cx("product")}>
+                        <p className={cx("product-heading")}>{item.name}</p>
+                        <div className="flex justify-between align-center">
+                          <span>
+                            {item.quantity} × $ {salePrice.toFixed(2)}
+                          </span>
+                          <div>
+                            <p className={cx("variation-value")}>
+                              Color: {colors[item.color]}
+                            </p>
+                            <p className={cx("variation-value")}>
+                              Size: {sizes[item.size]}
+                            </p>
+                          </div>
+                        </div>
+                      </td>
+                      <td className={cx("product-subtotal")}>
+                        $ {subtotal.toFixed(2)}
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
             <div className={cx("total-field")}>
               <p className={cx("total-title")}>Subtotal</p>
-              <p>$ 1034.00</p>
+              <p>$ {total.toFixed(2)}</p>
             </div>
             <div className={cx("total-field")}>
               <p className={cx("total-title")}>Shipping</p>
@@ -104,20 +138,15 @@ function Checkout() {
             </div>
             <div className={cx("total-field")}>
               <p className={cx("total-title")}>Total</p>
-              <strong>$ 1034.00</strong>
+              <strong>$ {(total + 30).toFixed(2)}</strong>
             </div>
 
             {/* Payment type */}
             <div className={cx("payment-type")}>
               <ul className={cx("payment-list")}>
                 <li>
-                  <input
-                    type="radio"
-                    name="payment-radio"
-                    id="bank"
-                    checked=""
-                  />
-                  <label for="bank">Direct bank transfer</label>
+                  <input type="radio" name="payment-radio" id="bank" />
+                  <label htmlFor="bank">Direct bank transfer</label>
                   <p className={cx("payment-box", "hidden")}>
                     Make your payment directly into our bank account. Please use
                     your Order ID as the payment reference. Your order will not
@@ -126,14 +155,14 @@ function Checkout() {
                 </li>
                 <li>
                   <input type="radio" name="payment-radio" id="on-delivery" />
-                  <label for="on-delivery">Cash on delivery</label>
+                  <label htmlFor="on-delivery">Cash on delivery</label>
                   <p className={cx("payment-box", "hidden")}>
                     Pay with cash upon delivery.
                   </p>
                 </li>
                 <li>
                   <input type="radio" name="payment-radio" id="paypal" />
-                  <label for="paypal">PayPal</label>
+                  <label htmlFor="paypal">PayPal</label>
                   <img
                     src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/pp-acceptance-small.png"
                     alt=""
@@ -148,7 +177,7 @@ function Checkout() {
               <div>
                 <p className={cx("policy", " mt-15")}>
                   Your personal data will be used to process your order, support
-                  your experience throughout this website, and for other
+                  your experience throughout this website, and htmlFor other
                   purposes described in our&nbsp;
                   <Button to="" styleLink>
                     privacy policy
@@ -164,7 +193,7 @@ function Checkout() {
               </div>
 
               <div className="text-right">
-                <Button bold hover>
+                <Button bold {...classes}>
                   PLACE ORDER
                 </Button>
               </div>

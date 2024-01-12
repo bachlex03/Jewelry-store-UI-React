@@ -18,6 +18,8 @@ function Button({
   styleLink,
   inherit,
   hover,
+  disable,
+  active,
   ...passProps
 }) {
   let Comp = "button";
@@ -44,6 +46,8 @@ function Button({
     styleLink,
     inherit,
     hover,
+    disable,
+    active,
   });
 
   return (

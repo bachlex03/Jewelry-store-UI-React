@@ -10,7 +10,9 @@ import { Search, Cart } from "~/components";
 const cx = classNames.bind(styles);
 
 function SubHeader() {
-  const cartQuantity = useSelector((state) => state.cart.count);
+  let cartQuantity = useSelector((state) => state.cart.count);
+
+  if (cartQuantity.length === 0) cartQuantity = 0;
 
   return (
     <section className={cx("sub-header")}>

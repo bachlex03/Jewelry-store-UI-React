@@ -1,24 +1,39 @@
 import { createStore } from "redux";
 import { combineReducers } from "@reduxjs/toolkit";
-import { persistStore, persistReducer } from "redux-persist";
+import {
+  persistStore,
+  persistReducer,
+  persistCombineReducers,
+} from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import expireReducer from "redux-persist-expire";
 
 import cartReducer from "./features/cart/cartSlice";
+import userReducer from "./features/user/userSlice";
 
+import expireInTransform from "redux-persist-transform-expire-in";
+
+const expireIn = 1000 * 60 * 60 * 24; // expire in 1 day
+const expirationKey = "expirationKey";
 const persistConfigInit = {
   key: "root",
   storage,
-  transform: [expireReducer("expire", { expireSeconds: 5, expiredState: {} })],
+};
+
+const persistConfigUser = {
+  key: "user",
+  storage,
+  whitelist: ["email"],
 };
 
 const persistConfigCart = {
   key: "cart",
   storage,
   whitelist: ["values", "count"],
+  transforms: [expireInTransform(expireIn, expirationKey, [])],
 };
 
 const rootReducer = combineReducers({
+  user: persistReducer(persistConfigUser, userReducer),
   cart: persistReducer(persistConfigCart, cartReducer),
 });
 

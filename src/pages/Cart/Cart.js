@@ -18,6 +18,12 @@ function Cart() {
   const sizes = ["16.0", "17.0", "18.0", "19.0"];
 
   const cartItems = useSelector((state) => state.cart.values);
+  const cartCount = useSelector((state) => state.cart.count);
+
+  const classes = {
+    hover: cartCount,
+    disable: !cartCount,
+  };
 
   let total = 0;
 

@@ -25,6 +25,7 @@
     "redux": "^5.0.1",
     "redux-persist": "^6.0.0",
     "redux-persist-expire": "^1.1.1",
+    "redux-persist-transform-expire-in": "^1.1.2",
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {

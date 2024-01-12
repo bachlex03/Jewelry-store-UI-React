@@ -13,14 +13,23 @@
   letter-spacing: 1px;
   transition: all 0.3s;
   cursor: pointer;
+}
 
+.wrapper.active {
   &:active {
     background-color: var(--green) !important;
   }
 }
 
-.hover.wrapper:hover {
-  background-color: var(--primary);
+.wrapper.disable {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.hover.wrapper {
+  &:hover {
+    background-color: var(--primary);
+  }
 }
 
 .mini {

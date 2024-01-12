@@ -3,6 +3,8 @@ import classNames from "classnames/bind";
 
 import * as productServices from "~/apiServices/productServices";
 import * as siteServices from "~/apiServices/siteServices";
+import * as userServices from "~/apiServices/userServices";
+
 import images from "~/assets/images";
 import {
   Button,
@@ -20,26 +22,12 @@ function Home() {
     e.preventDefault();
     alert();
 
-    // let data = {
-    //   _id: 2,
-    //   name: "14K Gold 9″ Diamond Ankle Bracelet",
-    //   price: 15.0,
-    //   desc: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
-    //   size: 1,
-    //   color: 3,
-    // };
-
-    // const colorData = {
-    //   // _id: 3,
-    //   colorName: "Bronze",
-    // };
-
-    const sizeData = {
-      _id: 4,
-      sizeName: "19",
+    let data = {
+      email: "lxbach@gmail.com",
+      password: "123",
     };
 
-    let status = await siteServices.storeSize(sizeData);
+    let status = await userServices.storeUser(data);
 
     console.log("status:", status);
   };
