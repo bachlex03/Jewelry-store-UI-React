@@ -1,30 +1,69 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useEffect } from "react";
 import { useState } from "react";
-import * as userServices from "~/apiServices/userServices";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
+
+import { store, remove } from "~/redux/features/user/userSlice";
+
+import * as siteServices from "~/apiServices/siteServices";
 
 const authContext = createContext(null);
 
 function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState("");
 
-  const login = (user) => {
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
+  const userRedux = useSelector((state) => state.user);
+
+  const login = (form) => {
     const fetchApi = async (form) => {
       try {
-        const result = await userServices.checkUser(form);
+        const result = await siteServices.login(form);
 
-        setUser(user.email);
+        navigate("/");
+
+        setUser(result);
+
+        dispatch(store(result));
       } catch (err) {
-        console.log(err);
+        alert("Could not login");
       }
     };
 
-    fetchApi(user);
+    fetchApi(form);
   };
 
+  Cookies.remove("jwt");
+
   const logout = () => {
-    console.log(user);
     setUser(null);
+
+    dispatch(remove());
+
+    navigate("/");
   };
+
+  useEffect(() => {
+    if (userRedux.information) {
+      setUser(userRedux.information);
+    }
+  }, []);
+
+  useEffect(() => {
+    const fetchApi = async () => {
+      const isExistCookie = await siteServices.checkExistCookie();
+
+      if (!isExistCookie) {
+        setUser(null);
+      }
+    };
+
+    fetchApi();
+  }, []);
 
   return (
     <authContext.Provider value={{ user, login, logout }}>

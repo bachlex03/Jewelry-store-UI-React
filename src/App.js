@@ -10,8 +10,8 @@ import { MainLayout } from "~/layouts";
 
 function App() {
   return (
-    <AuthContext>
-      <Router>
+    <Router>
+      <AuthContext>
         <div className="App">
           <Routes>
             {publicRoutes.map((route, index) => {
@@ -37,8 +37,8 @@ function App() {
             })}
           </Routes>
         </div>
-      </Router>
-    </AuthContext>
+      </AuthContext>
+    </Router>
   );
 }
 

@@ -1,10 +1,6 @@
 import { createStore } from "redux";
 import { combineReducers } from "@reduxjs/toolkit";
-import {
-  persistStore,
-  persistReducer,
-  persistCombineReducers,
-} from "redux-persist";
+import { persistStore, persistReducer, PURGE } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
 import cartReducer from "./features/cart/cartSlice";
@@ -22,13 +18,12 @@ const persistConfigInit = {
 const persistConfigUser = {
   key: "user",
   storage,
-  whitelist: ["email"],
+  transforms: [expireInTransform(expireIn, expirationKey, "")],
 };
 
 const persistConfigCart = {
   key: "cart",
   storage,
-  whitelist: ["values", "count"],
   transforms: [expireInTransform(expireIn, expirationKey, [])],
 };
 

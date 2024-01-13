@@ -2,6 +2,7 @@ import styles from "./Login.module.scss";
 import classNames from "classnames/bind";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+
 import { useAuth } from "~/hooks/useAuth";
 
 import { Input, Button } from "~/components";
@@ -18,14 +19,10 @@ function Login() {
 
   const auth = useAuth();
 
-  console.log(auth);
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
     auth.login(form);
-
-    navigate("/", { replace: true });
   };
 
   const handleForm = (e) => {
@@ -39,12 +36,6 @@ function Login() {
       [name]: value,
     }));
   };
-
-  useEffect(() => {
-    if (auth.user) {
-      navigate("/", { replace: true });
-    }
-  }, []);
 
   useEffect(() => {
     if (win.getItem("email")) {

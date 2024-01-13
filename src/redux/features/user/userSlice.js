@@ -4,15 +4,17 @@ const userSlice = createSlice({
   name: "user",
 
   initialState: {
-    email: "",
+    information: null,
   },
 
   reducers: {
     store: (state, action) => {
-      state = action.payload;
+      state.information = action.payload;
     },
 
-    remove: (state, action) => {},
+    remove: (state) => {
+      state.information = null;
+    },
   },
 });
 

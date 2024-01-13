@@ -12,6 +12,20 @@ export const getSizes = async () => {
   return result.data;
 };
 
+// [GET]
+export const checkExistCookie = async () => {
+  const result = await request.get("/checkExistCookie");
+
+  return result.data;
+};
+
+// [POST]
+export const login = async (options) => {
+  const result = await request.post("/login", options);
+
+  return result.data;
+};
+
 export const storeColor = async (options) => {
   const result = await request.post("sites/color", options);
 

@@ -10,6 +10,7 @@ import {
   Gallery,
   About,
   Contact,
+  Admin,
 } from "~/pages";
 import { HomeLayout, CustomerLayout } from "~/layouts";
 
@@ -94,6 +95,11 @@ export const publicRoutes = [
   {
     path: "/contact",
     component: Contact,
+  },
+  {
+    path: "/admin",
+    component: Admin,
+    layout: HomeLayout,
   },
 ];
 

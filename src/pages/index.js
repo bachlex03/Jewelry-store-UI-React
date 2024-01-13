@@ -9,3 +9,4 @@ export { default as Otp } from "./Otp";
 export { default as Gallery } from "./Gallery";
 export { default as About } from "./About";
 export { default as Contact } from "./Contact";
+export { default as Admin } from "./Admin";

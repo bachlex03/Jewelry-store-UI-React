@@ -13,6 +13,8 @@ const cx = classNames.bind(styles);
 function Action() {
   const auth = useAuth();
 
+  console.log("render account action");
+
   return (
     <nav className={cx("wrapper")}>
       <div className="flex justify-between align-center section-1200">
