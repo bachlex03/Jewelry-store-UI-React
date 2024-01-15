@@ -24,7 +24,9 @@ function AuthProvider({ children }) {
 
       navigate("/login");
     } else {
-      setUser(userRedux.information.data);
+      setUser(isExist.data);
+
+      dispatch(store(isExist.data));
     }
   };
 

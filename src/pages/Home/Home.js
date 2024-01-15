@@ -23,11 +23,11 @@ function Home() {
     alert();
 
     let data = {
-      email: "lxbach@gmail.com",
-      password: "123",
+      firstName: "Tuyết",
+      lastName: "Lưu",
     };
 
-    let status = await userServices.storeUser(data);
+    let status = await userServices.updateInformation(data, "lxbach@gmail.com");
 
     console.log("status:", status);
   };

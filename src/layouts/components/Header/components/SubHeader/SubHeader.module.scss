@@ -56,7 +56,7 @@
   .quantity {
     position: absolute;
     top: 12px;
-    right: 9px;
+    right: 13px;
     content: "";
     display: block;
     width: 20px;
@@ -72,7 +72,7 @@
 
 // Cart
 .icon-wrapper {
-  padding: 20px 10px;
+  padding: 20px 15px;
 }
 
 .cart-wrapper {
@@ -86,7 +86,7 @@
 .cart-component {
   position: absolute;
   display: none;
-  right: 16px;
+  right: 0;
   top: 65px;
   z-index: 999;
 }

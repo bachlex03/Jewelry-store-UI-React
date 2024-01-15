@@ -1,21 +1,61 @@
 import style from "./Checkout.module.scss";
 import classNames from "classnames/bind";
 import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useAuth } from "~/hooks/useAuth";
 
 import { Input, Button } from "~/components";
 const cx = classNames.bind(style);
 
+const colors = ["Gold", "Silver", "Bronze"];
+const sizes = ["16.0", "17.0", "18.0", "19.0"];
+
 function Checkout() {
   const cartItems = useSelector((state) => state.cart.values);
   const cartCount = useSelector((state) => state.cart.count);
+
+  const auth = useAuth();
+  let user = auth.user;
+
+  const [form, setForm] = useState({
+    firstName: user ? user.firstName : "",
+    lastName: user ? user.lastName : "",
+    addressLine: user ? user.addressLine : "",
+    phoneNumber: user ? user.phoneNumber : "",
+    email: user ? user.email : "",
+    note: "",
+  });
+
+  const { firstName, lastName, addressLine, phoneNumber, email, note } = form;
+
+  const handleForm = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+
+    if (name === "note") {
+      window.localStorage.setItem("note", value);
+    }
+
+    setForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleCheckout = () => {
+    window.localStorage.removeItem("note");
+  };
 
   const classes = {
     hover: cartCount,
     disable: !cartCount,
   };
 
-  const colors = ["Gold", "Silver", "Bronze"];
-  const sizes = ["16.0", "17.0", "18.0", "19.0"];
+  useEffect(() => {
+    if (window.localStorage.getItem("note")) {
+      setForm((prev) => ({
+        ...prev,
+        note: window.localStorage.getItem("note"),
+      }));
+    }
+  }, []);
 
   let total = 0;
 
@@ -27,18 +67,26 @@ function Checkout() {
           <div className="flex">
             <div className="w-100 pl-10 pr-10">
               <Input
+                name="firstName"
                 label="First name"
                 placeholder="First name..."
                 isRequired
                 required
+                value={
+                  firstName ? firstName : user ? user.firstName : firstName
+                }
+                onChange={handleForm}
               />
             </div>
             <div className="w-100 pl-10 pr-10">
               <Input
+                name="lastName"
                 label="Last name"
                 placeholder="Last name..."
                 isRequired
                 required
+                value={lastName ? lastName : user ? user.lastName : lastName}
+                onChange={handleForm}
               />
             </div>
           </div>
@@ -50,31 +98,60 @@ function Checkout() {
           </div>
           <div className="w-100 pl-10 pr-10 mt-10">
             <Input
+              name="addressLine"
               label="Street address"
               placeholder="Street address..."
               isRequired
               required
+              value={
+                addressLine
+                  ? addressLine
+                  : user
+                  ? user.addressLine
+                  : addressLine
+              }
+              onChange={handleForm}
             />
           </div>
           <div className="w-100 pl-10 pr-10 mt-10">
             <Input
+              name="phoneNumber"
               label="Phone number"
               placeholder="(+84)"
               isRequired
               required
+              value={
+                phoneNumber
+                  ? phoneNumber
+                  : user
+                  ? user.phoneNumber
+                  : phoneNumber
+              }
+              onChange={handleForm}
             />
           </div>
           <div className="w-100 pl-10 pr-10 mt-10">
             <Input
+              name="email"
               label="Email address"
               placeholder="email@gmail.com"
               type="email"
               isRequired
               required
+              notEditable
+              value={email ? email : user ? user.email : email}
+              onChange={handleForm}
             />
           </div>
           <div className="w-100 pl-10 pr-10 mt-10">
-            <Input label="Note" placeholder="note..." textarea />
+            <Input
+              name="note"
+              label="Note"
+              placeholder="note..."
+              textarea
+              value={note}
+              onChange={handleForm}
+            />
           </div>
           <div className="mt-20 text-right">
             <Button bold hover active>
@@ -138,7 +215,9 @@ function Checkout() {
             </div>
             <div className={cx("total-field")}>
               <p className={cx("total-title")}>Total</p>
-              <strong>$ {(total + 30).toFixed(2)}</strong>
+              <strong>
+                $ {cartItems.length > 0 ? (total + 30).toFixed(2) : 0}
+              </strong>
             </div>
 
             {/* Payment type */}
@@ -193,7 +272,7 @@ function Checkout() {
               </div>
 
               <div className="text-right">
-                <Button bold {...classes}>
+                <Button bold {...classes} onClick={(e) => handleCheckout}>
                   PLACE ORDER
                 </Button>
               </div>

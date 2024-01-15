@@ -17,7 +17,7 @@ function Login() {
 
   const navigate = useNavigate();
 
-  const win = window.sessionStorage;
+  const sessionStorage = window.sessionStorage;
 
   const auth = useAuth();
   const user = useSelector((state) => state.user.information);
@@ -32,7 +32,9 @@ function Login() {
     const name = e.target.name;
     const value = e.target.value;
 
-    win.setItem(name, value);
+    if (name === "email") {
+      sessionStorage.setItem(name, value);
+    }
 
     setForm((prev) => ({
       ...prev,
@@ -42,18 +44,18 @@ function Login() {
 
   useEffect(() => {
     if (user) {
-      navigate("/home");
+      // navigate("/home");
     }
   }, []);
 
   useEffect(() => {
-    if (win.getItem("email")) {
+    if (sessionStorage.getItem("email")) {
       setForm((prev) => ({
         ...prev,
-        ["email"]: win.getItem("email"),
+        ["email"]: sessionStorage.getItem("email"),
       }));
     }
-  }, [email, password]);
+  }, [email]);
 
   return (
     <div className="section-1200">

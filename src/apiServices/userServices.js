@@ -20,3 +20,13 @@ export const checkUser = async (options) => {
 
   return result;
 };
+
+// [PUT] /users/information/:email/update
+export const updateInformation = async (options, param) => {
+  const result = await request.put(
+    `/users/information/${param}/update`,
+    options
+  );
+
+  return result;
+};

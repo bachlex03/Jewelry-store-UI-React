@@ -49,12 +49,13 @@ function Cart() {
 
             return (
               <tr key={index}>
-                <td className={cx("trash", "text-center")}>
-                  <i
-                    onClick={(e) => {
-                      dispatch(remove(index));
-                    }}
-                  >
+                <td
+                  className={cx("trash", "text-center")}
+                  onClick={(e) => {
+                    dispatch(remove(index));
+                  }}
+                >
+                  <i>
                     <FontAwesomeIcon icon={faTrashCan} className={cx("icon")} />
                   </i>
                 </td>

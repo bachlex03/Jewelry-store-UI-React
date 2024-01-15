@@ -10,6 +10,7 @@ function Input({
   textarea,
   note,
   selectValue,
+  notEditable,
   ...passProps
 }) {
   const optionRefs = useRef([]);
@@ -37,19 +38,25 @@ function Input({
       </select>
     );
   } else if (textarea) {
-    inputType = <textarea className={cx("text-area")}></textarea>;
+    inputType = <textarea className={cx("text-area")} {...props}></textarea>;
   }
 
-  const classes = cx("label", { isRequired });
+  const labelClasses = cx("label", { isRequired });
+  const inputClasses = cx("input", { notEditable });
   return (
     <>
-      <label htmlFor={label} className={classes}>
+      <label htmlFor={label} className={labelClasses}>
         {label}
       </label>
       {inputType ? (
         inputType
       ) : (
-        <input id={label} className={cx("input")} {...props} />
+        <input
+          id={label}
+          className={inputClasses}
+          readOnly={notEditable}
+          {...props}
+        />
       )}
       {note ? <p className={cx("note")}>{note}</p> : Fragment}
     </>

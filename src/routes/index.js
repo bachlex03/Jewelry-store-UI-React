@@ -43,10 +43,7 @@ export const publicRoutes = [
     path: "/cart",
     component: Cart,
   },
-  {
-    path: "/checkout",
-    component: Checkout,
-  },
+
   {
     path: "/login",
     component: Login,
@@ -103,5 +100,9 @@ export const privateRoutes = [
     path: "/customer/wishlist",
     component: Wishlist,
     layout: CustomerLayout,
+  },
+  {
+    path: "/checkout",
+    component: Checkout,
   },
 ];

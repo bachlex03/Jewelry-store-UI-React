@@ -3,7 +3,10 @@ import classNames from "classnames/bind";
 
 import { useAuth } from "~/hooks/useAuth";
 import { Input, Button } from "~/components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+
+import * as userServices from "~/apiServices/userServices";
 
 const cx = classNames.bind(style);
 
@@ -18,6 +21,18 @@ function Address() {
     phoneNumber: user ? user.phoneNumber : "",
   });
 
+  useEffect(() => {
+    if (user) {
+      const data = {
+        firstName: user.firstName,
+        lastName: user.lastName,
+        addressLine: user.addressLine,
+        phoneNumber: user.phoneNumber,
+      };
+      setForm(data);
+    }
+  }, [user]);
+
   const { firstName, lastName, addressLine, phoneNumber } = form;
 
   const handleForm = (e) => {
@@ -25,6 +40,22 @@ function Address() {
     const value = e.target.value;
 
     setForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleUpdate = (form) => {
+    const updateParam = user.email;
+
+    const fetchApi = async (form, param) => {
+      try {
+        const result = await userServices.updateInformation(form, param);
+
+        window.location.reload();
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    fetchApi(form, updateParam);
   };
 
   return (
@@ -94,13 +125,20 @@ function Address() {
           type="email"
           isRequired
           required
+          notEditable
           value={user ? user.email : ""}
-          onChange={(e) => {}}
+          onChange={handleForm}
         />
       </div>
 
       <div className="mt-20 text-right">
-        <Button bold hover>
+        <Button
+          bold
+          hover
+          onClick={(e) => {
+            handleUpdate(form);
+          }}
+        >
           SAVE ADDRESSES
         </Button>
       </div>
