@@ -60,6 +60,26 @@ export const publicRoutes = [
     component: Otp,
   },
   {
+    path: "/gallery",
+    component: Gallery,
+  },
+  {
+    path: "/about",
+    component: About,
+  },
+  {
+    path: "/contact",
+    component: Contact,
+  },
+  {
+    path: "/admin",
+    component: Admin,
+    layout: HomeLayout,
+  },
+];
+
+export const privateRoutes = [
+  {
     path: "/customer/dashboard",
     component: Dashboard,
     layout: CustomerLayout,
@@ -83,29 +103,5 @@ export const publicRoutes = [
     path: "/customer/wishlist",
     component: Wishlist,
     layout: CustomerLayout,
-  },
-  {
-    path: "/gallery",
-    component: Gallery,
-  },
-  {
-    path: "/about",
-    component: About,
-  },
-  {
-    path: "/contact",
-    component: Contact,
-  },
-  {
-    path: "/admin",
-    component: Admin,
-    layout: HomeLayout,
-  },
-];
-
-export const privateRoutes = [
-  {
-    path: "/admin",
-    element: Home,
   },
 ];

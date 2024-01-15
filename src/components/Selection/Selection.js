@@ -17,8 +17,6 @@ import * as productFilter from "~/utils/productFilter";
 const cx = classNames.bind(style);
 
 function Selection(props, ref) {
-  console.log("Selection mounted");
-
   const variantIdRef = useRef(0);
 
   let {

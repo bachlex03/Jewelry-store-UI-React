@@ -2,6 +2,7 @@ import styles from "./Login.module.scss";
 import classNames from "classnames/bind";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import { useAuth } from "~/hooks/useAuth";
 
@@ -10,6 +11,7 @@ import { Input, Button } from "~/components";
 const cx = classNames.bind(styles);
 
 function Login() {
+  console.log("Login page");
   const [form, setForm] = useState({ email: "", password: "" });
   const { email, password } = form;
 
@@ -18,6 +20,7 @@ function Login() {
   const win = window.sessionStorage;
 
   const auth = useAuth();
+  const user = useSelector((state) => state.user.information);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -36,6 +39,12 @@ function Login() {
       [name]: value,
     }));
   };
+
+  useEffect(() => {
+    if (user) {
+      navigate("/home");
+    }
+  }, []);
 
   useEffect(() => {
     if (win.getItem("email")) {

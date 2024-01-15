@@ -2,7 +2,6 @@ import { createContext, useContext, useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Cookies from "js-cookie";
 
 import { store, remove } from "~/redux/features/user/userSlice";
 
@@ -11,13 +10,23 @@ import * as siteServices from "~/apiServices/siteServices";
 const authContext = createContext(null);
 
 function AuthProvider({ children }) {
-  const [user, setUser] = useState("");
-
+  console.log("useAuth");
+  const [user, setUser] = useState(null);
   const dispatch = useDispatch();
-
   const navigate = useNavigate();
-
   const userRedux = useSelector((state) => state.user);
+
+  const checkValidCookie = async () => {
+    const isExist = await siteServices.checkExistCookie();
+
+    if (!isExist) {
+      setUser(null);
+
+      navigate("/login");
+    } else {
+      setUser(userRedux.information.data);
+    }
+  };
 
   const login = (form) => {
     const fetchApi = async (form) => {
@@ -37,36 +46,23 @@ function AuthProvider({ children }) {
     fetchApi(form);
   };
 
-  Cookies.remove("jwt");
+  const logout = async () => {
+    const result = await siteServices.logout();
 
-  const logout = () => {
     setUser(null);
 
     dispatch(remove());
 
-    navigate("/");
+    navigate("/login");
   };
 
+  // Check valid or exist JWT on reload page if user / hacker delete JWT cookie
   useEffect(() => {
-    if (userRedux.information) {
-      setUser(userRedux.information);
-    }
-  }, []);
-
-  useEffect(() => {
-    const fetchApi = async () => {
-      const isExistCookie = await siteServices.checkExistCookie();
-
-      if (!isExistCookie) {
-        setUser(null);
-      }
-    };
-
-    fetchApi();
+    checkValidCookie();
   }, []);
 
   return (
-    <authContext.Provider value={{ user, login, logout }}>
+    <authContext.Provider value={{ user, login, logout, checkValidCookie }}>
       {children}
     </authContext.Provider>
   );

@@ -1,9 +1,20 @@
 import styles from "./Input.module.scss";
 import classNames from "classnames/bind";
-import { Fragment } from "react";
+import React, { Fragment, useRef, useState } from "react";
 
 const cx = classNames.bind(styles);
-function Input({ label, isRequired, selection, textarea, note, ...passProps }) {
+function Input({
+  label,
+  isRequired,
+  selection,
+  textarea,
+  note,
+  selectValue,
+  ...passProps
+}) {
+  const optionRefs = useRef([]);
+  const [option, setOption] = useState(true);
+
   let inputType;
 
   const props = {
@@ -15,6 +26,9 @@ function Input({ label, isRequired, selection, textarea, note, ...passProps }) {
   }
 
   if (selection) {
+    optionRefs.current[0] = React.createRef();
+    optionRefs.current[1] = React.createRef();
+
     inputType = (
       <select className={cx("selection")}>
         <option>-- Choose your option --</option>

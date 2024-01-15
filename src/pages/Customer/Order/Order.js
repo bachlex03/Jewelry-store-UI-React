@@ -1,31 +1,55 @@
 import style from "./Order.module.scss";
 import classNames from "classnames/bind";
 
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "~/hooks/useAuth";
+
 import { Button } from "~/components";
 
 const cx = classNames.bind(style);
 
 function Order() {
+  const navigate = useNavigate();
+  const [user, setUser] = useState();
+  const auth = useAuth();
+
+  useEffect(() => {
+    if (!auth.user) {
+      navigate("/login");
+    } else {
+      setUser(auth.user);
+    }
+  }, []);
+
   return (
     <div className={cx("wrapper")}>
       <h3 className={cx("heading")}>Orders</h3>
       <table className={cx("table")}>
         <thead className={cx("thead")}>
-          <th style={{ width: 15 + "%" }} className={cx("order", "text-left")}>
-            Order
-          </th>
-          <th style={{ width: 30 + "%" }} className={cx("date", "text-left")}>
-            Date
-          </th>
-          <th style={{ width: 15 + "%" }} className={cx("status", "text-left")}>
-            Status
-          </th>
-          <th style={{ width: 20 + "%" }} className={cx("total", "")}>
-            Total
-          </th>
-          <th style={{ width: 20 + "%" }} className={cx("action", "")}>
-            Action
-          </th>
+          <tr>
+            <th
+              style={{ width: 15 + "%" }}
+              className={cx("order", "text-left")}
+            >
+              Order
+            </th>
+            <th style={{ width: 30 + "%" }} className={cx("date", "text-left")}>
+              Date
+            </th>
+            <th
+              style={{ width: 15 + "%" }}
+              className={cx("status", "text-left")}
+            >
+              Status
+            </th>
+            <th style={{ width: 20 + "%" }} className={cx("total", "")}>
+              Total
+            </th>
+            <th style={{ width: 20 + "%" }} className={cx("action", "")}>
+              Action
+            </th>
+          </tr>
         </thead>
         <tbody className={cx("tbody")}>
           <tr>

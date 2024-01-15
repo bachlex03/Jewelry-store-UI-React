@@ -2,6 +2,9 @@ import style from "./CustomerLayout.module.scss";
 import classNames from "classnames/bind";
 
 import { CustomerSidebar, ShopHeader, Footer } from "~/layouts/components";
+import { useAuth } from "~/hooks/useAuth";
+import { useLayoutEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const cx = classNames.bind(style);
 
