@@ -1,0 +1,121 @@
+@import url("https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&display=swap");
+
+.slider {
+  position: relative;
+  background: url("https://mldrbgfat3wx.i.optimole.com/SQPHnU0-BKtY39N4/w:1024/h:444/q:auto/https://dici.themes.zone/main/wp-content/uploads/sites/8/revslider/main/dici_banner_1_opt.jpg")
+    center / cover no-repeat;
+  padding-top: 45%;
+  animation: sliderA 2s ease;
+}
+
+@keyframes sliderA {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.body {
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  text-align: center;
+}
+
+.introducing {
+  font-size: 7rem;
+  font-family: "Mrs Saint Delafield", cursive;
+  margin-bottom: 20px;
+  color: rgb(190, 86, 86);
+  font-weight: 400;
+  animation: introducingA 2s linear;
+}
+
+@keyframes introducingA {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.heading {
+  font-size: 5rem;
+  -webkit-font-smoothing: auto;
+  font-family: var(--ff-butler);
+  font-weight: 300;
+  letter-spacing: 2px;
+  animation: headingA 2.5s linear;
+}
+
+@keyframes headingA {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  75% {
+    opacity: 0.75;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.sub-heading {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  font-size: 1.3rem;
+  margin-top: 15px;
+  letter-spacing: 0.5px;
+}
+
+.heading-btn {
+  animation: headingBtn 3s ease;
+}
+
+@keyframes headingBtn {
+  0% {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+
+  100% {
+    transform: translateY();
+    opacity: 1;
+  }
+}
+
+.ring-img {
+  height: 115px;
+  margin: 30px 0;
+  animation: ringA 2.5s ease;
+}
+
+@keyframes ringA {
+  0% {
+    transform: translateY(-150px);
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY();
+  }
+}

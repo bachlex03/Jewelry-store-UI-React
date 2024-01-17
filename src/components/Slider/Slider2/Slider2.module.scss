@@ -1,0 +1,309 @@
+.slider {
+  position: relative;
+  background-color: rgb(247, 247, 247);
+  padding-top: 45%;
+}
+
+.body {
+  position: absolute;
+  top: 15%;
+  left: 32%;
+  text-align: center;
+  transition: all 0.3s linear;
+}
+
+.introducing {
+  font-size: 7rem;
+  font-family: "Mrs Saint Delafield", cursive;
+  margin-bottom: 20px;
+  color: rgb(190, 86, 86);
+  font-weight: 400;
+}
+
+.sale-img {
+  width: 233px;
+  animation: saleImgA 0.7s linear;
+}
+
+@keyframes saleImgA {
+  0% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.heading {
+  font-size: 7.2rem;
+  -webkit-font-smoothing: auto;
+  font-family: var(--ff-butler);
+  font-weight: 300;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  animation: headingA 1s linear;
+}
+
+@keyframes headingA {
+  0% {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+
+  50% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+
+  70% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.date {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  font-size: 1.8rem;
+  margin-top: 15px;
+  letter-spacing: 0.5px;
+  font-family: "Open Sans", "Helvetica Neue";
+  animation: dateA 1.5s linear;
+}
+
+@keyframes dateA {
+  0% {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+
+  50% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+
+  60% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.slider-btn {
+  margin-top: 40px;
+  animation: btnA 2s linear;
+}
+
+@keyframes btnA {
+  0% {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+
+  50% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+
+  60% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.ring-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: all 0.3s linear;
+}
+
+.ring-img:nth-child(2) {
+  left: 63%;
+  top: 15%;
+  width: 152px;
+  animation: key1A 2.7s linear;
+}
+
+@keyframes key1A {
+  0% {
+    opacity: 0;
+    transform: translate(100px, -100px);
+  }
+
+  75% {
+    opacity: 0;
+    transform: translate(100px, -100px);
+  }
+
+  90% {
+    opacity: 1;
+    transform: translate(-3px, 3px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+.ring-img:nth-child(3) {
+  left: 7%;
+  top: 39%;
+  width: 165px;
+  animation: key2A 2.7s linear;
+}
+
+@keyframes key2A {
+  0% {
+    opacity: 0;
+    transform: translate(-50px, 0px);
+  }
+
+  75% {
+    opacity: 0;
+    transform: translate(-50px, 0px);
+  }
+
+  90% {
+    opacity: 1;
+    transform: translate(-3px, 3px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+.ring-img:nth-child(4) {
+  left: 82%;
+  top: 32%;
+  width: 144px;
+  animation: key3A 2.4s linear;
+}
+
+@keyframes key3A {
+  0% {
+    opacity: 0;
+    transform: translate(100px, -20px);
+  }
+
+  75% {
+    opacity: 0;
+    transform: translate(100px, -20px);
+  }
+
+  90% {
+    opacity: 1;
+    transform: translate(-3px, 3px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+.ring-img:nth-child(5) {
+  left: 20%;
+  top: 62%;
+  width: 247px;
+  animation: key4A 2.4s linear;
+}
+
+@keyframes key4A {
+  0% {
+    opacity: 0;
+    transform: translate(-100px, 100px);
+  }
+
+  75% {
+    opacity: 0;
+    transform: translate(-100px, +100px);
+  }
+
+  90% {
+    opacity: 1;
+    transform: translate(3px, -3px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+.ring-img:nth-child(6) {
+  top: 15%;
+  left: 25%;
+  width: 188px;
+  animation: key5A 2.4s linear;
+}
+
+@keyframes key5A {
+  0% {
+    opacity: 0;
+    transform: translate(-100px, -100px);
+  }
+
+  75% {
+    opacity: 0;
+    transform: translate(-100px, -100px);
+  }
+
+  90% {
+    opacity: 1;
+    transform: translate(3px, 3px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+.ring-img:nth-child(7) {
+  top: 55%;
+  left: 74%;
+  width: 233px;
+  animation: key6A 2.7s linear;
+}
+
+@keyframes key6A {
+  0% {
+    opacity: 0;
+    transform: translate(100px, 100px);
+  }
+
+  75% {
+    opacity: 0;
+    transform: translate(100px, 100px);
+  }
+
+  90% {
+    opacity: 1;
+    transform: translate(-3px, -3px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}

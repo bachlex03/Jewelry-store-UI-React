@@ -12,7 +12,7 @@ import {
   Collection,
   Product,
   Carousel,
-  CarouselItem,
+  Slider,
 } from "~/components";
 
 const cx = classNames.bind(styles);
@@ -38,22 +38,7 @@ function Home() {
         <button type="submit">Submit</button>
       </form>
       {/* Slider */}
-      <section className={cx("slider")}>
-        <div className={cx("body")}>
-          <h2 className={cx("introducing")}>Introducing</h2>
-          <h1 className={cx("heading")}>COLOR FANTASY</h1>
-          <p className={cx("sub-heading")}>
-            SOPHISTICATED COLLECTION INSPIRED BY PASSION
-          </p>
-          <img src={images.sliderItem} alt="" className={cx("ring-img")} />
-
-          <div>
-            <Button small hover>
-              LEARN MORE
-            </Button>
-          </div>
-        </div>
-      </section>
+      <Slider />
 
       {/* Service */}
       <div className={cx("service-wrapper", "section-1200", "mt-40")}>
@@ -115,24 +100,27 @@ function Home() {
       </div>
 
       {/* Banner 2 */}
-      <div className={cx("banner-wrapper", "section-1200", "mt-40")}>
-        <div className={cx("banner-item")}>
-          <img src={images.banner1} alt="" className={cx("banner-img")} />
-          <div className={cx("banner-body", "pos-left")}>
-            <p className={cx("text")}>
-              She said <br></br> "YES"
+      <div className={cx("banner-wrapper-2", "section-1200", "mt-40")}>
+        <div className={cx("banner", "banner-item-1")}>
+          <figure className={cx("img-wrapper")}>
+            <img src={images.banner3} alt="" className={cx("banner-img")} />
+          </figure>
+          <div className={cx("banner2-body")}>
+            <p className={cx("banner2-desc")}>Collection Arrived</p>
+            <p className={cx("banner2-text", "mt-15")}>Emilia Wolf​</p>
+          </div>
+        </div>
+        <div className={cx("banner", "banner-item-2")}>
+          <figure className={cx("img-wrapper")}>
+            <img src={images.banner4} alt="" className={cx("banner-img")} />
+          </figure>
+          <div className={cx("banner2-body")}>
+            <p className={cx("banner2-desc")}>New Collection</p>
+            <p className={cx("banner2-text", "mt-20")}>
+              Maybe You’ve <br /> Earned it​
             </p>
             <a className={cx("link")} href="#">
               Shop Now
-            </a>
-          </div>
-        </div>
-        <div className={cx("banner-item")}>
-          <img src={images.banner2} alt="" className={cx("banner-img")} />
-          <div className={cx("banner-body", "pos-center")}>
-            <p className={cx("text")}>Happy Ever After</p>
-            <a className={cx("link")} href="#">
-              Click here
             </a>
           </div>
         </div>
@@ -151,61 +139,7 @@ function Home() {
 
       {/* carousel */}
 
-      <Carousel heading="OUR JOURNAL">
-        <CarouselItem
-          author="Marry Lou"
-          date="August 15, 2018"
-          link="Buying"
-          img={images.owl1}
-          heading="Choosing Sterling Silver as a Wedding Gift"
-          desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras pharetra, mi id rhoncus ultricies."
-        />
-
-        <CarouselItem
-          author="Marry Lou"
-          date="August 15, 2018"
-          link="Buying"
-          img={images.owl2}
-          heading="Choosing Sterling Silver as a Wedding Gift"
-          desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras pharetra, mi id rhoncus ultricies."
-        />
-
-        <CarouselItem
-          author="Marry Lou"
-          date="August 15, 2018"
-          link="Buying"
-          img={images.owl3}
-          heading="Choosing Sterling Silver as a Wedding Gift"
-          desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras pharetra, mi id rhoncus ultricies."
-        />
-
-        <CarouselItem
-          author="Marry Lou"
-          date="August 15, 2018"
-          link="Buying"
-          img={images.owl2}
-          heading="Choosing Sterling Silver as a Wedding Gift"
-          desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras pharetra, mi id rhoncus ultricies."
-        />
-
-        <CarouselItem
-          author="Marry Lou"
-          date="August 15, 2018"
-          link="Buying"
-          img={images.owl1}
-          heading="Choosing Sterling Silver as a Wedding Gift"
-          desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras pharetra, mi id rhoncus ultricies."
-        />
-
-        <CarouselItem
-          author="Marry Lou"
-          date="August 15, 2018"
-          link="Buying"
-          img={images.owl1}
-          heading="Choosing Sterling Silver as a Wedding Gift"
-          desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras pharetra, mi id rhoncus ultricies."
-        />
-      </Carousel>
+      <Carousel heading="OUR JOURNAL"></Carousel>
     </>
   );
 }

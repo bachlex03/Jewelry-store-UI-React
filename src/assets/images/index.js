@@ -35,6 +35,11 @@ const images = {
   aboutTeam: require("./about-team.png"),
   reviewUser: require("./review-img.png"),
   subCategories: require("./sub-categories.png"),
+  saleSlider: require("./sale-slider.png"),
+  ringBig: require("./ring-big.png"),
+  ringBig2: require("./ring-big2.png"),
+  ringMedium: require("./ring-medium.png"),
+  ringSmall: require("./ring-small.png"),
 };
 
 export default images;

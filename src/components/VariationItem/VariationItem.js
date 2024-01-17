@@ -3,7 +3,7 @@ import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSquare, faSquareCheck } from "@fortawesome/free-regular-svg-icons";
 import { useState, useContext } from "react";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import { FiltersContext } from "~/pages/Shop/Shop";
 
@@ -17,7 +17,6 @@ function VariationItem({ name, colorObj }) {
   const { filters, setFilters, allProductsRef, setProducts, categories } =
     useContext(FiltersContext);
 
-  const location = useLocation();
   const { categoryParam } = useParams();
 
   const handleCheck = () => {

@@ -1,5 +1,6 @@
 .carousel {
   text-align: center;
+  position: relative;
 }
 
 .heading {
@@ -15,18 +16,26 @@
 }
 
 .content {
-  position: relative;
-  max-width: 1200px;
+  max-width: 1120px;
   width: 100%;
   margin: 0 auto;
+  display: grid;
+  gap: 30px;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% / 3) - 20px);
+  overflow-x: auto;
+  user-select: none;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: 0;
 }
 
-.wrapper {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: calc((100% / 3) - 11px);
-  gap: 30px;
-  overflow: hidden;
+.content:hover .icon {
+  opacity: 1;
+}
+
+.content::-webkit-scrollbar {
+  display: none;
 }
 
 .icon {
@@ -35,21 +44,39 @@
   width: 40px;
   height: 40px;
   display: flex;
+  opacity: 0;
   align-items: center;
   justify-content: center;
   position: absolute;
   border-radius: var(--rounded-full);
   cursor: pointer;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.23);
+  transition: all 0.5s ease;
 }
 
 .left-btn {
-  left: -20px;
-  top: 100px;
+  left: 115px;
+  top: 175px;
   z-index: 100;
 }
 
 .right-btn {
-  right: -20px;
-  top: 100px;
+  right: 115px;
+  top: 175px;
   z-index: 100;
+}
+
+//
+
+.wrapper {
+  width: 100%;
+  scroll-snap-align: start;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 30px;
 }

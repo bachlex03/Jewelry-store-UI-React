@@ -79,6 +79,10 @@ ol {
   transition: opacity 0.5s, visibility 0.5s;
 }
 
+.isDragging {
+  cursor: ew-resize;
+}
+
 .relative {
   position: relative;
 }

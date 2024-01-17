@@ -1,45 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&display=swap");
-
-.slider {
-  position: relative;
-  background: url("https://mldrbgfat3wx.i.optimole.com/SQPHnU0-BKtY39N4/w:1024/h:444/q:auto/https://dici.themes.zone/main/wp-content/uploads/sites/8/revslider/main/dici_banner_1_opt.jpg")
-    center / cover no-repeat;
-  padding-top: 45%;
-}
-
-.body {
-  position: absolute;
-  top: 20%;
-  left: 10%;
-  text-align: center;
-}
-
-.introducing {
-  font-size: 7rem;
-  font-family: "Mrs Saint Delafield", cursive;
-  margin-bottom: 20px;
-  color: rgb(190, 86, 86);
-  font-weight: 400;
-}
-
-.heading {
-  font-size: 5rem;
-  -webkit-font-smoothing: auto;
-  font-family: var(--ff-butler);
-  font-weight: 300;
-}
-
-.sub-heading {
-  font-size: 1.5rem;
-  text-transform: uppercase;
-  font-size: 1.3rem;
-  margin-top: 15px;
-}
-
-.ring-img {
-  height: 115px;
-  margin: 30px 0;
-}
+@import url("https://fonts.googleapis.com/css2?family=Mr+Dafoe&family=Mrs+Saint+Delafield&display=swap");
 
 // services
 .service-wrapper {
@@ -59,10 +18,18 @@
 .banner-item {
   width: 100%;
   position: relative;
+  overflow: hidden;
+
+  &:hover .banner-img {
+    transform: scale3d(1.07, 1.07, 1);
+  }
 }
 
 .banner-img {
   width: 100%;
+  display: block;
+  transition: all 0.5s ease;
+  object-fit: cover;
 }
 
 .banner-body {
@@ -92,12 +59,95 @@
 
 .link {
   font-size: 1.4rem;
-  text-decoration: underline;
-  font-weight: 600;
+  font-weight: 500;
   margin-top: 40px;
+
+  &::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: #000;
+    margin-top: 8px;
+  }
 }
 
 // collection
 .collection-wrapper {
   text-align: center;
+}
+
+//banner-wrapper-2
+
+.banner {
+  &:hover .banner-img {
+    transform: scale3d(1.07, 1.07, 1);
+  }
+}
+
+.banner-wrapper-2 {
+  display: flex;
+  height: 430px;
+  gap: 20px;
+}
+
+.img-wrapper {
+  display: flex;
+  height: -webkit-fill-available;
+  overflow: hidden;
+}
+
+.banner {
+  position: relative;
+}
+
+.banner-item-1 {
+  flex-grow: 1;
+}
+
+.banner-item-2 {
+  flex-grow: 3;
+}
+
+.banner-item-1 .banner2-body {
+  position: absolute;
+  bottom: 25px;
+  left: 40%;
+  width: max-content;
+  transform: translateX(-50%);
+  color: #fff;
+}
+
+.banner-item-1 .banner2-desc {
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+}
+
+.banner-item-1 .banner2-text {
+  font-family: "Mr Dafoe", Sans-serif;
+  font-size: 5.5rem;
+}
+
+.banner-item-2 .banner2-body {
+  position: absolute;
+  top: 100px;
+  left: 10%;
+  width: max-content;
+  color: #000;
+}
+
+.banner-item-2 .banner2-desc {
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+}
+
+.banner-item-2 .banner2-text {
+  font-family: var(--ff-butler);
+  font-weight: 300;
+  font-size: 4.5rem;
+  -webkit-font-smoothing: auto;
 }
