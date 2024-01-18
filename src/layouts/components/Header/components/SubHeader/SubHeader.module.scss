@@ -71,22 +71,59 @@
 }
 
 // Cart
+
 .icon-wrapper {
   padding: 20px 15px;
 }
 
 .cart-wrapper {
   position: relative;
-
-  &:hover .cart-component {
-    display: block;
-  }
 }
 
 .cart-component {
   position: absolute;
-  display: none;
   right: 0;
   top: 65px;
   z-index: 999;
+}
+
+.cart-component[opening] {
+  animation: fade-up 0.5s linear forwards;
+}
+
+.cart-component[closing] {
+  animation: fade-out 0.5s linear forwards;
+}
+
+.cart-component[display-non] {
+  display: none;
+}
+
+@keyframes fade-up {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  40% {
+    transform: translateY(15px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
 }

@@ -21,3 +21,4 @@ export { default as Paging } from "./Paging";
 export { default as Cart } from "./Cart";
 export { default as PrivateRoute } from "./PrivateRoute";
 export { default as Slider } from "./Slider";
+export { default as CategoriesHeader } from "./CategoriesHeader";

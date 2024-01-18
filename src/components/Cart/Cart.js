@@ -11,8 +11,6 @@ import { remove } from "~/redux/features/cart/cartSlice";
 const cx = classNames.bind(style);
 
 function Cart() {
-  console.log("Cart mounted");
-
   const dispatch = useDispatch();
 
   const cartItems = useSelector((state) => state.cart.values);

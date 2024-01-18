@@ -3,41 +3,39 @@ import classNames from "classnames/bind";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 
-import { SubCategoryItem } from "~/components";
-import images from "~/assets/images";
+import { CategoriesHeader } from "~/components";
 
 const cx = classNames.bind(styles);
 
 function Catalog() {
-  const shopRef = useRef();
-  const subCategories = useRef();
+  const categoriesRef = useRef();
 
-  // const handleClosing = (e) => {
-  //   subCategories.current.removeAttribute("open");
-  //   subCategories.current.setAttribute("closing", "");
-  // };
+  const handleDisplay = () => {
+    let closed = categoriesRef.current.getAttribute("closing");
 
-  // useEffect(() => {
-  //   shopRef.current.addEventListener("mouseover", (e) => {
-  //     subCategories.current.removeAttribute("closing");
-  //     subCategories.current.setAttribute("open", "");
+    if (closed) {
+      categoriesRef.current.setAttribute("display-non", "");
+    }
+  };
 
-  //     const timerId = setTimeout(() => {
-  //       shopRef.current.addEventListener("mouseleave", handleClosing);
-  //     }, 500);
+  const handleOpen = (e) => {
+    console.log(e.pageX);
+    categoriesRef.current.removeAttribute("display-non");
 
-  //     subCategories.current.addEventListener("mouseover", () => {
-  //       clearTimeout(timerId);
-  //       shopRef.current.removeEventListener("mouseleave", handleClosing);
-  //     });
-  //   });
+    categoriesRef.current.removeAttribute("closing");
 
-  //   subCategories.current.addEventListener("mouseleave", () => {
-  //     subCategories.current.setAttribute("closing", "");
-  //   });
-  // }, []);
+    categoriesRef.current.setAttribute("opening", "");
+  };
+
+  const handleClose = (e) => {
+    categoriesRef.current.removeAttribute("opening");
+
+    categoriesRef.current.setAttribute("closing", true);
+
+    categoriesRef.current.removeEventListener("animationend", () => {});
+  };
 
   return (
     <section className={cx("catalog", "flex")}>
@@ -48,36 +46,26 @@ function Catalog() {
               Home
             </Link>
           </li>
-          <li className={cx("shop-catalog")}>
-            <Link to="/shop" className={cx("item")} ref={shopRef}>
+          <li
+            className={cx("shop-catalog")}
+            onMouseMove={handleOpen}
+            onMouseLeave={handleClose}
+          >
+            <Link to="/shop" className={cx("item")}>
               Shop
               <FontAwesomeIcon icon={faChevronDown} className={cx("icon")} />
             </Link>
 
-            <div className={cx("sub-categories")} ref={subCategories}>
-              <div className="row">
-                <div className="col l-4">
-                  <SubCategoryItem />
-                </div>
-                <div className="col l-4">
-                  <SubCategoryItem />
-                </div>
-                <div className="col l-4">
-                  <SubCategoryItem />
-                </div>
-                <div className="col l-4">
-                  <SubCategoryItem />
-                </div>
-                <div className="col l-4">
-                  <SubCategoryItem />
-                </div>
-                <div className="col l-4">
-                  <SubCategoryItem />
-                </div>
-              </div>
-              <div className={cx("right-block")}>
-                <img src={images.subCategories} alt="" className={cx("img")} />
-              </div>
+            <div
+              display-non="true"
+              className={cx("categories-header-component")}
+              ref={categoriesRef}
+              onMouseMove={(e) => {
+                e.stopPropagation();
+              }}
+              onAnimationEnd={handleDisplay}
+            >
+              <CategoriesHeader />
             </div>
           </li>
           <li>

@@ -1,0 +1,25 @@
+// sub categories
+
+.categories-header {
+  display: flex;
+  width: 1200px;
+  padding: 15px;
+  height: max-content;
+  z-index: 100;
+  background-color: #fff;
+  box-shadow: -2px 2px 25px -8px rgba(0, 0, 0, 0.25);
+  opacity: 1;
+}
+
+.img {
+  width: 444px;
+}
+
+// .sub-categories[open] {
+//   animation: fade-up 0.5s forwards;
+// }
+
+// .sub-categories[closing] {
+//   pointer-events: none;
+//   animation: fade-down-out 0.5s forwards;
+// }

@@ -3,6 +3,7 @@ import classNames from "classnames/bind";
 import { useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import { useRef } from "react";
 
 import images from "~/assets/images";
 import { Search, Cart } from "~/components";
@@ -10,9 +11,35 @@ import { Search, Cart } from "~/components";
 const cx = classNames.bind(styles);
 
 function SubHeader() {
+  const cartRef = useRef();
+
   let cartQuantity = useSelector((state) => state.cart.count);
 
   if (cartQuantity.length === 0) cartQuantity = 0;
+
+  const handleDisplay = () => {
+    let closed = cartRef.current.getAttribute("closing");
+
+    if (closed) {
+      cartRef.current.setAttribute("display-non", "");
+    }
+  };
+
+  const handleOpen = (e) => {
+    cartRef.current.removeAttribute("display-non");
+
+    cartRef.current.removeAttribute("closing");
+
+    cartRef.current.setAttribute("opening", "");
+  };
+
+  const handleClose = (e) => {
+    cartRef.current.removeAttribute("opening");
+
+    cartRef.current.setAttribute("closing", true);
+
+    cartRef.current.removeEventListener("animationend", () => {});
+  };
 
   return (
     <section className={cx("sub-header")}>
@@ -42,12 +69,25 @@ function SubHeader() {
               <FontAwesomeIcon icon={faHeart} />
             </i>
           </div>
+
           {/* Cart */}
-          <div className={cx("cart-wrapper", "icon-wrapper")}>
+          <div
+            className={cx("cart-wrapper", "icon-wrapper")}
+            onMouseMove={handleOpen}
+            onMouseLeave={handleClose}
+          >
             <i className={cx("icon", "cart-icon", "ti-shopping-cart")}></i>
             <span className={cx("quantity")}>{cartQuantity}</span>
 
-            <div className={cx("cart-component")}>
+            <div
+              className={cx("cart-component")}
+              display-non="true"
+              onMouseMove={(e) => {
+                e.stopPropagation();
+              }}
+              ref={cartRef}
+              onAnimationEnd={handleDisplay}
+            >
               <Cart />
             </div>
           </div>
