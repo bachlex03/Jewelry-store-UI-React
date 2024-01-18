@@ -62,10 +62,10 @@ function Sidebar({ categories }) {
       </div>
 
       <div>
-        <h3 className={cx("heading")}>Filter by color</h3>
-        {/* {sizesFilter.map((size, index) => {
-          return <VariationItem variation={size} />;
-        })} */}
+        <h3 className={cx("heading")}>Filter by size</h3>
+        {sizesFilter.map((size, index) => {
+          return <VariationItem name="size" key={index} colorObj={size} />;
+        })}
 
         <span className={cx("separate")}></span>
       </div>

@@ -1,10 +1,9 @@
 import * as request from "~/utils/request";
 
-export const search = async (q, type = "less") => {
-  const result = await request.get("users/search", {
+export const search = async (q) => {
+  const result = await request.get("products/search", {
     params: {
       q,
-      type,
     },
   });
 

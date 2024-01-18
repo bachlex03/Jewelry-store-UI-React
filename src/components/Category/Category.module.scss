@@ -12,15 +12,11 @@
   padding-top: 10px;
   padding-left: 15px;
   overflow: hidden;
-  max-height: 0;
-  transition: max-height 0.3s ease; /* Transition only max-height for smooth animation */
-
-  &.opened {
-    max-height: 500px; /* A large value, or use an appropriate value based on your content */
-  }
+  max-height: 500px;
+  transition: all 0.5s ease-in-out;
 
   &.closed {
-    max-height: 0; /* A large value, or use an appropriate value based on your content */
+    max-height: 0;
   }
 
   li {

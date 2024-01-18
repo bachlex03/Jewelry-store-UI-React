@@ -3,27 +3,42 @@ import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 const cx = classNames.bind(style);
+
 let classes = {};
+
+let listHeight = 0;
 
 function Category({ category }) {
   const iconRefs = useRef();
+  const listRef = useRef();
 
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
+
+  classes = { closed: !open };
 
   const children = category.children || [];
 
   const handleOpen = () => {
-    if (open) {
-      classes = { closed: true };
-      setOpen(false);
-    } else {
-      classes = { opened: true };
-      setOpen(true);
-    }
+    listRef.current.style.transition = "all 0.5s ease-in-out";
+    listRef.current.style.maxHeight = !open ? listHeight + "px" : 0;
+
+    setOpen(!open);
   };
+
+  useEffect(() => {
+    if (listRef.current.clientHeight > 10) {
+      listHeight = listRef.current.clientHeight;
+    }
+
+    console.log(listHeight);
+
+    listRef.current.style.transition = "none";
+
+    setOpen(false);
+  }, []);
 
   return (
     <div className={cx("parent")}>
@@ -35,7 +50,7 @@ function Category({ category }) {
           <FontAwesomeIcon icon={faPlus} />
         </i>
       </div>
-      <ul className={cx("list", classes)}>
+      <ul className={cx("list", classes)} ref={listRef}>
         {children.map((child, index) => {
           return (
             <li key={index}>

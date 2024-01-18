@@ -63,7 +63,7 @@ function VariationItem({ name, colorObj }) {
             <FontAwesomeIcon icon={faSquare} />
           )}
         </i>
-        <p className={cx("name")}>{colorObj.colorName}</p>
+        <p className={cx("name")}>{colorObj.name}</p>
       </div>
       <span className={cx("quantity")}>(0)</span>
     </div>

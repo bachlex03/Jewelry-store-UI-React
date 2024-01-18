@@ -43,6 +43,8 @@ function Shop() {
 
       setProducts(distinctProducts);
 
+      console.log(allProducts);
+
       productsLength = distinctProducts.length;
     };
 

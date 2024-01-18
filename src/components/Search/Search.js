@@ -22,6 +22,7 @@ function Search() {
   const inputRef = useRef();
   const clearRef = useRef();
   const spinnerRef = useRef();
+  const listRef = useRef();
 
   const debounced = useDebounce(inputValue, 500);
 
@@ -88,6 +89,10 @@ function Search() {
           onChange={handleInput}
           onFocus={() => {
             setShowResult(true);
+
+            if (inputValue.length > 0) {
+              listRef.current.style.display = "block";
+            }
           }}
           value={inputValue}
         />
@@ -95,27 +100,39 @@ function Search() {
         {spinner ? icons.spinner : Fragment}
       </div>
       <ul
+        ref={listRef}
         className={cx("list")}
         style={{
           display: showResult && products.length > 0 ? "block" : "none",
+        }}
+        onMouseLeave={() => {
+          listRef.current.style.display = "none";
+
+          inputRef.current.blur();
         }}
       >
         {products.map((product, index) => {
           return (
             <li key={index}>
-              <Link to="/details" className="flex align-center">
+              <Link
+                to={`/products/${product.slug}`}
+                className="flex align-center"
+              >
                 <img
                   src={images.product}
                   alt="product-img"
                   className={cx("img")}
                 />
                 <div>
-                  <h4 className={cx("name")}>
-                    Veronece 18K Clad 10 Diamond Cut
-                  </h4>
+                  <h4 className={cx("name")}>{product.name}</h4>
                   <div className="flex justify-between align-center mt-10">
-                    <span className={cx("category")}>Band</span>
-                    <Price fs_15 />
+                    <span className={cx("category")}>{product.category}</span>
+                    <Price
+                      fs_15
+                      value={product.price}
+                      promotion={product.promotion}
+                      old_new_price
+                    />
                   </div>
                 </div>
               </Link>

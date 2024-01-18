@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 
 import images from "~/assets/images";
 import { Search, Cart } from "~/components";
@@ -71,26 +72,28 @@ function SubHeader() {
           </div>
 
           {/* Cart */}
-          <div
-            className={cx("cart-wrapper", "icon-wrapper")}
-            onMouseMove={handleOpen}
-            onMouseLeave={handleClose}
-          >
-            <i className={cx("icon", "cart-icon", "ti-shopping-cart")}></i>
-            <span className={cx("quantity")}>{cartQuantity}</span>
-
+          <Link to="/cart">
             <div
-              className={cx("cart-component")}
-              display-non="true"
-              onMouseMove={(e) => {
-                e.stopPropagation();
-              }}
-              ref={cartRef}
-              onAnimationEnd={handleDisplay}
+              className={cx("cart-wrapper", "icon-wrapper")}
+              onMouseMove={handleOpen}
+              onMouseLeave={handleClose}
             >
-              <Cart />
+              <i className={cx("icon", "cart-icon", "ti-shopping-cart")}></i>
+              <span className={cx("quantity")}>{cartQuantity}</span>
+
+              <div
+                className={cx("cart-component")}
+                display-non="true"
+                onMouseMove={(e) => {
+                  e.stopPropagation();
+                }}
+                ref={cartRef}
+                onAnimationEnd={handleDisplay}
+              >
+                <Cart />
+              </div>
             </div>
-          </div>
+          </Link>
         </div>
       </div>
     </section>

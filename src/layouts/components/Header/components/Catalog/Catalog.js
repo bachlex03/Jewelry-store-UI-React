@@ -9,6 +9,8 @@ import { CategoriesHeader } from "~/components";
 
 const cx = classNames.bind(styles);
 
+let timer;
+
 function Catalog() {
   const categoriesRef = useRef();
 
@@ -21,7 +23,7 @@ function Catalog() {
   };
 
   const handleOpen = (e) => {
-    console.log(e.pageX);
+    if (!categoriesRef.current) return;
     categoriesRef.current.removeAttribute("display-non");
 
     categoriesRef.current.removeAttribute("closing");
@@ -30,6 +32,10 @@ function Catalog() {
   };
 
   const handleClose = (e) => {
+    clearTimeout(timer);
+
+    timer = null;
+
     categoriesRef.current.removeAttribute("opening");
 
     categoriesRef.current.setAttribute("closing", true);
@@ -48,13 +54,27 @@ function Catalog() {
           </li>
           <li
             className={cx("shop-catalog")}
-            onMouseMove={handleOpen}
+            onMouseOver={() => {
+              if (!timer) {
+                timer = setTimeout(() => {
+                  handleOpen();
+                }, 200);
+              }
+            }}
             onMouseLeave={handleClose}
           >
-            <Link to="/shop" className={cx("item")}>
-              Shop
-              <FontAwesomeIcon icon={faChevronDown} className={cx("icon")} />
-            </Link>
+            <div>
+              <Link to="/shop" className={cx("item")}>
+                Shop
+                <FontAwesomeIcon
+                  icon={faChevronDown}
+                  className={cx("icon")}
+                  onMouseOver={(e) => {
+                    e.stopPropagation();
+                  }}
+                />
+              </Link>
+            </div>
 
             <div
               display-non="true"
