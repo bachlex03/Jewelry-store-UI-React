@@ -18,7 +18,6 @@ function Carousel({ heading = "Default heading", children }) {
   const firstCardRef = useRef();
 
   const dragStart = (e) => {
-    carouselRef.current.classList.add("isDragging");
     isDragging = true;
 
     startX = e.pageX;
@@ -33,7 +32,6 @@ function Carousel({ heading = "Default heading", children }) {
 
   document.addEventListener("mouseup", () => {
     isDragging = false;
-    carouselRef.current.classList.remove("isDragging");
   });
 
   useEffect(() => {
