@@ -1,0 +1,29 @@
+.top-show {
+  margin: 20px 12px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.5rem;
+  border-bottom: 1px solid #ccc;
+}
+
+.result-count {
+  display: inline-block;
+  color: #696969;
+  line-height: 42px;
+  margin-bottom: 10px;
+}
+
+.sorting {
+  display: inline-block;
+  position: relative;
+
+  line-height: 42px;
+  margin-bottom: 10px;
+}
+
+.dropdown-component {
+  position: absolute;
+  z-index: 101;
+  right: 220px;
+}
