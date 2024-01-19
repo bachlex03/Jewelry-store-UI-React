@@ -1,24 +1,42 @@
 import style from "./CategoriesHeader.module.scss";
 import classNames from "classnames/bind";
+import { useEffect, useState } from "react";
 
+import * as categoryServices from "~/apiServices/categoryServices";
 import { SubCategoryItem } from "~/components";
 import images from "~/assets/images";
 
 const cx = classNames.bind(style);
 
-function CategoriesHeader() {
+function CategoriesHeader({ handleClose }) {
+  const [categories, setCategories] = useState([]);
+
+  // fetch categories
+  useEffect(() => {
+    const fetchApi = async () => {
+      const result = await categoryServices.categories();
+
+      setCategories(result);
+    };
+
+    fetchApi();
+  }, []);
+
   return (
     <div className={cx("categories-header")}>
       <div className="row">
-        <div className="col l-4">
-          <SubCategoryItem />
-        </div>
-        <div className="col l-4">
-          <SubCategoryItem />
-        </div>
-        <div className="col l-4">
-          <SubCategoryItem />
-        </div>
+        {categories.map((category) => {
+          return (
+            <div
+              className="col l-4"
+              onClick={() => {
+                handleClose();
+              }}
+            >
+              <SubCategoryItem category={category} />
+            </div>
+          );
+        })}
         <div className="col l-4">
           <SubCategoryItem />
         </div>

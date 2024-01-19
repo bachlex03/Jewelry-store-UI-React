@@ -4,28 +4,38 @@ import { Link } from "react-router-dom";
 
 const cx = classNames.bind(styles);
 
-function SubCategoryItem({ parentName }) {
+function SubCategoryItem({ category }) {
   return (
     <div className={cx("wrapper")}>
       <h4 className={cx("parent")}>
-        <Link>Bracelets</Link>
+        <Link>{category ? category.name : "By Metal"}</Link>
       </h4>
+
       <ul className={cx("list")}>
-        <li>
-          <Link to="">item</Link>
-        </li>
-        <li>
-          <Link to="">item</Link>
-        </li>
-        <li>
-          <Link to="">item</Link>
-        </li>
-        <li>
-          <Link to="">item</Link>
-        </li>
-        <li>
-          <Link to="">item</Link>
-        </li>
+        {category &&
+          category.children.map((child) => {
+            return (
+              <li>
+                <Link to={`/categories/${child.slug}`}>{child.name}</Link>
+              </li>
+            );
+          })}
+
+        {category ? (
+          <></>
+        ) : (
+          <>
+            <li>
+              <Link to="">item</Link>
+            </li>
+            <li>
+              <Link to="">item</Link>
+            </li>
+            <li>
+              <Link to="">item</Link>
+            </li>
+          </>
+        )}
       </ul>
     </div>
   );

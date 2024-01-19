@@ -7,7 +7,6 @@ import * as userServices from "~/apiServices/userServices";
 
 import images from "~/assets/images";
 import {
-  Button,
   ServiceItem,
   Collection,
   Product,

@@ -10,12 +10,19 @@
 }
 
 .list {
-  margin-top: 20px;
+  margin-top: 14px;
 
   li a {
     font-size: 1.3rem;
     cursor: pointer;
     width: 100%;
-    line-height: 1.6;
+    line-height: 2;
+    transition: all 0.1s linear;
+  }
+
+  li {
+    &:hover a {
+      color: var(--green);
+    }
   }
 }

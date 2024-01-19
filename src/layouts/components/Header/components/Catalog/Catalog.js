@@ -85,7 +85,7 @@ function Catalog() {
               }}
               onAnimationEnd={handleDisplay}
             >
-              <CategoriesHeader />
+              <CategoriesHeader handleClose={handleClose} />
             </div>
           </li>
           <li>

@@ -44,8 +44,6 @@ function Carousel({ heading = "Default heading", children }) {
           btn.id === "btn-left" ? -firstCardWidth : firstCardWidth;
       });
     });
-
-    console.log();
   }, []);
 
   return (

@@ -8,8 +8,6 @@ function Slider() {
 
   let Comp = arrSliders[index];
 
-  console.log(index);
-
   useEffect(() => {
     setInterval(() => {
       setIndex((prev) => {

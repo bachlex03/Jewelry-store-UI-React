@@ -6,9 +6,6 @@ const cx = classNames.bind(style);
 let originObj = null;
 
 function Dropdown({ arr = [], products, setProducts, setNameSorting }) {
-  // console.log(products);
-  console.log("Dropdown mounted");
-
   if (!originObj || originObj.length === 0) {
     originObj = products;
   }
