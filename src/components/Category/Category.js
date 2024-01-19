@@ -33,8 +33,6 @@ function Category({ category }) {
       listHeight = listRef.current.clientHeight;
     }
 
-    console.log(listHeight);
-
     listRef.current.style.transition = "none";
 
     setOpen(false);

@@ -18,6 +18,7 @@ export const FiltersContext = createContext();
 
 let productsLength = 0;
 const productsShow = 9;
+let openDropdown = false;
 
 function Shop() {
   console.log("shop mounted");
@@ -30,6 +31,7 @@ function Shop() {
   const [show, setShow] = useState({ start: 0, end: 8 });
 
   const allProductsRef = useRef([]);
+  const dropdownRef = useRef();
 
   const { categoryParam } = useParams();
 
@@ -45,8 +47,6 @@ function Shop() {
       );
 
       setProducts(distinctProducts);
-
-      console.log(allProducts);
 
       productsLength = distinctProducts.length;
     };
@@ -103,12 +103,27 @@ function Shop() {
                 <p className={cx("result-count")}>
                   Showing {products.length}–12 of {products.length} results
                 </p>
-                <div className={cx("sorting")}>
+                <div
+                  className={cx("sorting")}
+                  onClick={() => {
+                    dropdownRef.current.style.display = openDropdown
+                      ? "none"
+                      : "block";
+                    openDropdown = !openDropdown;
+                  }}
+                >
                   {nameSorting}
                   <i className="ml-10">
                     <FontAwesomeIcon icon={faChevronDown} />
                   </i>
-                  <div className={cx("dropdown-component")}>
+                  <div
+                    ref={dropdownRef}
+                    className={cx("dropdown-component")}
+                    onMouseLeave={() => {
+                      dropdownRef.current.style.display = "none";
+                      openDropdown = false;
+                    }}
+                  >
                     <Dropdown
                       products={products}
                       setProducts={setProducts}
