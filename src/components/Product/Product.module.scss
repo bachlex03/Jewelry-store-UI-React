@@ -47,6 +47,10 @@
   color: #888686;
   height: 20px;
   margin-top: 15px;
+
+  &::first-letter {
+    text-transform: uppercase;
+  }
 }
 
 .heading {

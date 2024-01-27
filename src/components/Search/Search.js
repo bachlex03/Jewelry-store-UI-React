@@ -28,7 +28,7 @@ function Search() {
 
   const handleClear = (e) => {
     setInputValue("");
-    setProducts([]);
+    // setProducts([]);
     inputRef.current.focus();
   };
 
@@ -48,7 +48,7 @@ function Search() {
 
   useEffect(() => {
     if (!inputValue) {
-      setProducts([]);
+      // setProducts([]);
       return;
     }
 
@@ -56,7 +56,7 @@ function Search() {
       try {
         const result = await searchService.search(debounced);
 
-        setProducts(result);
+        // setProducts(result);
       } catch (err) {
         console.log(err);
       }

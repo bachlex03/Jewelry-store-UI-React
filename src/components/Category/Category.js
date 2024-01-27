@@ -12,10 +12,10 @@ let classes = {};
 let listHeight = 0;
 
 function Category({ category }) {
+  const [open, setOpen] = useState(true);
+
   const iconRefs = useRef();
   const listRef = useRef();
-
-  const [open, setOpen] = useState(true);
 
   classes = { closed: !open };
 
@@ -28,6 +28,7 @@ function Category({ category }) {
     setOpen(!open);
   };
 
+  // handle animation
   useEffect(() => {
     if (listRef.current.clientHeight > 10) {
       listHeight = listRef.current.clientHeight;
@@ -40,7 +41,7 @@ function Category({ category }) {
 
   return (
     <div className={cx("parent")}>
-      <div className="flex justify-between">
+      <div className="flex justify-between align-center">
         <Link to={`/categories/${category.slug}`}>
           <h4 className={cx("heading")}>{category.name}</h4>
         </Link>

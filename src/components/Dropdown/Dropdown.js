@@ -13,19 +13,19 @@ function Dropdown({ arr = [], products, setProducts, setNameSorting }) {
   const handleSort = (sortObj) => {
     switch (sortObj.type) {
       case "asc":
-        setProducts(products.sort((a, b) => a.price - b.price));
+        // setProducts(products.sort((a, b) => a.price - b.price));
 
         setNameSorting(sortObj.name);
         break;
       case "desc":
-        setProducts(products.sort((a, b) => b.price - a.price));
+        // setProducts(products.sort((a, b) => b.price - a.price));
 
         setNameSorting(sortObj.name);
         break;
       case "popularity":
         break;
       default:
-        setProducts(originObj);
+        // setProducts(originObj);
 
         setNameSorting(sortObj.name);
     }

@@ -58,27 +58,29 @@ function Product({ product, soldOut }) {
 
         <Link
           to={{
-            pathname: `/products/${product ? product.slug : "demo-slug"}`,
+            pathname: `/products/${product ? product.slug : "demo"}`,
           }}
           invalid={invalid ? "true" : "false"}
         >
           <div className={cx("img-wrapper", classes)}>
-            <img src={images.product} alt="product" className={cx("img")}></img>
+            <img
+              src={product ? product.imageUrls[0] : images.product}
+              alt="product"
+              className={cx("img")}
+            ></img>
           </div>
         </Link>
         <div className={cx("product-body", classes)}>
           <span className={cx("label")}>
-            {product ? product.category : "demo-label"}
+            {product ? product.category.replace("-", " ") : "demo"}
           </span>
           <Link
             to={{
-              pathname: `/products/${product ? product.slug : "demo-slug"}`,
+              pathname: `/products/${product ? product.slug : "demo"}`,
             }}
             invalid={invalid ? "true" : "false"}
           >
-            <h3 className={cx("heading")}>
-              {product ? product.name : "demo product"}
-            </h3>
+            <h3 className={cx("heading")}>{product ? product.name : "demo"}</h3>
           </Link>
 
           <div className={cx("price-wrapper")}>

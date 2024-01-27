@@ -22,15 +22,13 @@ function Sidebar({ categories }) {
 
   // fetching colors, sizes
   useEffect(() => {
-    const fetchApi = async () => {
+    (async () => {
       const colors = await siteServices.getColors();
       const sizes = await siteServices.getSizes();
 
       setColorsFilter(colors);
       setSizesFilter(sizes);
-    };
-
-    fetchApi();
+    })();
   }, []);
 
   return (

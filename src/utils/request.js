@@ -22,19 +22,19 @@ request.interceptors.response.use(
 );
 
 export const get = async (path, options = {}) => {
-  const response = await request.get(path, options);
+  const response = await request.get("api/" + path, options);
 
   return response.data;
 };
 
 export const post = async (path, options = {}) => {
-  const response = await request.post(path, options);
+  const response = await request.post("api/" + path, options);
 
   return response;
 };
 
 export const put = async (path, options = {}) => {
-  const response = await request.put(path, options);
+  const response = await request.put("api/" + path, options);
 
   return response;
 };

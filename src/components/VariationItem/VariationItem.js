@@ -45,7 +45,7 @@ function VariationItem({ name, colorObj }) {
       filters
     );
 
-    setProducts(filteredProducts);
+    // setProducts(filteredProducts);
   };
 
   return (

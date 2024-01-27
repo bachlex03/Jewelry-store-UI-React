@@ -72,28 +72,28 @@ function SubHeader() {
           </div>
 
           {/* Cart */}
-          <Link to="/cart">
-            <div
-              className={cx("cart-wrapper", "icon-wrapper")}
-              onMouseMove={handleOpen}
-              onMouseLeave={handleClose}
-            >
+          <div
+            className={cx("cart-wrapper", "icon-wrapper")}
+            onMouseMove={handleOpen}
+            onMouseLeave={handleClose}
+          >
+            <Link to="/cart">
               <i className={cx("icon", "cart-icon", "ti-shopping-cart")}></i>
               <span className={cx("quantity")}>{cartQuantity}</span>
+            </Link>
 
-              <div
-                className={cx("cart-component")}
-                display-non="true"
-                onMouseMove={(e) => {
-                  e.stopPropagation();
-                }}
-                ref={cartRef}
-                onAnimationEnd={handleDisplay}
-              >
-                <Cart />
-              </div>
+            <div
+              className={cx("cart-component")}
+              display-non="true"
+              onMouseMove={(e) => {
+                e.stopPropagation();
+              }}
+              ref={cartRef}
+              onAnimationEnd={handleDisplay}
+            >
+              <Cart />
             </div>
-          </Link>
+          </div>
         </div>
       </div>
     </section>

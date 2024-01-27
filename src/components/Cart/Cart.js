@@ -80,9 +80,9 @@ function Cart() {
         </Button>
       </div>
       <div className="mt-10 text-center">
-        <Button to="/checkout" large hover>
+        {/* <Button to="/checkout" large hover>
           CHECKOUT
-        </Button>
+        </Button> */}
       </div>
     </div>
   );

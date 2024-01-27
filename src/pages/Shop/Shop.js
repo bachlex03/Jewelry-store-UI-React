@@ -1,6 +1,6 @@
 import styles from "./Shop.module.scss";
 import classNames from "classnames/bind";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import React, { useState, useEffect, createContext, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -27,57 +27,77 @@ function Shop() {
   const [categories, setCategories] = useState([]);
   const [nameSorting, setNameSorting] = useState("Default sorting");
   const [filters, setFilters] = useState({ color: [], size: [] });
-
   const [show, setShow] = useState({ start: 0, end: 8 });
 
-  const allProductsRef = useRef([]);
+  const productsRef = useRef({ all: [], distinct: [] });
   const dropdownRef = useRef();
 
+  const location = useLocation();
   const { categoryParam } = useParams();
+
+  // Handle products onClick or reload page
+  const handleProducts = () => {
+    let products = productsRef.current.distinct;
+
+    let categoryParams = [];
+
+    if (!products) return;
+
+    let childrenCategory = categories.find((c) => c.slug === categoryParam);
+
+    if (childrenCategory) {
+      categoryParams = childrenCategory.children.map((c) => c.slug);
+    }
+
+    console.log(categoryParams);
+    const filteredProducts = productFilter.filterByCategory(
+      products,
+      categoryParams.length ? [...categoryParams] : [categoryParam]
+    );
+
+    setProducts(filteredProducts);
+
+    return filteredProducts;
+  };
 
   // fetch products
   useEffect(() => {
-    const fetchApi = async () => {
+    (async () => {
       const allProducts = await productServices.products();
-      allProductsRef.current = allProducts;
+      productsRef.current.all = allProducts;
 
-      const distinctProducts = productFilter.distinctBy(
-        allProducts,
-        "category"
-      );
+      const distinctProducts = productFilter.distinctBy(allProducts, "slug");
 
-      setProducts(distinctProducts);
+      productsRef.current.distinct = distinctProducts;
+
+      if (location.pathname.startsWith("/categories")) {
+        handleProducts();
+      } else {
+        setProducts(distinctProducts);
+      }
+
+      console.log("1 !!!");
 
       productsLength = distinctProducts.length;
-    };
-
-    fetchApi();
+    })();
   }, []);
 
   // fetch categories
   useEffect(() => {
-    const fetchApi = async () => {
+    (async () => {
       const result = await categoryServices.categories();
 
       setCategories(result);
-    };
-
-    fetchApi();
+    })();
   }, []);
 
-  // handle products by category
   useEffect(() => {
-    if (categories.length === 0) return;
-
-    const filteredProducts = productFilter.filterByCategory_Variation(
-      allProductsRef.current,
-      categories,
-      categoryParam,
-      filters
-    );
-
-    setProducts(filteredProducts);
-  }, [categoryParam, categories]);
+    if (location.pathname.startsWith("/categories")) {
+      handleProducts();
+    } else {
+      setProducts(productsRef.current.distinct);
+    }
+  }, [categoryParam || categories]);
 
   return (
     <>
@@ -89,7 +109,7 @@ function Shop() {
               value={{
                 filters,
                 setFilters,
-                allProductsRef,
+                productsRef,
                 setProducts,
                 categories,
               }}
@@ -101,7 +121,8 @@ function Shop() {
             <div className="row">
               <div className={cx("top-show")}>
                 <p className={cx("result-count")}>
-                  Showing {products.length}–12 of {products.length} results
+                  Showing {products ? products.length : 0}–12 of{" "}
+                  {products ? products.length : 0} results
                 </p>
                 <div
                   className={cx("sorting")}
@@ -144,7 +165,7 @@ function Shop() {
                 <Product product={null} />
               </div>
               <div className="col l-4">
-                <Product product={products[0]} soldOut />
+                <Product product={null} soldOut />
               </div>
 
               {products.map((product, index) => {

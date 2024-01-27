@@ -10,11 +10,11 @@ const cx = classNames.bind(styles);
 function ServiceItem({ sale }) {
   return (
     <div className="flex align-center mt-20">
-      <Link to="/details">
+      <Link to="">
         <img src={images.product} alt="Product" className={cx("img")} />
       </Link>
       <div>
-        <Link to="/details">
+        <Link to="">
           <p className={cx("name")}>Rhombus Diamond Ring 18k White Gold</p>
         </Link>
         <div className="mt-10">

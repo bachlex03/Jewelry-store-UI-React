@@ -1,6 +1,8 @@
 export function filterByCategory(products, categoryParams = []) {
   let products_category = [];
 
+  console.log(categoryParams);
+
   categoryParams.forEach((pram) => {
     let filteredProducts = products.filter(
       (product) => product.category === pram
@@ -9,7 +11,7 @@ export function filterByCategory(products, categoryParams = []) {
     products_category = [...products_category, ...filteredProducts];
   });
 
-  return products_category.length > 0 ? products_category : products;
+  return products_category;
 }
 
 export function filterByVariation(products, filters = {}) {

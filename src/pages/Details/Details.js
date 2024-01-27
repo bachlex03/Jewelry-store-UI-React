@@ -109,6 +109,8 @@ function Details() {
     }
   };
 
+  console.dir(product.imageUrls);
+
   return (
     <div className="section-1200">
       <div className={cx("wrapper")}>
@@ -118,17 +120,27 @@ function Details() {
           Fragment
         )}
         <div className={cx("img-wrapper")}>
-          <img src={images.product} alt="" className={cx("default-img")} />
+          <img
+            src={product.imageUrls ? product.imageUrls[0] : images.product}
+            alt=""
+            className={cx("default-img")}
+          />
           <div className={cx("img-list")}>
-            <div className={cx("img-item")}>
-              <img
-                src={images.product}
-                alt="sub-product"
-                className={cx("sub-img")}
-              />
-            </div>
+            {product.imageUrls
+              ? product.imageUrls.map((img, index) => {
+                  return (
+                    <div key={index} className={cx("img-item")}>
+                      <img
+                        src={img}
+                        alt="sub-product"
+                        className={cx("sub-img")}
+                      />
+                    </div>
+                  );
+                })
+              : null}
 
-            <div className={cx("img-item")}>
+            {/* <div className={cx("img-item")}>
               <img
                 src={images.subProduct1}
                 alt="sub-product"
@@ -142,7 +154,7 @@ function Details() {
                 alt="sub-product"
                 className={cx("sub-img")}
               />
-            </div>
+            </div> */}
           </div>
         </div>
 

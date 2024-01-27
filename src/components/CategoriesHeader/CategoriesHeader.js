@@ -25,13 +25,14 @@ function CategoriesHeader({ handleClose }) {
   return (
     <div className={cx("categories-header")}>
       <div className="row">
-        {categories.map((category) => {
+        {categories.map((category, index) => {
           return (
             <div
               className="col l-4"
               onClick={() => {
                 handleClose();
               }}
+              key={index}
             >
               <SubCategoryItem category={category} />
             </div>

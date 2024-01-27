@@ -13,9 +13,9 @@ function SubCategoryItem({ category }) {
 
       <ul className={cx("list")}>
         {category &&
-          category.children.map((child) => {
+          category.children.map((child, index) => {
             return (
-              <li>
+              <li key={index}>
                 <Link to={`/categories/${child.slug}`}>{child.name}</Link>
               </li>
             );
