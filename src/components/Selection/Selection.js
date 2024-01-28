@@ -16,6 +16,8 @@ import * as productFilter from "~/utils/productFilter";
 
 const cx = classNames.bind(style);
 
+let productsByVariantId = null;
+
 function Selection(props, ref) {
   const variantIdRef = useRef(0);
 
@@ -46,13 +48,20 @@ function Selection(props, ref) {
   });
 
   const handleVariation = (e) => {
+    if (
+      e.target.getAttribute("soldout") == null ||
+      e.target.getAttribute("soldout") == "true"
+    ) {
+      return;
+    }
+
     if (e.target.getAttribute("available") === "false") return;
 
     let variantId = e.target.getAttribute("data");
 
     variantIdRef.current = Number.parseInt(variantId);
 
-    let productsByVariantId = productFilter.filterVariantsBy(
+    productsByVariantId = productFilter.filterVariantsBy(
       name,
       variantId,
       products
@@ -71,7 +80,10 @@ function Selection(props, ref) {
 
     valuesList.forEach((element, index) => {
       element.addEventListener("click", function (e) {
-        if (element.getAttribute("available") === "true") {
+        if (
+          element.getAttribute("available") === "true" &&
+          element.getAttribute("soldout") === "false"
+        ) {
           listRef.current.classList.add("hidden");
 
           setValue(e.target.innerText);
@@ -86,13 +98,26 @@ function Selection(props, ref) {
 
     availableVariants = [...new Set(availableVariants)].sort((a, b) => a - b);
 
-    console.log(availableVariants);
+    let i = 0;
 
     const validLi = liDOM.map((item, index) => {
       let available = false;
+      let soldOut = false;
 
-      if (availableVariants[index]) {
+      if (availableVariants[i] === index + 1) {
         available = true;
+
+        if (productsByVariantId) {
+          let product = productsByVariantId.find(
+            (product) => product.size === availableVariants[i]
+          );
+
+          if (product && product.quantity === 0) {
+            soldOut = true;
+          }
+        }
+
+        i++;
       }
 
       let classes = cx("", { noAvailable: !available });
@@ -101,11 +126,13 @@ function Selection(props, ref) {
         <li
           key={index}
           available={available ? "true" : "false"}
+          soldout={soldOut ? "true" : "false"}
           data={index + 1}
           className={classes}
           onClick={handleVariation}
         >
           {item}
+          {soldOut ? <span> Sold out</span> : null}
         </li>
       );
       return DOM;

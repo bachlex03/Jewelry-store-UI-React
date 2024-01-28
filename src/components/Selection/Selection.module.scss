@@ -66,5 +66,20 @@
       opacity: 0.5;
       cursor: default;
     }
+
+    &[soldout="true"] {
+      user-select: none;
+      cursor: default;
+
+      display: flex;
+      justify-content: space-between;
+
+      span {
+        opacity: 0.7;
+        color: red;
+        font-style: italic;
+        font-weight: 500;
+      }
+    }
   }
 }

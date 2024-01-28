@@ -26,36 +26,66 @@ export function filterByCategory(products, categories, categoryParam) {
 export function filterByVariation(products, filters = {}) {
   let filteredProducts = [];
 
-  let temp = products;
+  let groupedProducts = products.reduce((acc, product) => {
+    acc[product.slug] = acc[product.slug] || [];
+    acc[product.slug].push(product);
+    return acc;
+  }, {});
 
-  Object.keys(filters).forEach((key) => {
-    let count = 0;
-    if (filters[key].length > 0) {
-      count++;
+  let [colors, sizes] = Object.values(filters);
 
-      let groupedProducts = products.reduce((acc, product) => {
-        acc[product.slug] = acc[product.slug] || [];
-        acc[product.slug].push(product);
-        return acc;
-      }, {});
+  if (colors.length > 0 && sizes.length > 0) {
+    Object.values(groupedProducts).forEach((group) => {
+      let temp = [];
 
-      filteredProducts = Object.values(groupedProducts)
-        .filter((group) =>
-          filters[key].every((value) => {
-            let newKey = key.slice(0, key.lastIndexOf("s"));
+      for (let color of colors)
+        for (let size of sizes) {
+          let product = group.find((product) => {
+            return product.size === size && product.color === color;
+          });
 
-            return group.some((product) => product[newKey] === value);
-          })
-        )
-        .flat();
+          if (product) temp.push(product);
+        }
 
-      if (filteredProducts.length === 0 && count === 1) temp = [];
-    }
-  });
+      console.log("temp", temp);
 
-  console.log(filteredProducts);
+      if (temp.length >= colors.length * sizes.length)
+        filteredProducts = [...filteredProducts, ...temp];
+    });
 
-  return filteredProducts.length > 0 ? filteredProducts : temp;
+    console.log(filteredProducts);
+
+    return filteredProducts;
+  }
+
+  // filteredProducts = Object.values(groupedProducts).filter((group) => {
+  //   let product = group.find((product) => {
+  //     if (colors.length && sizes.length) {
+  //       for (let color of colors)
+  //         for (let size of sizes) {
+  //           return product.size === size && product.color === color;
+  //         }
+  //     } else if (colors.length) {
+  //       for (let color of colors) return product.color === color;
+  //     } else {
+  //       for (let size of sizes) return product.size === size;
+  //     }
+  //   });
+
+  //   return product;
+  // });
+
+  // for (let color of colors) {
+  //   if (sizes.length) {
+  //     for (let size of sizes) {
+  //       return product.size === size && product.color === color;
+  //     }
+  //   } else {
+  //     return product.color === color;
+  //   }
+  // }
+
+  return [];
 }
 
 export function distinctBy(products, key) {
@@ -79,7 +109,10 @@ export function filterByCategory_Variation(
     categoryParam
   );
 
-  let productsByFilters = filterByVariation(productsByCategory, filters);
+  let productsByFilters = filterByVariation(
+    productsByCategory.length ? productsByCategory : products,
+    filters
+  );
 
   products = distinctBy(productsByFilters, "slug");
 
@@ -94,7 +127,5 @@ export const filterVariants = (products, variation) => {
 export const filterVariantsBy = (name, variantId, products) => {
   // console.log(products);
 
-  return products.filter(
-    (product) => product[name] == variantId && product.quantity > 0
-  );
+  return products.filter((product) => product[name] == variantId);
 };

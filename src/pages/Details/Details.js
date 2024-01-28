@@ -32,6 +32,9 @@ function Details() {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.values);
 
+  // console.log("availableColors", availableColors);
+  // console.log("availableSizes", availableSizes);
+
   // Fetching product details
   useEffect(() => {
     const fetchApiProductDetails = (async () => {
