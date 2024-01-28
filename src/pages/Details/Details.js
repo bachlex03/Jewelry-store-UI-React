@@ -22,15 +22,19 @@ function Details() {
 
   const allVariantsRef = useRef([]);
   const variationValueRefs = useRef([]);
+
+  // handle input quantity
   const inputQuantity = useRef(1);
 
-  const { param } = useParams();
+  const { param } = useParams(); // param = product.slug
 
+  // handle add to cart
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.values);
 
+  // Fetching product details
   useEffect(() => {
-    const fetchApi = async () => {
+    const fetchApiProductDetails = (async () => {
       const result = await productServices.details(param);
 
       allVariantsRef.current = result;
@@ -39,9 +43,7 @@ function Details() {
 
       setAvailableColors(productFilters.filterVariants(result, "color"));
       setAvailableSizes(productFilters.filterVariants(result, "size"));
-    };
-
-    fetchApi();
+    })();
 
     variationValueRefs.current[0] = React.createRef();
     variationValueRefs.current[1] = React.createRef();
@@ -108,8 +110,6 @@ function Details() {
       dispatch(add(data));
     }
   };
-
-  console.dir(product.imageUrls);
 
   return (
     <div className="section-1200">

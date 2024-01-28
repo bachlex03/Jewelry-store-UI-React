@@ -28,11 +28,15 @@ function Selection(props, ref) {
     setAvailableVariants,
   } = props;
 
+  // set chosen variant in box
   let [value, setValue] = useState("Choose your option");
+
+  // handle show variant if available and blur if not available
   let [liDOM, setLiDOM] = useState([]);
 
   let listRef = useRef();
 
+  // handle render valid variants in selection remain
   useImperativeHandle(ref, () => {
     return {
       selectValue: value,
@@ -43,6 +47,7 @@ function Selection(props, ref) {
 
   const handleVariation = (e) => {
     if (e.target.getAttribute("available") === "false") return;
+
     let variantId = e.target.getAttribute("data");
 
     variantIdRef.current = Number.parseInt(variantId);
@@ -58,8 +63,10 @@ function Selection(props, ref) {
     );
   };
 
+  // Handle set value to box
   useEffect(() => {
     let valuesList = listRef.current.children;
+
     valuesList = Array.from(valuesList);
 
     valuesList.forEach((element, index) => {
@@ -73,18 +80,18 @@ function Selection(props, ref) {
     });
   }, [liDOM]);
 
+  // handle show available li variant
   useEffect(() => {
     let liDOM = [...defaultArr];
 
     availableVariants = [...new Set(availableVariants)].sort((a, b) => a - b);
 
-    let i = 0;
+    console.log(availableVariants);
 
     const validLi = liDOM.map((item, index) => {
       let available = false;
 
-      if (availableVariants[i] === index + 1) {
-        i++;
+      if (availableVariants[index]) {
         available = true;
       }
 
@@ -101,26 +108,21 @@ function Selection(props, ref) {
           {item}
         </li>
       );
-
       return DOM;
     });
-
     setLiDOM(validLi);
   }, [availableVariants]);
-
-  const handleList = (e) => {
-    listRef.current.classList.toggle("hidden");
-  };
-
-  const handleMouseLeave = (e) => {
-    listRef.current.classList.add("hidden");
-  };
 
   return (
     <div className={cx("variation-wrapper")}>
       <span className={cx("variation-name")}>{name}</span>
       <div className={cx("selection")}>
-        <div className={cx("selection-wrapper")} onClick={handleList}>
+        <div
+          className={cx("selection-wrapper")}
+          onClick={() => {
+            listRef.current.classList.toggle("hidden");
+          }}
+        >
           <span>{value}</span>
           <i className={cx("icon")}>
             <FontAwesomeIcon icon={faChevronDown} />
@@ -128,7 +130,9 @@ function Selection(props, ref) {
         </div>
         <ul
           className={cx("variation-list", "hidden")}
-          onMouseLeave={handleMouseLeave}
+          onMouseLeave={() => {
+            listRef.current.classList.add("hidden");
+          }}
           ref={listRef}
         >
           {liDOM.map((li) => {

@@ -61,5 +61,10 @@
     &:hover {
       background-color: #e4e0e0;
     }
+
+    &.noAvailable {
+      opacity: 0.5;
+      cursor: default;
+    }
   }
 }
