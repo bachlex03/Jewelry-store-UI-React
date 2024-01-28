@@ -1,7 +1,16 @@
-export function filterByCategory(products, categoryParams = []) {
+export function filterByCategory(products, categories, categoryParam) {
   let products_category = [];
+  let categoryParams = [];
 
-  console.log(categoryParams);
+  let childrenCategory = categories.find((c) => c.slug === categoryParam);
+
+  if (childrenCategory) {
+    categoryParams = childrenCategory.children.map((c) => c.slug);
+  }
+
+  categoryParams = categoryParams.length
+    ? [...categoryParams]
+    : [categoryParam];
 
   categoryParams.forEach((pram) => {
     let filteredProducts = products.filter(
@@ -32,15 +41,19 @@ export function filterByVariation(products, filters = {}) {
 
       filteredProducts = Object.values(groupedProducts)
         .filter((group) =>
-          filters[key].every((value) =>
-            group.some((product) => product[key] === value)
-          )
+          filters[key].every((value) => {
+            let newKey = key.slice(0, key.lastIndexOf("s"));
+
+            return group.some((product) => product[newKey] === value);
+          })
         )
         .flat();
 
       if (filteredProducts.length === 0 && count === 1) temp = [];
     }
   });
+
+  console.log(filteredProducts);
 
   return filteredProducts.length > 0 ? filteredProducts : temp;
 }
@@ -57,21 +70,18 @@ export function distinctBy(products, key) {
 export function filterByCategory_Variation(
   products,
   categories,
-  defaultCategory,
+  categoryParam,
   filters = {}
 ) {
-  let params = [defaultCategory];
+  let productsByCategory = filterByCategory(
+    products,
+    categories,
+    categoryParam
+  );
 
-  categories.forEach((category) => {
-    if (category["slug"] === defaultCategory) {
-      params = [...category.children];
-    }
-  });
-
-  let productsByCategory = filterByCategory(products, params);
   let productsByFilters = filterByVariation(productsByCategory, filters);
 
-  products = distinctBy(productsByFilters, "category");
+  products = distinctBy(productsByFilters, "slug");
 
   return products;
 }

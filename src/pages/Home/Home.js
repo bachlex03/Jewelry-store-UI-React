@@ -128,17 +128,17 @@ function Home() {
 
     let listData = [
       { ...data, size: 1, color: 1 },
-      { ...data, size: 1, color: 2 },
-      { ...data, size: 1, color: 3 },
-      { ...data, size: 1, color: 4 },
-      { ...data, size: 2, color: 1 },
       { ...data, size: 2, color: 2 },
-      { ...data, size: 2, color: 3 },
-      { ...data, size: 2, color: 4 },
-      { ...data, size: 3, color: 1 },
-      { ...data, size: 3, color: 2 },
       { ...data, size: 3, color: 3 },
-      { ...data, size: 3, color: 4 },
+      { ...data, size: 4, color: 1 },
+      { ...data, size: 1, color: 1 },
+      { ...data, size: 2, color: 2 },
+      { ...data, size: 3, color: 3 },
+      { ...data, size: 4, color: 2 },
+      { ...data, size: 1, color: 1 },
+      { ...data, size: 2, color: 2 },
+      { ...data, size: 3, color: 3 },
+      { ...data, size: 4, color: 4 },
     ];
 
     let quantityList = [0, 5, 10, 15, 0, 20, 2, 17, 8, 3, 11];
@@ -149,7 +149,7 @@ function Home() {
     let mark = [];
     let c = [];
 
-    while (i < 8) {
+    while (i < 5) {
       random = Math.floor(Math.random() * 11);
       c[random] = random;
 

@@ -23,13 +23,17 @@ let openDropdown = false;
 function Shop() {
   console.log("shop mounted");
 
+  const [filters, setFilters] = useState({ colors: [], sizes: [] });
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [nameSorting, setNameSorting] = useState("Default sorting");
-  const [filters, setFilters] = useState({ color: [], size: [] });
+
+  // paging
   const [show, setShow] = useState({ start: 0, end: 8 });
 
   const productsRef = useRef({ all: [], distinct: [] });
+
+  // styling dropdown category
   const dropdownRef = useRef();
 
   const location = useLocation();
@@ -39,20 +43,12 @@ function Shop() {
   const handleProducts = () => {
     let products = productsRef.current.distinct;
 
-    let categoryParams = [];
-
     if (!products) return;
 
-    let childrenCategory = categories.find((c) => c.slug === categoryParam);
-
-    if (childrenCategory) {
-      categoryParams = childrenCategory.children.map((c) => c.slug);
-    }
-
-    console.log(categoryParams);
     const filteredProducts = productFilter.filterByCategory(
       products,
-      categoryParams.length ? [...categoryParams] : [categoryParam]
+      categories,
+      categoryParam
     );
 
     setProducts(filteredProducts);
@@ -75,8 +71,6 @@ function Shop() {
       } else {
         setProducts(distinctProducts);
       }
-
-      console.log("1 !!!");
 
       productsLength = distinctProducts.length;
     })();
@@ -107,11 +101,11 @@ function Shop() {
           <div className="col l-3">
             <FiltersContext.Provider
               value={{
+                setProducts,
+                productsRef,
+                categories,
                 filters,
                 setFilters,
-                productsRef,
-                setProducts,
-                categories,
               }}
             >
               <Sidebar categories={categories} />

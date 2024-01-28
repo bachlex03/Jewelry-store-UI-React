@@ -2,28 +2,23 @@ import styles from "./VariationItem.module.scss";
 import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSquare, faSquareCheck } from "@fortawesome/free-regular-svg-icons";
-import { useState, useContext } from "react";
-import { useParams } from "react-router-dom";
-
-import { FiltersContext } from "~/pages/Shop/Shop";
+import { useState, useContext, useEffect } from "react";
+import { useParams, useLocation } from "react-router-dom";
 
 import * as productFilter from "~/utils/productFilter";
+
+import { FiltersContext } from "~/pages/Shop/Shop";
 
 const cx = classNames.bind(styles);
 
 function VariationItem({ name, colorObj }) {
   const [checked, setChecked] = useState(false);
 
-  const { filters, setFilters, allProductsRef, setProducts, categories } =
-    useContext(FiltersContext);
-
   const { categoryParam } = useParams();
+  const location = useLocation();
 
-  const handleCheck = () => {
-    setChecked(!checked);
-
-    handleFilter();
-  };
+  const { productsRef, setProducts, categories, filters, setFilters } =
+    useContext(FiltersContext);
 
   const handleFilter = () => {
     let newFilters = filters;
@@ -36,24 +31,32 @@ function VariationItem({ name, colorObj }) {
       newFilters[name].push(colorObj._id);
     }
 
-    setFilters(newFilters);
-
     const filteredProducts = productFilter.filterByCategory_Variation(
-      allProductsRef.current,
+      productsRef.current.all,
       categories,
       categoryParam,
-      filters
+      newFilters
     );
 
-    // setProducts(filteredProducts);
+    setFilters(newFilters);
+    setProducts(filteredProducts);
   };
+
+  const handleCheck = () => {
+    setChecked(!checked);
+
+    handleFilter();
+  };
+
+  // clear selection if change category or url
+  useEffect(() => {
+    setChecked(false);
+  }, [location.pathname]);
 
   return (
     <div
       className={cx("wrapper", "flex justify-between")}
-      onClick={() => {
-        handleCheck();
-      }}
+      onClick={handleCheck}
     >
       <div className="flex align-center">
         <i className={cx("icon")}>

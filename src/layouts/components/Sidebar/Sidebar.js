@@ -53,7 +53,7 @@ function Sidebar({ categories }) {
       <div>
         <h3 className={cx("heading")}>Filter by color</h3>
         {colorsFilter.map((color, index) => {
-          return <VariationItem name="color" key={index} colorObj={color} />;
+          return <VariationItem name="colors" key={index} colorObj={color} />;
         })}
 
         <span className={cx("separate")}></span>
@@ -62,7 +62,7 @@ function Sidebar({ categories }) {
       <div>
         <h3 className={cx("heading")}>Filter by size</h3>
         {sizesFilter.map((size, index) => {
-          return <VariationItem name="size" key={index} colorObj={size} />;
+          return <VariationItem name="sizes" key={index} colorObj={size} />;
         })}
 
         <span className={cx("separate")}></span>
