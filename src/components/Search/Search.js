@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { Fragment, useState, useRef, useEffect } from "react";
 
-import images from "~/assets/images";
 import { useDebounce } from "~/hooks";
 import { Price } from "~/components";
 import * as searchService from "~/apiServices/searchService";
@@ -28,13 +27,17 @@ function Search() {
 
   const handleClear = (e) => {
     setInputValue("");
-    // setProducts([]);
+
+    setProducts([]);
+
     inputRef.current.focus();
   };
 
   const handleInput = (e) => {
     setInputValue(e.target.value);
+
     setClearIcon(false);
+
     setSpinner(false);
   };
 
@@ -44,11 +47,16 @@ function Search() {
     } else {
       setClearIcon(true);
     }
-  });
+  }, [inputValue]);
+
+  useEffect(() => {
+    listRef.current.style.display = "none";
+  }, []);
 
   useEffect(() => {
     if (!inputValue) {
-      // setProducts([]);
+      setProducts([]);
+
       return;
     }
 
@@ -56,7 +64,8 @@ function Search() {
       try {
         const result = await searchService.search(debounced);
 
-        // setProducts(result);
+        listRef.current.style.display = "block";
+        setProducts(result);
       } catch (err) {
         console.log(err);
       }
@@ -102,43 +111,51 @@ function Search() {
       <ul
         ref={listRef}
         className={cx("list")}
-        style={{
-          display: showResult && products.length > 0 ? "block" : "none",
-        }}
+        style={
+          {
+            // display: showResult && products.length > 0 ? "block" : "block",
+          }
+        }
         onMouseLeave={() => {
           listRef.current.style.display = "none";
 
           inputRef.current.blur();
         }}
       >
-        {products.map((product, index) => {
-          return (
-            <li key={index}>
-              <Link
-                to={`/products/${product.slug}`}
-                className="flex align-center"
-              >
-                <img
-                  src={images.product}
-                  alt="product-img"
-                  className={cx("img")}
-                />
-                <div>
-                  <h4 className={cx("name")}>{product.name}</h4>
-                  <div className="flex justify-between align-center mt-10">
-                    <span className={cx("category")}>{product.category}</span>
-                    <Price
-                      fs_15
-                      value={product.price}
-                      promotion={product.promotion}
-                      old_new_price
-                    />
+        {products.length ? (
+          products.map((product, index) => {
+            return (
+              <li key={index}>
+                <Link
+                  to={`/products/${product.slug}`}
+                  className="flex align-center"
+                >
+                  <img
+                    src={product.imageUrls[0]}
+                    alt="product-img"
+                    className={cx("img")}
+                  />
+                  <div>
+                    <h4 className={cx("name")}>{product.name}</h4>
+                    <div className="flex justify-between align-center mt-10">
+                      <span className={cx("category")}>{product.category}</span>
+                      <Price
+                        fs_15
+                        value={product.price}
+                        promotion={product.promotion}
+                        old_new_price
+                      />
+                    </div>
                   </div>
-                </div>
-              </Link>
-            </li>
-          );
-        })}
+                </Link>
+              </li>
+            );
+          })
+        ) : (
+          <div className={cx("not-found")}>
+            Product not found {console.log(products.length)}{" "}
+          </div>
+        )}
       </ul>
     </div>
   );
