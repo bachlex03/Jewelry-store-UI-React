@@ -152,9 +152,7 @@ function Search() {
             );
           })
         ) : (
-          <div className={cx("not-found")}>
-            Product not found {console.log(products.length)}{" "}
-          </div>
+          <div className={cx("not-found")}>Product not found </div>
         )}
       </ul>
     </div>

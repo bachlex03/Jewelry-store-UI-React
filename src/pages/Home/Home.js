@@ -126,19 +126,155 @@ function Home() {
       quantity: 1,
     };
 
+    let data7 = {
+      // name: "Silver Reflections Gemston",
+      // desc: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
+      // imageUrls: [
+      //   "https://mldrbgfat3wx.i.optimole.com/SQPHnU0-fDNzwSu7/w:auto/h:auto/q:auto/https://dici.themes.zone/main/wp-content/uploads/sites/8/2018/04/DC_Products_8.jpg",
+      //   "https://mldrbgfat3wx.i.optimole.com/SQPHnU0-DwSCHIno/w:300/h:300/q:auto/rt:fill/g:ce/https://dici.themes.zone/main/wp-content/uploads/sites/8/2018/04/DC_Products_4.jpg",
+      //   "https://mldrbgfat3wx.i.optimole.com/SQPHnU0-b4BhHcQy/w:auto/h:auto/q:auto/https://dici.themes.zone/main/wp-content/uploads/sites/8/2018/04/DC_Products_3.jpg",
+      // ],
+      // price: 333,
+      // size: 1,
+      // color: 1,
+      // category: "emerald-spring",
+      // quantity: 1,
+    };
+
+    let data8 = {
+      // name: "Cross Stripes & Stone Bracelet",
+      // desc: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
+      // imageUrls: [
+      //   "https://alukas.presslayouts.com/wp-content/uploads/2023/02/Cross-Stripes-Stone-Bracelet-1.jpg",
+      //   "https://alukas.presslayouts.com/wp-content/uploads/2023/02/Cross-Stripes-Stone-Bracelet-2.jpg",
+      //   "https://alukas.presslayouts.com/wp-content/uploads/2023/02/Cross-Stripes-Stone-Bracelet-3.jpg",
+      //   "https://alukas.presslayouts.com/wp-content/uploads/2023/02/Cross-Stripes-Stone-Bracelet-4.jpg",
+      // ],
+      // price: 1000,
+      // size: 1,
+      // color: 1,
+      // category: "men's-bands",
+      // quantity: 1,
+    };
+
+    let data9 = {
+      // name: "Echoes Swing word Bracelet",
+      // desc: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
+      // imageUrls: [
+      //   "https://alukas.presslayouts.com/wp-content/uploads/2023/02/Echoes-Swing-word-Bracelet-1.jpg",
+      //   "https://alukas.presslayouts.com/wp-content/uploads/2023/02/Echoes-Swing-word-Bracelet-3.jpg",
+      //   "https://alukas.presslayouts.com/wp-content/uploads/2023/02/Echoes-Swing-word-Bracelet-4.jpg",
+      // ],
+      // price: 700,
+      // size: 1,
+      // color: 1,
+      // category: "men's-bands",
+      // quantity: 1,
+    };
+
+    let data10 = {
+      // name: "Classic Shine Necklace",
+      // desc: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
+      // imageUrls: [
+      //   "https://alukas.presslayouts.com/wp-content/uploads/2023/02/Classic-Shine-Necklace-1.jpg",
+      //   "https://alukas.presslayouts.com/wp-content/uploads/2023/02/Classic-Shine-Necklace-3.jpg",
+      // ],
+      // price: 300,
+      // size: 1,
+      // color: 1,
+      // category: "men's-bands",
+      // quantity: 1,
+    };
+
+    let data11 = {
+      // name: "Sparkling Crown Charm Bracelet",
+      // desc: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
+      // imageUrls: [
+      //   "https://alukas.presslayouts.com/wp-content/uploads/2023/02/Sparkling-Crown-Charm-Bracelet-1.jpg",
+      //   "https://alukas.presslayouts.com/wp-content/uploads/2023/02/Sparkling-Crown-Charm-Bracelet-2.jpg",
+      // ],
+      // price: 400,
+      // size: 1,
+      // color: 1,
+      // category: "men's-bands",
+      // quantity: 1,
+    };
+
+    let data12 = {
+      // name: "Classic Plain Stone Bracelet",
+      // desc: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
+      // imageUrls: [
+      //   "https://alukas.presslayouts.com/wp-content/uploads/2023/02/Classic-Plain-Stone-Bracelet-1.jpg",
+      //   "https://alukas.presslayouts.com/wp-content/uploads/2023/02/Classic-Plain-Stone-Bracelet-2.jpg",
+      //   "https://alukas.presslayouts.com/wp-content/uploads/2023/02/Classic-Plain-Stone-Bracelet-3.jpg",
+      //   "https://alukas.presslayouts.com/wp-content/uploads/2023/02/Classic-Plain-Stone-Bracelet-4.jpg",
+      // ],
+      // price: 400,
+      // size: 1,
+      // color: 1,
+      // category: "men's-bands",
+      // quantity: 1,
+    };
+
+    let data13 = {
+      // name: "Twisted hoop earrings",
+      // desc: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
+      // imageUrls: [
+      //   "https://ninetheme.com/themes/goldsmith/wp-content/uploads/2021/12/37002520_20_B.webp",
+      //   "https://ninetheme.com/themes/goldsmith/wp-content/uploads/2021/12/37002520_20_D2.webp",
+      //   "https://ninetheme.com/themes/goldsmith/wp-content/uploads/2021/12/37002520_20-99999999_01.webp",
+      //   "https://ninetheme.com/themes/goldsmith/wp-content/uploads/2021/12/37002520_20.webp",
+      // ],
+      // price: 150,
+      // size: 1,
+      // color: 1,
+      // category: "all-stones",
+      // quantity: 1,
+    };
+
+    let data14 = {
+      // name: "Mesh flower earrings",
+      // desc: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
+      // imageUrls: [
+      //   "https://ninetheme.com/themes/goldsmith/wp-content/uploads/2021/10/47000355_PL_D1.webp",
+      //   "https://ninetheme.com/themes/goldsmith/wp-content/uploads/2021/10/47000355_PL_D5.webp",
+      //   "https://ninetheme.com/themes/goldsmith/wp-content/uploads/2021/10/47000355_PL-99999999_01.webp",
+      // ],
+      // price: 60,
+      // size: 1,
+      // color: 1,
+      // category: "diamonds",
+      // quantity: 1,
+    };
+
+    let data15 = {
+      // name: "Faceted crystal hoop earrings",
+      // desc: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
+      // imageUrls: [
+      //   "https://ninetheme.com/themes/goldsmith/wp-content/uploads/2021/10/37096318_PL_B.webp",
+      //   "https://ninetheme.com/themes/goldsmith/wp-content/uploads/2021/10/37096318_PL.webp",
+      //   "https://ninetheme.com/themes/goldsmith/wp-content/uploads/2021/10/37096318_PL-99999999_01.webp",
+      // ],
+      // price: 120,
+      // size: 1,
+      // color: 1,
+      // category: "diamonds",
+      // quantity: 1,
+    };
+
     let data = {
-      name: "Silver Reflections Gemston",
-      desc: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
-      imageUrls: [
-        "https://mldrbgfat3wx.i.optimole.com/SQPHnU0-fDNzwSu7/w:auto/h:auto/q:auto/https://dici.themes.zone/main/wp-content/uploads/sites/8/2018/04/DC_Products_8.jpg",
-        "https://mldrbgfat3wx.i.optimole.com/SQPHnU0-DwSCHIno/w:300/h:300/q:auto/rt:fill/g:ce/https://dici.themes.zone/main/wp-content/uploads/sites/8/2018/04/DC_Products_4.jpg",
-        "https://mldrbgfat3wx.i.optimole.com/SQPHnU0-b4BhHcQy/w:auto/h:auto/q:auto/https://dici.themes.zone/main/wp-content/uploads/sites/8/2018/04/DC_Products_3.jpg",
-      ],
-      price: 333,
-      size: 1,
-      color: 1,
-      category: "emerald-spring",
-      quantity: 1,
+      // name: "Embossed hoop white earrings",
+      // desc: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
+      // imageUrls: [
+      //   "https://ninetheme.com/themes/goldsmith/wp-content/uploads/2021/12/37040112_PL_B.webp",
+      //   "https://ninetheme.com/themes/goldsmith/wp-content/uploads/2021/12/37040112_PL.webp",
+      //   "https://ninetheme.com/themes/goldsmith/wp-content/uploads/2021/12/37040112_PL_D2.webp",
+      // ],
+      // price: 90,
+      // size: 1,
+      // color: 1,
+      // category: "sterling-silver",
+      // quantity: 1,
     };
 
     let listData = [
@@ -164,7 +300,7 @@ function Home() {
     let mark = [];
     let c = [];
 
-    while (i < 5) {
+    while (i < 7) {
       random = Math.floor(Math.random() * 11);
       c[random] = random;
 
@@ -182,9 +318,9 @@ function Home() {
 
   return (
     <>
-      {/* <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <button type="submit">Submit</button>
-      </form> */}
+      </form>
       {/* Slider */}
       <Slider />
 
@@ -278,10 +414,10 @@ function Home() {
 
       <div className={cx("collection-wrapper", "section-1200", "mt-60")}>
         <Collection heading="OUR BESTSELLING ITEMS">
-          {products ? <Product product={products[0]} /> : <Product />}
-          {products ? <Product product={products[5]} /> : <Product />}
-          {products ? <Product product={products[2]} /> : <Product />}
-          {products ? <Product product={products[6]} /> : <Product />}
+          {products ? <Product product={products[14]} /> : <Product />}
+          {products ? <Product product={products[13]} /> : <Product />}
+          {products ? <Product product={products[12]} /> : <Product />}
+          {products ? <Product product={products[15]} /> : <Product />}
         </Collection>
       </div>
 

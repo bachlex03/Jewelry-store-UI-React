@@ -4,7 +4,14 @@ import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAnglesRight } from "@fortawesome/free-solid-svg-icons";
 
-import React, { useMemo, memo, useState, useRef, Fragment } from "react";
+import React, {
+  useMemo,
+  memo,
+  useState,
+  useRef,
+  Fragment,
+  useEffect,
+} from "react";
 
 const cx = classNames.bind(style);
 
@@ -20,6 +27,7 @@ function Paging({ length, productsShow, setShow }) {
     const pageQuantity = Math.ceil(length / productsShow);
 
     pagesRender = [];
+
     for (let i = 0; i < pageQuantity; i++) {
       pagesRender.push(i);
     }
@@ -30,6 +38,8 @@ function Paging({ length, productsShow, setShow }) {
     const end = start + productsShow - 1;
 
     isActive === index || setActive(index);
+
+    window.scrollTo(0, 400);
 
     setShow({ start, end });
   };

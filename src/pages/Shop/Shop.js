@@ -76,7 +76,7 @@ function Shop() {
 
       productsLength = distinctProducts.length;
     })();
-  }, []);
+  }, [categories]);
 
   // fetch categories
   useEffect(() => {
@@ -117,8 +117,11 @@ function Shop() {
             <div className="row">
               <div className={cx("top-show")}>
                 <p className={cx("result-count")}>
-                  Showing {products ? products.length : 0}–12 of{" "}
-                  {products ? products.length : 0} results
+                  Showing{" "}
+                  {products.length > show.end
+                    ? show.end - show.start + 1
+                    : products.length - show.start}
+                  –9 of {products ? products.length : 0} results
                 </p>
                 <div
                   className={cx("sorting")}
@@ -157,13 +160,6 @@ function Shop() {
               </div>
             </div>
             <div className="row">
-              <div className="col l-4">
-                <Product product={null} />
-              </div>
-              <div className="col l-4">
-                <Product product={null} soldOut />
-              </div>
-
               {products.map((product, index) => {
                 if (index >= show.start && index <= show.end)
                   return (
@@ -172,6 +168,14 @@ function Shop() {
                     </div>
                   );
               })}
+
+              {/* <div className="col l-4">
+                <Product product={null} soldOut />
+              </div>
+
+              <div className="col l-4">
+                <Product product={null} sale />
+              </div> */}
             </div>
 
             <div className={cx("paging-wrapper", "mt-20")}>
