@@ -318,9 +318,9 @@ function Home() {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      {/* <form onSubmit={handleSubmit}>
         <button type="submit">Submit</button>
-      </form>
+      </form> */}
       {/* Slider */}
       <Slider />
 

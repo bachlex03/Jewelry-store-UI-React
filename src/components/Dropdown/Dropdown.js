@@ -9,6 +9,7 @@ function Dropdown({
   setProducts,
   setNameSorting,
   pagingRef,
+  setShow,
 }) {
   const handleSort = (sortObj) => {
     switch (sortObj.type) {
@@ -34,9 +35,8 @@ function Dropdown({
         setNameSorting(sortObj.name);
     }
 
-    console.log(pagingRef);
-
     pagingRef.current.setActive(0);
+    setShow({ start: 0, end: 8 });
   };
   return (
     <ul className={cx("list")}>

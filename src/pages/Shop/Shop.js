@@ -150,6 +150,7 @@ function Shop() {
                       setProducts={setProducts}
                       setNameSorting={setNameSorting}
                       pagingRef={pagingRef}
+                      setShow={setShow}
                       arr={[
                         { type: "popularity", name: "Sort by popularity" },
                         { type: "desc", name: "Sort by price: high - low" },
