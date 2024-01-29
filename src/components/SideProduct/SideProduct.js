@@ -7,22 +7,41 @@ import images from "~/assets/images";
 
 const cx = classNames.bind(styles);
 
-function ServiceItem({ sale }) {
+function SideProduct({ product, sale }) {
   return (
     <div className="flex align-center mt-20">
-      <Link to="">
-        <img src={images.product} alt="Product" className={cx("img")} />
+      <Link
+        to={{
+          pathname: `/products/${product ? product.slug : "demo"}`,
+        }}
+      >
+        <img
+          src={product ? product.imageUrls[0] : images.product}
+          alt="Product"
+          className={cx("img")}
+        />
       </Link>
       <div>
-        <Link to="">
-          <p className={cx("name")}>Rhombus Diamond Ring 18k White Gold</p>
+        <Link
+          to={{
+            pathname: `/products/${product ? product.slug : "demo"}`,
+          }}
+        >
+          <p className={cx("name")}>
+            {product ? product.name : "Not available"}
+          </p>
         </Link>
         <div className="mt-10">
-          <Price sale={sale} fs_15 />
+          <Price
+            promotion={product && product.promotion}
+            value={product && product.price}
+            sale={sale}
+            fs_15
+          />
         </div>
       </div>
     </div>
   );
 }
 
-export default ServiceItem;
+export default SideProduct;

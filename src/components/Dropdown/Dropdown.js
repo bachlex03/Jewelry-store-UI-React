@@ -3,29 +3,27 @@ import classNames from "classnames/bind";
 
 const cx = classNames.bind(style);
 
-let originObj = null;
-
-function Dropdown({ arr = [], products, setProducts, setNameSorting }) {
-  if (!originObj || originObj.length === 0) {
-    originObj = products;
-  }
-
+function Dropdown({ arr = [], productsRef, setProducts, setNameSorting }) {
   const handleSort = (sortObj) => {
     switch (sortObj.type) {
       case "asc":
-        // setProducts(products.sort((a, b) => a.price - b.price));
+        setProducts(
+          productsRef.current.distinct.sort((a, b) => a.price - b.price)
+        );
 
         setNameSorting(sortObj.name);
         break;
       case "desc":
-        // setProducts(products.sort((a, b) => b.price - a.price));
+        setProducts(
+          productsRef.current.distinct.sort((a, b) => b.price - a.price)
+        );
 
         setNameSorting(sortObj.name);
         break;
       case "popularity":
         break;
       default:
-        // setProducts(originObj);
+        setProducts(productsRef.current.distinct.sort((a, b) => a._id - b._id));
 
         setNameSorting(sortObj.name);
     }

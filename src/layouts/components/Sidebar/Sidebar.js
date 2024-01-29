@@ -14,7 +14,7 @@ import * as siteServices from "~/apiServices/siteServices";
 
 const cx = classNames.bind(style);
 
-function Sidebar({ categories }) {
+function Sidebar({ categories, products }) {
   console.log("Sidebar mounted");
 
   const [colorsFilter, setColorsFilter] = useState([]);
@@ -70,10 +70,31 @@ function Sidebar({ categories }) {
 
       <div>
         <h3 className={cx("heading")}>Best selling products</h3>
-        <SideProduct name="Product" price sale />
-        <SideProduct name="Product" price />
-        <SideProduct name="Product" price sale />
-        <SideProduct name="Product" price />
+
+        {products ? (
+          <SideProduct product={products[0]} />
+        ) : (
+          <SideProduct name="Product" price sale />
+        )}
+
+        {products ? (
+          <SideProduct product={products[4]} />
+        ) : (
+          <SideProduct name="Product" price sale />
+        )}
+
+        {products ? (
+          <SideProduct product={products[3]} />
+        ) : (
+          <SideProduct name="Product" price sale />
+        )}
+
+        {products ? (
+          <SideProduct product={products[2]} />
+        ) : (
+          <SideProduct name="Product" price sale />
+        )}
+        {/* <SideProduct name="Product" price /> */}
 
         <span className={cx("separate")}></span>
       </div>

@@ -3,6 +3,7 @@ import classNames from "classnames/bind";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useAuth } from "~/hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 import { Input, Button } from "~/components";
 const cx = classNames.bind(style);
@@ -13,6 +14,7 @@ const sizes = ["16.0", "17.0", "18.0", "19.0"];
 function Checkout() {
   const cartItems = useSelector((state) => state.cart.values);
   const cartCount = useSelector((state) => state.cart.count);
+  const navigate = useNavigate();
 
   const auth = useAuth();
   let user = auth.user;
@@ -48,6 +50,7 @@ function Checkout() {
     disable: !cartCount,
   };
 
+  // save state typed note
   useEffect(() => {
     if (window.localStorage.getItem("note")) {
       setForm((prev) => ({
@@ -55,6 +58,10 @@ function Checkout() {
         note: window.localStorage.getItem("note"),
       }));
     }
+  }, []);
+
+  useEffect(() => {
+    if (!user) navigate("/login");
   }, []);
 
   let total = 0;

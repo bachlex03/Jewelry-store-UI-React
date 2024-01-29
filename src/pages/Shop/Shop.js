@@ -20,6 +20,8 @@ let productsLength = 0;
 const productsShow = 9;
 let openDropdown = false;
 
+let distinctProducts = [];
+
 function Shop() {
   console.log("shop mounted");
 
@@ -62,7 +64,7 @@ function Shop() {
       const allProducts = await productServices.products();
       productsRef.current.all = allProducts;
 
-      const distinctProducts = productFilter.distinctBy(allProducts, "slug");
+      distinctProducts = productFilter.distinctBy(allProducts, "slug");
 
       productsRef.current.distinct = distinctProducts;
 
@@ -108,7 +110,7 @@ function Shop() {
                 setFilters,
               }}
             >
-              <Sidebar categories={categories} />
+              <Sidebar categories={categories} products={distinctProducts} />
             </FiltersContext.Provider>
           </div>
           <div className="col l-9">
@@ -140,7 +142,7 @@ function Shop() {
                     }}
                   >
                     <Dropdown
-                      products={products}
+                      productsRef={productsRef}
                       setProducts={setProducts}
                       setNameSorting={setNameSorting}
                       arr={[
