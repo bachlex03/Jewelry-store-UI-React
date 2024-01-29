@@ -1,8 +1,8 @@
 import styles from "./Shop.module.scss";
 import classNames from "classnames/bind";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useParams, useLocation } from "react-router-dom";
 import React, { useState, useEffect, createContext, useRef } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { Sidebar } from "~/layouts/components";
 import { Product, ScrollToTop, Paging, Dropdown } from "~/components";

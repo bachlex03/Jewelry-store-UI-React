@@ -5,6 +5,7 @@ import storage from "redux-persist/lib/storage";
 
 import cartReducer from "./features/cart/cartSlice";
 import userReducer from "./features/user/userSlice";
+import wishlistReducer from "./features/wishlist/wishlistSlice";
 
 import expireInTransform from "redux-persist-transform-expire-in";
 
@@ -27,9 +28,15 @@ const persistConfigCart = {
   transforms: [expireInTransform(expireIn, expirationKey, [])],
 };
 
+const persistConfigWishlist = {
+  key: "wishlist",
+  storage,
+};
+
 const rootReducer = combineReducers({
   user: persistReducer(persistConfigUser, userReducer),
   cart: persistReducer(persistConfigCart, cartReducer),
+  wishlist: persistReducer(persistConfigWishlist, wishlistReducer),
 });
 
 const persistedReducer = persistReducer(persistConfigInit, rootReducer);
