@@ -3,7 +3,13 @@ import classNames from "classnames/bind";
 
 const cx = classNames.bind(style);
 
-function Dropdown({ arr = [], productsRef, setProducts, setNameSorting }) {
+function Dropdown({
+  arr = [],
+  productsRef,
+  setProducts,
+  setNameSorting,
+  pagingRef,
+}) {
   const handleSort = (sortObj) => {
     switch (sortObj.type) {
       case "asc":
@@ -27,6 +33,10 @@ function Dropdown({ arr = [], productsRef, setProducts, setNameSorting }) {
 
         setNameSorting(sortObj.name);
     }
+
+    console.log(pagingRef);
+
+    pagingRef.current.setActive(0);
   };
   return (
     <ul className={cx("list")}>

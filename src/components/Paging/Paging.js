@@ -10,18 +10,27 @@ import React, {
   useState,
   useRef,
   Fragment,
-  useEffect,
+  useImperativeHandle,
+  forwardRef,
 } from "react";
 
 const cx = classNames.bind(style);
 
 let pagesRender = [];
 
-function Paging({ length, productsShow, setShow }) {
+function Paging(props, ref) {
   // console.log("Paging mounted");
+
+  let { length, productsShow, setShow } = props;
 
   const [isActive, setActive] = useState(0);
   const pageRefs = useRef([]);
+
+  useImperativeHandle(ref, () => {
+    return {
+      setActive,
+    };
+  });
 
   useMemo(() => {
     const pageQuantity = Math.ceil(length / productsShow);
@@ -81,4 +90,4 @@ function Paging({ length, productsShow, setShow }) {
   );
 }
 
-export default memo(Paging);
+export default memo(forwardRef(Paging));

@@ -34,6 +34,7 @@ function Shop() {
   const [show, setShow] = useState({ start: 0, end: 8 });
 
   const productsRef = useRef({ all: [], distinct: [] });
+  const pagingRef = useRef();
 
   // styling dropdown category
   const dropdownRef = useRef();
@@ -148,6 +149,7 @@ function Shop() {
                       productsRef={productsRef}
                       setProducts={setProducts}
                       setNameSorting={setNameSorting}
+                      pagingRef={pagingRef}
                       arr={[
                         { type: "popularity", name: "Sort by popularity" },
                         { type: "desc", name: "Sort by price: high - low" },
@@ -180,6 +182,7 @@ function Shop() {
 
             <div className={cx("paging-wrapper", "mt-20")}>
               <Paging
+                ref={pagingRef}
                 setShow={setShow}
                 length={productsLength}
                 productsShow={productsShow}
