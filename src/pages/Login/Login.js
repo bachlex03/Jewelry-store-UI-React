@@ -78,7 +78,7 @@ function Login() {
               name="password"
               label="Password"
               placeholder="password"
-              type="text"
+              type="password"
               isRequired
               value={password}
               onChange={handleForm}

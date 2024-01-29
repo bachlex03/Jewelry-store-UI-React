@@ -32,26 +32,6 @@ function Details() {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.values);
 
-  // console.log("availableColors", availableColors);
-  // console.log("availableSizes", availableSizes);
-
-  // Fetching product details
-  useEffect(() => {
-    const fetchApiProductDetails = (async () => {
-      const result = await productServices.details(param);
-
-      allVariantsRef.current = result;
-
-      setProduct(result[0]);
-
-      setAvailableColors(productFilters.filterVariants(result, "color"));
-      setAvailableSizes(productFilters.filterVariants(result, "size"));
-    })();
-
-    variationValueRefs.current[0] = React.createRef();
-    variationValueRefs.current[1] = React.createRef();
-  }, []);
-
   const handleClear = () => {
     variationValueRefs.current.forEach((selection) => {
       setAvailableColors(
@@ -114,8 +94,28 @@ function Details() {
     }
   };
 
+  // Fetching product details
+  useEffect(() => {
+    const fetchApiProductDetails = (async () => {
+      const result = await productServices.details(param);
+
+      allVariantsRef.current = result;
+
+      setProduct(result[0]);
+
+      setAvailableColors(productFilters.filterVariants(result, "color"));
+      setAvailableSizes(productFilters.filterVariants(result, "size"));
+    })();
+
+    variationValueRefs.current[0] = React.createRef();
+    variationValueRefs.current[1] = React.createRef();
+  }, []);
+
+  useEffect(() => {
+    window.scrollTo(0, 400);
+  }, []);
   return (
-    <div className="section-1200">
+    <div className="section-1200" onLoad={() => {}}>
       <div className={cx("wrapper")}>
         {product.promotion ? (
           <img src={images.sale} alt="sale" className={cx("sale-tag")} />

@@ -10,17 +10,7 @@ import { Button } from "~/components";
 const cx = classNames.bind(style);
 
 function Order() {
-  const navigate = useNavigate();
   const [user, setUser] = useState();
-  const auth = useAuth();
-
-  useEffect(() => {
-    if (!auth.user) {
-      navigate("/login");
-    } else {
-      setUser(auth.user);
-    }
-  }, []);
 
   return (
     <div className={cx("wrapper")}>

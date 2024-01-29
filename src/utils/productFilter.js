@@ -53,9 +53,45 @@ export function filterByVariation(products, filters = {}) {
         filteredProducts = [...filteredProducts, ...temp];
     });
 
-    console.log(filteredProducts);
+    // console.log(filteredProducts);
 
     return filteredProducts;
+  } else if (colors.length > 0) {
+    Object.values(groupedProducts).forEach((group) => {
+      let temp = [];
+
+      for (let color of colors) {
+        let product = group.find((product) => {
+          return product.color === color;
+        });
+
+        if (product) temp.push(product);
+      }
+
+      if (temp.length >= colors.length)
+        filteredProducts = [...filteredProducts, ...temp];
+    });
+
+    return filteredProducts;
+  } else if (sizes.length > 0) {
+    Object.values(groupedProducts).forEach((group) => {
+      let temp = [];
+
+      for (let size of sizes) {
+        let product = group.find((product) => {
+          return product.size === size;
+        });
+
+        if (product) temp.push(product);
+      }
+
+      if (temp.length >= sizes.length)
+        filteredProducts = [...filteredProducts, ...temp];
+    });
+
+    return filteredProducts;
+  } else {
+    return products;
   }
 
   // filteredProducts = Object.values(groupedProducts).filter((group) => {
@@ -125,7 +161,5 @@ export const filterVariants = (products, variation) => {
 };
 
 export const filterVariantsBy = (name, variantId, products) => {
-  // console.log(products);
-
   return products.filter((product) => product[name] == variantId);
 };

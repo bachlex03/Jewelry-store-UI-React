@@ -55,7 +55,7 @@ function AuthProvider({ children }) {
 
     dispatch(remove());
 
-    // navigate("/login");
+    navigate("/login");
   };
 
   // Check valid or exist JWT on reload page if user / hacker delete JWT cookie

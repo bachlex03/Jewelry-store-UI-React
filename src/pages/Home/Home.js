@@ -1,9 +1,12 @@
 import styles from "./Home.module.scss";
 import classNames from "classnames/bind";
+import { useState, useEffect } from "react";
 
 import * as productServices from "~/apiServices/productServices";
 import * as siteServices from "~/apiServices/siteServices";
 import * as userServices from "~/apiServices/userServices";
+
+import * as productFilter from "~/utils/productFilter";
 
 import images from "~/assets/images";
 import {
@@ -17,6 +20,18 @@ import {
 const cx = classNames.bind(styles);
 
 function Home() {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchProducts = (async () => {
+      const results = await productServices.products();
+
+      const distinctProducts = productFilter.distinctBy(results, "slug");
+
+      setProducts(distinctProducts);
+    })();
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     alert();
@@ -167,9 +182,9 @@ function Home() {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      {/* <form onSubmit={handleSubmit}>
         <button type="submit">Submit</button>
-      </form>
+      </form> */}
       {/* Slider */}
       <Slider />
 
@@ -225,10 +240,10 @@ function Home() {
 
       <div className={cx("collection-wrapper", "section-1200", "mt-60")}>
         <Collection heading="OUR LATEST COLLECTION">
-          <Product />
-          <Product />
-          <Product />
-          <Product />
+          {products ? <Product product={products[4]} /> : <Product />}
+          {products ? <Product product={products[3]} /> : <Product />}
+          {products ? <Product product={products[5]} /> : <Product />}
+          {products ? <Product product={products[6]} /> : <Product />}
         </Collection>
       </div>
 
@@ -263,10 +278,10 @@ function Home() {
 
       <div className={cx("collection-wrapper", "section-1200", "mt-60")}>
         <Collection heading="OUR BESTSELLING ITEMS">
-          <Product />
-          <Product />
-          <Product />
-          <Product />
+          {products ? <Product product={products[0]} /> : <Product />}
+          {products ? <Product product={products[5]} /> : <Product />}
+          {products ? <Product product={products[2]} /> : <Product />}
+          {products ? <Product product={products[6]} /> : <Product />}
         </Collection>
       </div>
 
