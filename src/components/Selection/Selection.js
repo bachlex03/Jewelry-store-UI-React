@@ -28,10 +28,12 @@ function Selection(props, ref) {
     availableVariants,
     defaultArr,
     setAvailableVariants,
+    setClearOther,
   } = props;
 
   // set chosen variant in box
   let [value, setValue] = useState("Choose your option");
+  let [clear, setClear] = useState(true);
 
   // handle show variant if available and blur if not available
   let [liDOM, setLiDOM] = useState([]);
@@ -44,6 +46,7 @@ function Selection(props, ref) {
       selectValue: value,
       chosenId: variantIdRef.current,
       setValue,
+      setClear,
     };
   });
 
@@ -70,6 +73,8 @@ function Selection(props, ref) {
     setAvailableVariants(
       productFilter.filterVariants(productsByVariantId, othersVariation)
     );
+
+    setClearOther.current.setClear(false);
   };
 
   // Handle set value to box
@@ -87,6 +92,7 @@ function Selection(props, ref) {
           listRef.current.classList.add("hidden");
 
           setValue(e.target.innerText);
+          setClear(false);
         }
       });
     });
@@ -112,7 +118,7 @@ function Selection(props, ref) {
             (product) => product.size === availableVariants[i]
           );
 
-          if (product && product.quantity === 0) {
+          if (!clear && product && product.quantity === 0) {
             soldOut = true;
           }
         }

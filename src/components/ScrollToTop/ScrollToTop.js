@@ -12,7 +12,6 @@ function ScrollToTop({ axes_y = 700 }) {
   const [visible, setVisible] = useState(false);
 
   window.addEventListener("scroll", (e) => {
-    console.log();
     if (window.pageYOffset > axes_y) {
       setVisible(true);
     } else {

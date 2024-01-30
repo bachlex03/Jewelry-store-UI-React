@@ -259,6 +259,10 @@ ol {
   display: flex;
 }
 
+.flex-1 {
+  flex: 1;
+}
+
 .flex.flex-col {
   flex-direction: column;
 }

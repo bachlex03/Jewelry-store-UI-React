@@ -1,0 +1,115 @@
+.icon-wrapper {
+  display: inline-block;
+  position: fixed;
+  right: 0;
+  top: 50%;
+  width: 60px;
+  height: 60px;
+  border-radius: 999px;
+  margin-right: 20px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  text-align: center;
+}
+
+.icon-wrapper[open] {
+  animation: topToBot 1s ease forwards;
+}
+
+.icon-wrapper[close] {
+  animation: botToTop 1s ease forwards;
+}
+
+.icon-wrapper[display-non] {
+  display: none;
+}
+
+@keyframes topToBot {
+  0% {
+    opacity: 0.5;
+    top: 40%;
+  }
+
+  100% {
+    opacity: 1;
+    top: 50%;
+  }
+}
+
+@keyframes botToTop {
+  0% {
+    opacity: 1;
+    top: 50%;
+  }
+
+  100% {
+    opacity: 0;
+    top: 40%;
+  }
+}
+
+.wrapper {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+
+  .icon {
+    font-size: 2.4rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-right: 4px;
+    transition: all 0.3s;
+
+    &:hover {
+      color: var(--primary);
+    }
+  }
+
+  .box-icon {
+    position: absolute;
+    display: none;
+    top: -50px;
+    font-size: 2.4rem;
+    color: var(--green);
+  }
+
+  .box-icon[add] {
+    display: block;
+    animation: addToCart 1s ease-out forwards;
+  }
+
+  .quantity {
+    position: absolute;
+    top: -8px;
+    right: 0;
+    content: "";
+    display: block;
+    width: 20px;
+    line-height: 20px;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #fff;
+    background-color: var(--primary);
+    border-radius: 50%;
+  }
+}
+
+@keyframes addToCart {
+  0% {
+    top: -120px;
+    opacity: 0;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  93% {
+    opacity: 0.3;
+  }
+
+  100% {
+    opacity: 0;
+    top: -50px;
+  }
+}

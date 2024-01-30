@@ -61,7 +61,7 @@ function Cart() {
                 </td>
                 <td className={cx("product")}>
                   <Link to={`/products/${item.slug}`}>
-                    <img src={images.product} alt="" />
+                    <img src={item.imageUrls[0]} alt="" />
                   </Link>
                   <div className={cx("body")}>
                     <Link
@@ -72,10 +72,10 @@ function Cart() {
                     </Link>
                     <div className={cx("variation-wrapper")}>
                       <div className={cx("variation-value")}>
-                        Color: {colors[item.color]}
+                        Color: {colors[item.color - 1]}
                       </div>
                       <div className={cx("variation-value")}>
-                        Size: {sizes[item.size]}
+                        Size: {sizes[item.size - 1]}
                       </div>
                     </div>
                   </div>

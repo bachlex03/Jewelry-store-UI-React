@@ -23,3 +23,4 @@ export { default as PrivateRoute } from "./PrivateRoute";
 export { default as Slider } from "./Slider";
 export { default as CategoriesHeader } from "./CategoriesHeader";
 export { default as Dropdown } from "./Dropdown";
+export { default as SideCart } from "./SideCart";

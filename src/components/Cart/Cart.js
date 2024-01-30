@@ -3,7 +3,6 @@ import classNames from "classnames/bind";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
-import images from "~/assets/images";
 import { Price, Button } from "~/components";
 
 import { remove } from "~/redux/features/cart/cartSlice";
@@ -47,9 +46,13 @@ function Cart() {
               </i>
               <div className={cx("item-info")}>
                 <Link to={`/products/${item.slug}`}>
-                  <img src={images.product} alt="" className={cx("item-img")} />
+                  <img
+                    src={item.imageUrls[0]}
+                    alt=""
+                    className={cx("item-img")}
+                  />
                 </Link>
-                <div>
+                <div className="flex-1">
                   <Link to={`/products/${item.slug}`}>
                     <h4 className={cx("item-heading")}>{item.name}</h4>
                   </Link>

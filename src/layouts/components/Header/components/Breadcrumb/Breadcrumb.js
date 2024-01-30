@@ -10,10 +10,6 @@ function Breadcrumb() {
 
   let currentPath = location.pathname.split("/");
 
-  console.log(location.pathname);
-
-  console.log(currentPath);
-
   return (
     <section className={cx("breadcrumb")}>
       <div>
