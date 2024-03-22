@@ -196,10 +196,10 @@ function Checkout() {
                           </span>
                           <div>
                             <p className={cx("variation-value")}>
-                              Color: {colors[item.color]}
+                              Color: {colors[item.color - 1]}
                             </p>
                             <p className={cx("variation-value")}>
-                              Size: {sizes[item.size]}
+                              Size: {sizes[item.size - 1]}
                             </p>
                           </div>
                         </div>

@@ -61,7 +61,8 @@ function Login() {
     <div className="section-1200">
       <div className={cx("wrapper")}>
         <form onSubmit={handleSubmit}>
-          <h3 className={cx("heading")}>Login</h3>
+          <h3 className={cx("heading")}>Login </h3>
+          <p className={cx("note")}>(email: user@gmail.com, password: user)</p>
           <div className="">
             <Input
               name="email"
